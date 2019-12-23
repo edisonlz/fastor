@@ -13,21 +13,21 @@
 ## 开始使用
 ## Fastor 项目分为两个系统
 
-### 1）. 后端管理系统
+### 1） 后端管理系统
 ![Alt text](./doc/system.png)
 
-### 2）. API系统
+### 2 API系统
 
 ![Alt text](./doc/api.png)
 
 
 
 ## 环境配置
-#####部署服务
+##### 部署服务
 - 下载或者clone fastor 代码
 
-###框架结构
-###API 目录结构
+### 框架结构
+### API 目录结构
 - api ： API 接口代码
 - app:   ORM Model与后端Views代码
 - background：分布式异步处理Async代码 & 定时任务
@@ -35,5 +35,5 @@
 - base/site-packages: 这里优先使用的是代码中的 site-packages 的python第三方类库
 
 
-#####作者： 向Ed老师曾经的战友们致敬！
+##### 作者： 向Ed老师曾经的战友们致敬！
 
