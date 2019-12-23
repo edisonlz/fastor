@@ -44,7 +44,7 @@ cd app/
 python runserver
 ```
 
-### 2）创建models
+### 2）创建自己的 models
  #### 1. 创建models 路径 iclass/models/在创建model文件，例如 user.py
  #### 2. 在 iclass/models/__init__中导入 user 中的model对象
  #### 3. 示例
