@@ -288,7 +288,86 @@ def get_user(cls, user_id):
 
 ```
 
+#####  5）API 异步处理
 
+``` python
+#示例客户端代码
+
+
+@handler_define
+class AsyncDemo(BaseHandler):
+    
+
+    @api_define("AsyncDemo", r'/api/async/demo', [
+        Param('user_id', True, str, "" , "123456" , u'用户ID'),
+        Param('course_name', True, str, "","Ed老师的python课程" , u'课程名称'),
+    ], description="[示例]处理异步事件", return_desc="""""")
+    def get(self):
+        
+        user_id = self.arg("user_id")
+        course_name = self.arg("course_name")
+
+        data = {
+            "user_id":user_id,
+            "course_name":course_name,
+        }
+
+        dispatch_client = Client()
+        dispatch_client.dispatch("demo.async.send", data)
+        
+   
+        response = {
+            "code": 200,
+            "status": "success",
+        }
+
+        return self.write(response)
+
+``` 
+
+
+
+``` python
+#示例服务端代码 background/demo.py
+
+def do_sync_worker(data):
+    print "**Recieve data: ", data
+    logging.error(data)
+   
+
+
+
+if __name__ == "__main__":
+
+    worker = Worker("demo.async.send",support_brpop=False)
+    try:
+        worker.register(do_sync_worker)
+        worker.start()
+    except KeyboardInterrupt:
+        worker.stop()
+        print "exited cleanly"
+        sys.exit(1)
+    except Exception as e:
+        logging.error(e)
+
+``` 
+
+
+``` python
+#示例服务端代码启动配置 background/supervisord.conf
+#启动：supervisord -c  background/supervisord.conf
+#重启：supervisorctl -c  background/supervisord.conf restart all
+
+[program:demo]
+process_name = demo-%(process_num)s
+command=/data/python2.7/bin/python /data/python/fastor/background/demo.py
+process_name=%(program_name)s_%(process_num)02d
+stdout_logfile = /data/logs/demo.log
+numprocs=2 #这里需要配置你并发处理任务的进程数量
+autostart=true
+
+
+``` 
 
 
 ##### 作者： 向Ed老师曾经的战友们致敬！
