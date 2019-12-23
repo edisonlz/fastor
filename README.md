@@ -1,6 +1,6 @@
 # 欢迎使用Python 服务端开发 Fastor 框架
 
-**Fastor**是一款专为Python 打造的 **（API) ** 与 **（后端管理）** 系统 Framework，通过精心的设计与技术实现，集成了大部分稳定开发组件，memcache ， redis，tornado，django，mysql 等。特点概述：
+**Fastor**是一款专为Python 打造的API与后端管理系统 Framework，通过精心的设计与技术实现，集成了大部分稳定开发组件，memcache ， redis，tornado，django，mysql 等。特点概述：
  
 - **功能丰富** ：支持大部分服务器组件，支持API Doc；
 - **得心应手** ：简单的实例，非常容易上手；
