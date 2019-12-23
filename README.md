@@ -36,15 +36,42 @@
 - base/site-packages: 这里优先使用的是代码中的 site-packages 的python第三方类库
 
 ## 一 后端管理系统
+### 1）
+####  base/settings配置
+- 创建数据库fastor_db
+- 配置数据库连接参数
+- 配置redis连接参数
+- 配置memached连接参数
+- 其他配置等
+``` python
+示例
+'default': {
+                'ENGINE': 'django.db.backends.mysql',
+                'NAME': 'fastor_db',  # Or path to database file if using sqlite3.
+                'USER': 'root',  # Not used with sqlite3.
+                'PASSWORD': '123456',  # Not used with sqlite3.
+                'HOST': '127.0.0.1',  # Set to sempty string for localhost. Not used with sqlite3.
+                'PORT': '3306',  # Set to empty string for default. Not used with sqlite3.
+                'CHARSET': 'utf8',
+                'OPTIONS': {
+                    'init_command': 'SET storage_engine=INNODB; SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED;set autocommit=1;',
+                },
+            },
+```
+####  app/settings配置
+- 配置应用(app)
 
-### 1） 运行演示程序
 
+### 2）配置成功后，同步数据库并运行演示程序
 ``` python
 cd app/
-python runserver
+python manager.py syncdb #同步数据库并创建管理员
+python runserver #启动服务
+open http://127.0.0.1:8000/ ， 并使用刚创建的管理员账号密码登录
 ```
 
-### 2）创建自己的 models
+
+### 3）创建自己的 models
  #### 1. 在目录 iclass/models/中创建model文件，例如 user.py
  #### 2. 在 iclass/models/__init__中导入 user 中的model对象
  #### 3. 示例
@@ -75,13 +102,15 @@ class BaseUser(models.Model):
 
 ```
 
-#### 4.执行自动生成view/templates代码  python manage.py gencode iclass.models.base_user BaseUser
-     这里将会在views和templates自动生成增删改查的代码
-
+### 4）.执行自动生成view/templates代码  python manage.py gencode iclass.models.base_user BaseUser
+     - 这里将会在views和templates自动生成增删改查的代码
+     - 填下urls规则
+     - 导入views/__init__.py
+     - 设置入口导航 iclass/templates/cms_index/left_side_menu.html
      
- 
 
-### 服务部署
+
+### 后台系统服务部署
 #### 1.执行 bash app/app.sh 执行进程的数量，端口号均在这里配置。
 
 
