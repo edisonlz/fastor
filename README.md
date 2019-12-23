@@ -114,7 +114,64 @@ class BaseUser(models.Model):
     -  执行 bash app/app.sh 执行进程的数量，端口号均在这里配置。
 
 
+#####  6)  为了区分开发环境和线上环境支撑本地my_settings.py，如果配置了my_settings.py,将覆盖原有配置，默认加到了.gitignore
 
+    - 配置 app/my_settings.py
+
+``` python
+#示例配置
+def load_settings(settings):
+    settings.update({
+      
+        'DEBUG': True,
+       
+        'CACHES': {
+            'default': {
+                'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+            }
+        },
+     
+        'DATABASES': {
+            'default': {
+                'ENGINE': 'django.db.backends.mysql',
+                'NAME': 'fastor_db',  # Or path to database file if using sqlite3.
+                'USER': 'api',  # Not used with sqlite3.
+                'PASSWORD': 'Win123456',  # Not used with sqlite3.
+                'HOST': '58ec9db06f05c.sh.cdb.myqcloud.com',
+                'PORT': '3612', 
+                'CHARSET': 'utf8',
+                'OPTIONS': {
+                    'init_command': 'SET storage_engine=INNODB; SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED;set autocommit=1;',
+                },
+            },
+
+        },
+
+        'AUTHENTICATION_BACKENDS': (
+            "django.contrib.auth.backends.ModelBackend",
+            "app.user.backends.LDAPBackend",
+        ),
+
+      
+        "memcache_settings": {
+            "func_cache": ["127.0.0.1:11211"],
+        },
+
+        'redis_settings': {
+            "REDIS_BACKEND": {"servers": '127.0.0.1', "port": 6379, "db": 11},
+            "MQUEUE_BACKEND": {"servers": '127.0.0.1', "port": 6379, "db": 12},
+            "MASTER_REDIS": {"servers": '127.0.0.1', "port": 6379, "db": 9},
+            "SLAVE_REDIS": {"servers": '127.0.0.1', "port": 6379, "db": 9},
+        },
+
+        "memcache_proxy_settings": {
+
+        },
+
+    })
+
+
+```
 
 ## 二 API管理系统
 
