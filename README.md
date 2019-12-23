@@ -15,10 +15,10 @@
 ## Fastor 分为2个系统
 
 ### 1）后端管理系统
-![后台系统](./doc/system.png)
+![后台系统](./doc/s.png)
 
 ### 2）API系统
-![挨批系统](./doc/api.png)
+![Api系统](./doc/api.png)
 
 -------------------
 
@@ -114,7 +114,7 @@ class BaseUser(models.Model):
     -  执行 bash app/app.sh 执行进程的数量，端口号均在这里配置。
 
 
-#####  6)  为了区分开发环境和线上环境支撑本地my_settings.py，如果配置了my_settings.py,将覆盖原有配置，默认加到了.gitignore
+#####  6)  为了区分开发环境和线上环境支持本地my_settings.py，如果配置了my_settings.py,将覆盖原有配置，默认加到了.gitignore
 
     - 配置 app/my_settings.py
 
