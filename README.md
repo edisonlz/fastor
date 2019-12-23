@@ -370,6 +370,12 @@ autostart=true
 ``` 
 
 
+#####  6)  API系统服务部署
+
+    -  部署nginx ，nginx配置文件路径， api/conf/nginx/nginx.conf 
+    -  执行 bash api/tornado.sh 执行进程的数量，端口号均在这里配置。
+
+
 ##### 作者： 向Ed老师曾经的战友们致敬！
 
 
