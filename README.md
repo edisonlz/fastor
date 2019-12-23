@@ -35,8 +35,8 @@
 - base/site-packages: 这里优先使用的是代码中的 site-packages 的python第三方类库
 
 ## 一 后端管理系统
-#####  1）
-#####  base/settings配置
+
+##### 1）配置 base/settings.py
 - 创建数据库fastor_db
 - 配置数据库连接参数
 - 配置redis连接参数
@@ -57,7 +57,7 @@
                 },
             },
 ```
-#####  app/settings配置
+#####  配置 app/settings.py
 - 配置应用(app) 如第一次使用默认配置即可
 
 
