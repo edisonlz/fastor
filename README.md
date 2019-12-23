@@ -103,8 +103,8 @@ class BaseUser(models.Model):
 
 #####  4）.执行自动生成view/templates代码  python manage.py gencode iclass.models.base_user BaseUser
      - 这里将会在views和templates自动生成增删改查的代码
-     - 填下urls规则
-     - 导入views/__init__.py
+     - 在iclass/urls.py 编写url规则
+     - view 导入views/__init__.py
      - 设置入口导航 iclass/templates/cms_index/left_side_menu.html
      
 
