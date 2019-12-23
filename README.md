@@ -27,7 +27,7 @@
 - 下载或者clone fastor 代码
 
 ## 框架结构
-##### API 目录结构
+##### APP 目录结构
 - api: API 接口代码
 - app: ORM Model与后端Views代码
 - background: 分布式异步处理Async代码 & 定时任务
