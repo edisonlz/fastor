@@ -15,11 +15,12 @@
 [TOC]
 
 ## 开始使用
-Fastor 项目分为两个系统
-1. 后端管理系统
+## Fastor 项目分为两个系统
+
+### 1）. 后端管理系统
 ![Alt text](./doc/system.png)
 
-2. API系统
+### 2）. API系统
 
 ![Alt text](./doc/api.png)
 
