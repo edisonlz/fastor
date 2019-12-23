@@ -29,10 +29,10 @@
 
 ### 框架结构
 ### API 目录结构
-- api ： API 接口代码
-- app:   ORM Model与后端Views代码
-- background：分布式异步处理Async代码 & 定时任务
-- base:  基类和一些帮助函数
+- api: API 接口代码
+- app: ORM Model与后端Views代码
+- background: 分布式异步处理Async代码 & 定时任务
+- base: 基类和一些帮助函数
 - base/site-packages: 这里优先使用的是代码中的 site-packages 的python第三方类库
 
 ## 一 后端管理系统
@@ -45,10 +45,9 @@ python runserver
 ```
 
 ### 2）创建自己的 models
- #### 1. 创建models 路径 iclass/models/在创建model文件，例如 user.py
+ #### 1. 在目录 iclass/models/中创建model文件，例如 user.py
  #### 2. 在 iclass/models/__init__中导入 user 中的model对象
  #### 3. 示例
-
 ``` python
 
 
