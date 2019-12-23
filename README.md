@@ -108,9 +108,11 @@ class BaseUser(models.Model):
      - 设置入口导航 iclass/templates/cms_index/left_side_menu.html
      
 
+#####  5)  后台系统服务部署
 
-## 后台系统服务部署
-#####  1.执行 bash app/app.sh 执行进程的数量，端口号均在这里配置。
+    -  部署nginx ，nginx配置文件路径， app/conf/nginx.conf 
+    -  执行 bash app/app.sh 执行进程的数量，端口号均在这里配置。
+
 
 
 
