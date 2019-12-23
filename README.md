@@ -21,7 +21,7 @@ Fastor 项目分为两个系统
 
 2. API系统
 
-![Alt text](./static/api.png)
+![Alt text](./doc/api.png)
 
 
 
