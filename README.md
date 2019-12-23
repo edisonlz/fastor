@@ -15,10 +15,10 @@
 ## Fastor 分为2个系统
 
 ### 1）后端管理系统
-![后台系统](./doc/s.png)
+![后台系统](https://picture-1253291048.cos.ap-shanghai.myqcloud.com/s.png)
 
 ### 2）API系统
-![Api系统](./doc/api.png)
+![Api系统](https://picture-1253291048.cos.ap-shanghai.myqcloud.com/api.png)
 
 -------------------
 
