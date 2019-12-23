@@ -377,7 +377,7 @@ autostart=true
     -  执行 bash api/tornado.sh 执行进程的数量，端口号均在这里配置。
 
 
-##### Fastor 这个单词并非拼错，faster + 人 = Fastor （人效更高）的意思
+##### Fastor  = faster + 人  （人效更高）的意思
 ##### 作者： 向Ed老师曾经的战友们致敬！
 
 
