@@ -14,12 +14,11 @@
 ## 开始使用
 ## Fastor 分为2个系统
 
-### 1） 后端管理系统
-![Alt text](./doc/system.png)
+### 1）后端管理系统
+![后台系统](./doc/system.png)
 
-### 2 API系统
-
-![Alt text](./doc/api.png)
+### 2）API系统
+![挨批系统](./doc/api.png)
 
 -------------------
 
