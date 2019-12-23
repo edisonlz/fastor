@@ -1,0 +1,41 @@
+{% extends "rosetta/base.html" %}
+{% load i18n %}
+{% block breadcumbs %}<a href="{% url rosetta-pick-file %}">{% trans "Home" %}</a> &rsaquo; {% trans "Language selection" %}{% endblock %}
+{% block pagetitle %}{% trans "Language selection" %}{% endblock %}
+{% block main %}
+    {% if has_pos %}
+    {% for lid,language,pos in languages %}
+    {% if pos %}
+        <div class="module">
+            <h2>{{language}}</h2>
+            <table cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>{% trans "File" %}</th>
+                        <th class="r">{% trans "Messages" %}</th>                        
+                        <th class="r">{% trans "Translated" %}</th>
+                        <th class="r">{% trans "Obsolete"%}</th>
+                        <th class="r">{% trans "Progress"%}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for path,po in pos %}
+                    <tr class="{% cycle row1,row2 %}">
+                        <td><a href="{% url rosetta-language-selection lid,forloop.counter0 %}{% if do_django %}?django{% endif %}{% if do_rosetta %}?rosetta{% endif %}">{{ path }}</a></td>
+                        <td class="r">{{po|length}}</td>
+                        <td class="r">{{po.translated_entries|length}}</td>
+                        <td class="r">{{po.obsolete_entries|length}}</td>
+                        <td class="r">{{po.percent_translated|floatformat:2}}%</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+    {% endfor %}    
+    {% else %}
+    <h1>{% trans "Nothing to translate!" %}</h1>
+    <p>{% trans "You haven't specified any languages in your settings file, or haven't yet generated a batch of translation catalogs." %}</p>
+    <p>{% blocktrans with "http://docs.djangoproject.com/en/dev/topics/i18n/#topics-i18n" as i18n_doc_link  %}Please refer to <a href="{{i18n_doc_link}}">Django's I18N documentation</a> for a guide on how to set up internationalization for your project.{% endblocktrans %}</p>
+    {% endif %}
+{% endblock %}

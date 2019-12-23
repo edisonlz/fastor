@@ -1,0 +1,20 @@
+{% load i18n %}
+{% if cl.search_fields %}
+<li class="group subgroup">{% trans "Search" %}</li>
+<li>
+<form id="search" action="" method="get">
+<input type="text" size="40" name="{{ search_var }}" id="searchinput" value="{{ cl.query|escape }}" />
+{% for pair in cl.params.items %}{% ifnotequal pair.0 search_var %}
+<input type="hidden" name="{{ pair.0|escape }}" value="{{ pair.1|escape }}"/>
+{% endifnotequal %}{% endfor %}
+</form>
+</li>
+<li class="searchbar">
+<span class="float-right"><a href="javascript:" class="float-right inactive" onclick="document.forms[0].submit()">{% trans 'Go' %}</a></span>
+{% if show_result_count %}
+<span class="float-left"><a href="?" class="inactive float-left">{% blocktrans with cl.full_result_count as full_result_count %}{{ full_result_count }} total{% endblocktrans %}</a>
+</span>
+{% endif %}
+</li>
+<script type="text/javascript">document.getElementById("searchinput").focus();</script>
+{% endif %}

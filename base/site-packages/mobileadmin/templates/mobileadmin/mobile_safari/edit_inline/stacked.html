@@ -1,0 +1,17 @@
+{% load i18n mobile_admin_modify %}
+
+<h2>{{ inline_admin_formset.opts.verbose_name_plural|title }}</h2>
+{{ inline_admin_formset.formset.management_form }}
+{{ inline_admin_formset.formset.non_form_errors }}
+{% for inline_admin_form in inline_admin_formset %}
+    <h3>{{ inline_admin_formset.opts.verbose_name|title }}:&nbsp;{% if inline_admin_form.original %}{{ inline_admin_form.original }}{% else %} #{{ forloop.counter }}{% endif %}</h3>
+    {% if inline_admin_formset.formset.can_delete and inline_admin_form.original %}
+    <div class="form-row delete">
+        {{ inline_admin_form.deletion_field.field }} {{ inline_admin_form.deletion_field.label_tag }}
+    </div>
+    {% endif %}
+    {% for fieldset in inline_admin_form %}
+        {% mobile_inline_admin_fieldset fieldset user_agent %}
+    {% endfor %}
+    {{ inline_admin_form.pk_field.field }}
+{% endfor %}

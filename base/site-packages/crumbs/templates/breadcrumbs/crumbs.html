@@ -1,0 +1,11 @@
+{% for crumb, href in crumbs %}
+    {% if not forloop.last %}
+        {% if href %}
+            <a href='{{ href }}' title='Go back to {{ crumb }}'>{{ crumb }}</a> &raquo;
+        {% else %}
+            {{ crumb }} &raquo;
+        {% endif %}
+    {% else %}
+        <span class='leaf'>{{ crumb }}</span>
+    {% endif %}
+{% endfor %}

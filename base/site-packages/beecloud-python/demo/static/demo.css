@@ -1,0 +1,53 @@
+body,table{
+    font-size:12px;
+}
+table{
+    table-layout:fixed;
+    empty-cells:show;
+    border-collapse: collapse;
+    margin:0 auto;
+}
+td{
+    height:30px;
+    border:1px solid #cad9ea;
+    padding:0 1em 0;
+}
+
+th {
+    height:30px;
+    border:1px solid #cad9ea;
+    padding:0 1em 0;
+    background: #D8D8D8 repeat-x;
+}
+
+tr.blue_bg {
+    background-color:#f5fafe;
+}
+
+h3 {
+    color: #ff6c2c;
+}
+
+.button {
+    cursor: pointer;
+    display: block;
+    line-height: 45px;
+    text-align: center;
+    margin-top: 1.5em;
+    margin-right: 50px;
+    width: 158px;
+    height: 45px;
+    border: #FFBB2C 1px solid;
+    color: #fff;
+    font-size: 1.2em;
+    background: #FF6C2C;
+    background: -webkit-gradient(linear, left top, left bottom, from(#FFBB2C),
+    to(#FF6C2C));
+    background: -moz-linear-gradient(top, #FFBB2C, #FF6C2C);
+    background-image: -o-linear-gradient(top, #FFBB2C 0, #FF6C2C 100%);
+    background-image: linear-gradient(to bottom, #FFBB2C 0, #FF6C2C 100%);
+}
+
+.button:hover {
+    background: #FF6C2C;
+}

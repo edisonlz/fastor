@@ -1,0 +1,13 @@
+{% extends "admin_tools/dashboard/module.html" %}
+{% block module_content %}
+<ul>
+    {% spaceless %}
+    {% for child in module.children %}
+    <li class="{% cycle 'odd' 'even' %}">
+        {% if child.date %}<span class="float-right">{{ child.date|date }}&nbsp;</span>{% endif %}
+        {% if child.warning %}<span class="warning">{{ child.title }}</span>{% else %}<a class="external-link" href="{{ child.url }}">{{ child.title }}</a>{% endif %}
+    </li>
+    {% endfor %}
+    {% endspaceless %}
+</ul>
+{% endblock %}

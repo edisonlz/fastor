@@ -1,0 +1,15 @@
+.tooltipster-customize {
+	border-radius: 5px;
+	border: 1px solid #3071A9;
+	background: #F4F5F9;
+	color: #3071A9;
+}
+.tooltipster-customize .tooltipster-content {
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	line-height: 16px;
+	padding: 8px 10px;
+}
+.tooltipster-customize .tooltipster-arrow .tooltipster-arrow-border {
+	border-color: #06A7E1;
+}

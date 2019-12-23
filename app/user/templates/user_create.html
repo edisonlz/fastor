@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% load bootstrap_toolkit %}
+{% block link %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}jquery-validate/jquery.validate.css">
+{% endblock %}
+{% block content %}
+
+    <div class="page-header" style="padding-top: 8px; width: 250px; padding-bottom: 1px;">
+        <h3>新建用户</h3>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span3"></div>
+        <div class="span9">
+            <form class="form-horizontal" method="POST" role="form">
+                <input type='hidden' id='uid' name='uid' value="{{ id }}"/>
+
+                <div class="control-group">
+                    <label for="inputEmail3" class="control-label">用户邮箱<span
+                            style="color: red;font-weight: bold;">*</span></label>
+
+                    <div class="controls">
+                        <input id="email" name='email' type="email" id="inputEmail3" placeholder="Email">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">姓名</label>
+
+                    <div class="controls">
+                        <input type="text" name="name" id="name">
+                        <label for="name"></label>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">角色</label>
+
+                    <div class="controls">
+                        <select name="role">
+
+                            {% for choice in USER.ROLE_CHOICES %}
+                                <option value="{{ choice.0 }}"
+                                        {% if forloop.counter0 == 1 %}selected="selected" {% endif %}>{{ choice.1 }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                </div>
+                <div class="control-group">
+                    <label class="control-label">状态</label>
+
+                    <div class="controls">
+                        <select name="state">
+                            <option value="0">冻结</option>
+                            <option value="1" selected="selected">可用</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="margin-top: 50px;">
+                    <button type="submit" class="btn btn-danger"
+                            style="margin-left: 160px; margin-right: 50px; width: 90px;" id="sub">提交
+                    </button>
+                    {#                    <a class="btn btn-primary" href="{% url 'user_list' %}" style="width: 70px;">返回</a>#}
+                    <a class="btn btn-primary" href="{{ request.META.HTTP_REFERER }}" style="width: 70px;">返回</a>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+
+
+{% endblock %}
+
+
+{% block js %}
+    <script src="{{ STATIC_URL }}jquery-validate/jquery.validate.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var validate = function (form_selector, options) {
+                var default_options = {
+                    errorPlacement: function (error, element) {
+                        element.addClass('error');
+                        error.css({"padding-left": "0px", "color": "#933", "display": "block"});
+                        return error.appendTo(element.parent());
+                    }
+                };
+                options = $.extend(default_options, options);
+                return $(form_selector).validate(options);
+            };
+            var validate_rules = {
+                'email': {
+                    'email': true,
+                    'required': true
+                },
+                'name': 'required'
+            };
+            validate('form', {
+                        ignore: ':hidden',
+                        rules: validate_rules
+                    }
+            );
+
+            $("#sub").bind('click', function (e) {
+                e.preventDefault();
+                if (!$('form').valid()) {
+                    return;
+                }
+
+                var that = $(this);
+                $.ajax({
+                    type: 'POST',
+                    DataType: 'json',
+                    data: that.closest('form').serialize(),
+                    url: '{% url "user_create" %}',
+                    success: function (data) {
+                        if (data.status === 'success') {
+                            alert('新建用户成功!');
+                            setTimeout(function () {
+                                window.location.href = "{% url 'user_list' %}";
+                            }, 500);
+                        } else {
+                            alert('该用户已经存在!');
+                        }
+                    }
+                })
+            });
+
+
+        });
+    </script>
+{% endblock %}

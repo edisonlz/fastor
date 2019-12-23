@@ -1,0 +1,133 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-01-27 08:34+0100\n"
+"PO-Revision-Date: 2010-06-14 14:32+0900\n"
+"Last-Translator: zundoya <zundoya@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: dashboard/dashboards.py:81 menu/menus.py:100
+msgid "Dashboard"
+msgstr "ダッシュボード"
+
+#: dashboard/dashboards.py:217
+msgid "Quick links"
+msgstr "クイックリンク"
+
+#: dashboard/dashboards.py:223
+msgid "Return to site"
+msgstr "サイトに戻る。"
+
+#: dashboard/dashboards.py:224 theming/templates/admin/base.html:43
+msgid "Change password"
+msgstr "パスワードの変更"
+
+#: dashboard/dashboards.py:226 theming/templates/admin/base.html:50
+msgid "Log out"
+msgstr "ログアウト"
+
+#: dashboard/dashboards.py:232 dashboard/modules.py:385 menu/menus.py:103
+msgid "Applications"
+msgstr "アプリケーション"
+
+#: dashboard/dashboards.py:238 menu/menus.py:107
+msgid "Administration"
+msgstr "サイト管理"
+
+#: dashboard/dashboards.py:243 dashboard/dashboards.py:297
+#: dashboard/modules.py:538
+msgid "Recent Actions"
+msgstr "最近行った操作"
+
+#: dashboard/dashboards.py:247
+msgid "Latest Django News"
+msgstr "最新Djangoニュース"
+
+#: dashboard/dashboards.py:254
+msgid "Support"
+msgstr "サポート"
+
+#: dashboard/dashboards.py:257
+msgid "Django documentation"
+msgstr "Djangoドキュメント"
+
+#: dashboard/dashboards.py:262
+msgid "Django \"django-users\" mailing list"
+msgstr "Django \"django-users\" メーリングリスト"
+
+#: dashboard/dashboards.py:267
+msgid "Django irc channel"
+msgstr "Django irc チャンネル"
+
+#: dashboard/modules.py:314
+msgid "Links"
+msgstr "リンク"
+
+#: dashboard/modules.py:591
+msgid "No recent actions."
+msgstr "最近行った操作がありません。"
+
+#: dashboard/modules.py:637
+msgid "RSS Feed"
+msgstr "RSSフィード"
+
+#: dashboard/templates/admin/app_index.html:9
+#: theming/templates/admin/base.html:57
+msgid "Home"
+msgstr "ホーム"
+
+#: dashboard/templates/admin/app_index.html:11
+#, python-format
+msgid "%(name)s"
+msgstr "%(name)s"
+
+#: dashboard/templates/admin_tools/dashboard/dashboard.html:55
+msgid "Modules"
+msgstr "モジュール"
+
+#: dashboard/templates/admin_tools/dashboard/modules/app_list.html:13
+#: dashboard/templates/admin_tools/dashboard/modules/model_list.html:11
+msgid "Add"
+msgstr "追加"
+
+#: dashboard/templates/admin_tools/dashboard/modules/app_list.html:14
+#: dashboard/templates/admin_tools/dashboard/modules/model_list.html:12
+msgid "Change"
+msgstr "変更"
+
+#: menu/items.py:328
+msgid "Bookmarks"
+msgstr "ブックマーク"
+
+#: menu/templates/admin/base_site.html:4
+msgid "Django site admin"
+msgstr "Django サイト管理"
+
+#: menu/templates/admin/base_site.html:16
+msgid "Django administration"
+msgstr "Django 管理サイト"
+
+#: menu/templates/admin_tools/menu/menu.html:32
+msgid "Please enter a name for the bookmark"
+msgstr "新しいブックマーク名をいれてください。"
+
+#: theming/templates/admin/base.html:30
+msgid "Welcome,"
+msgstr "ようこそ"
+
+#: theming/templates/admin/base.html:35
+msgid "Documentation"
+msgstr "ドキュメント"
+
+#~ msgid "Bookmark this page"
+#~ msgstr "このページをブックマーク"

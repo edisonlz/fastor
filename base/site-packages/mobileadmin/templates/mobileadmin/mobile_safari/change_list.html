@@ -1,0 +1,45 @@
+{% extends "mobileadmin/mobile_safari/base.html" %}
+{% load mobile_admin_list i18n mobile_admin_media %}
+
+{% block breadcrumbs %}
+    <a id="_objectlist" href="javascript:;" class="float-left active">{{ app_label.title|escape }}</a>
+    <a href="add/" class="float-right inactive">{% trans "Add" %}</a>
+    {% if cl.search_fields or cl.has_filters %}
+        <a id="_filter" href="javascript:;" class="float-right inactive">
+            <span class="searchimg">&nbsp;</span>
+        </a>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<ul id="objectlist" selected="true">
+    <li class="group" id="verbose_name">{{ cl.opts.verbose_name_plural|capfirst|escape }}</li>
+    {% for res in cl.result_list %}
+        <li><a href="{{ res.id }}/" id="obj_{{ res.id }}">{{ res|escape }}</a></li>
+        <script type="text/javascript">truncate({'obj_{{ res.id }}': 27});</script>
+    {% endfor %}
+    {% block pagination %}{% pagination cl user_agent %}{% endblock %}
+</ul>
+
+{% if cl.search_fields or cl.has_filters %}
+<ul id="filter">
+    {% block search %}{% search_form cl user_agent %}{% endblock %}
+    {% if cl.has_filters %}
+    <li class="group subgroup">{% trans "Filter" %}</li>
+    {% for spec in cl.filter_specs %}
+        {% admin_list_filter cl spec user_agent %}
+    {% endfor %}
+    {% endif %}
+</ul>
+<script type="text/javascript">
+    switch_tabs({
+        'filter': 'objectlist',
+        'objectlist': 'filter'
+    });
+    truncate({
+        '_objectlist': 10,
+        'verbose_name': 35,
+    });
+</script>
+{% endif %}
+{% endblock %}

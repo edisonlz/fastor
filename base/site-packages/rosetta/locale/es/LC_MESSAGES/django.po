@@ -1,0 +1,141 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-11-30 13:02-0500\n"
+"PO-Revision-Date: 2008-11-30 12:12\n"
+"Last-Translator: <antonio.mele@django.es>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Translated-Using: django-rosetta 0.4.RC2\n"
+
+#: templates/rosetta/languages.html:3 templates/rosetta/pofile.html:13
+msgid "Home"
+msgstr "Inicio"
+
+#: templates/rosetta/languages.html:3 templates/rosetta/languages.html.py:4
+msgid "Language selection"
+msgstr "Selección de idioma"
+
+#: templates/rosetta/languages.html:14
+msgid "File"
+msgstr "Archivo"
+
+#: templates/rosetta/languages.html:15
+msgid "Messages"
+msgstr "Mensajes"
+
+#: templates/rosetta/languages.html:16
+msgid "Translated"
+msgstr "Traducido"
+
+#: templates/rosetta/languages.html:17
+msgid "Obsolete"
+msgstr "Obsoleto"
+
+#: templates/rosetta/languages.html:18
+msgid "Progress"
+msgstr "Progreso"
+
+#: templates/rosetta/languages.html:37
+msgid "Nothing to translate!"
+msgstr "¡Nada que traducir!"
+
+#: templates/rosetta/languages.html:38
+msgid "You haven't specified any languages in your settings file, or haven't yet generated a batch of translation catalogs."
+msgstr "No has especificado ningún idioma en tu archivo de settings o no has generado todavía un batch para traducción de catálogos."
+
+#: templates/rosetta/languages.html:39
+#, python-format
+msgid "Please refer to <a href=\"%(i18n_doc_link)s\">Django's I18N documentation</a> for a guide on how to set up internationalization for your project."
+msgstr "Por favor visita la <a href=\"%(i18n_doc_link)s\">Documentación de Django sobre I18N</a> para obtener una guía sobre cómo añadir internacionalización a tu proyecto."
+
+#: templates/rosetta/pofile.html:7
+msgid "Pick another file"
+msgstr "Selecciona otro archivo"
+
+#: templates/rosetta/pofile.html:8
+msgid "Download this catalog"
+msgstr "Descarga este catálogo"
+
+#: templates/rosetta/pofile.html:16
+msgid "Progress: %(percent_translated)s%"
+msgstr "Progreso: %(percent_translated)s%"
+
+#: templates/rosetta/pofile.html:17
+msgid "File is read-only: download the file when done editing!"
+msgstr "El archivo está en modo lectura: ¡Descarga el archivo cuando termines de editarlo!"
+
+#: templates/rosetta/pofile.html:19 templates/rosetta/pofile.html.py:44
+msgid "English"
+msgstr "Inglés"
+
+#: templates/rosetta/pofile.html:21
+#, python-format
+msgid "Translate into %(rosetta_i18n_lang_name)s"
+msgstr "Traducir al %(rosetta_i18n_lang_name)s "
+
+#: templates/rosetta/pofile.html:24
+msgid "Display:"
+msgstr "Pantalla:"
+
+#: templates/rosetta/pofile.html:25
+msgid "Untranslated only"
+msgstr "Sin traducir sólo"
+
+#: templates/rosetta/pofile.html:26
+msgid "Translated only"
+msgstr "Traducidos sólo"
+
+#: templates/rosetta/pofile.html:27
+msgid "Both"
+msgstr "Ambos"
+
+#: templates/rosetta/pofile.html:33
+msgid "Search"
+msgstr "Búsqueda"
+
+#: templates/rosetta/pofile.html:35
+msgid "Go"
+msgstr "Ir"
+
+#: templates/rosetta/pofile.html:46
+msgid "Occurrences(s)"
+msgstr "Ocurrencia(s)"
+
+#: templates/rosetta/pofile.html:67
+msgid "suggest"
+msgstr "sugerir"
+
+#: templates/rosetta/pofile.html:75
+#, python-format
+msgid "%(more_count)s more"
+msgid_plural "%(more_count)s more"
+msgstr[0] "%(more_count)s más"
+msgstr[1] "%(more_count)s más"
+
+#: templates/rosetta/pofile.html:87
+msgid "Save and translate next block"
+msgstr "Guardar y traducir siguiente bloque"
+
+#: templates/rosetta/pofile.html:91
+msgid "Skip to page:"
+msgstr "Ir a la página:"
+
+#: templates/rosetta/pofile.html:104
+msgid "Displaying:"
+msgstr "Mostrando:"
+
+#: templates/rosetta/pofile.html:106
+#, python-format
+msgid "%(hits)s/%(message_number)s message"
+msgid_plural "%(hits)s/%(message_number)s messages"
+msgstr[0] "%(hits)s/%(message_number)s mensaje"
+msgstr[1] "%(hits)s/%(message_number)s mensajes"

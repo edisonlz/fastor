@@ -1,0 +1,130 @@
+{% load staticfiles %}
+{% load util_template_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+        <meta charset="utf-8" />
+        <link href="{{ STATIC_URL }}Hyper-newstyle/css/app.min.css" rel="stylesheet">
+        <script src="{{ STATIC_URL }}Hyper-newstyle/js/app.min.js"></script>
+         <link rel="icon" href="{{ STATIC_URL }}Hyper-newstyle/htmlimg/icon.png" type="image/x-icon" />
+        {% block reset_css %}
+            <style type="text/css">
+                .fix-info {
+                    display: none;
+                }
+            .error-mes .alert-error {
+                padding: 0;
+                color: #cd5c5c;
+                font-size: 12px;
+            }
+            body.authentication-bg {
+                background-image: url({{ STATIC_URL }}Hyper-newstyle/htmlimg/bgdd1.svg);
+                background-size: cover;
+                background-position: center;
+            }
+            .custom-checkbox .custom-control-input:checked~.custom-control-label::after {
+                background-image: url({{ STATIC_URL }}Hyper-newstyle/htmlimg/duigou.svg);
+            }
+            </style>
+
+        {% endblock %}
+    </head>
+
+
+    <body class="authentication-bg">
+
+         <div class="account-pages mt-5 mb-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-5">
+                        <div class="card">
+
+                            <!-- Logo -->
+                            <div class="card-header pt-4 pb-4 text-center bg-primary">
+                                <a href="">
+                                    <span><img src="{{ STATIC_URL }}Hyper-newstyle/htmlimg/logo.png" alt="" height="18"></span>
+                                </a>
+                            </div>
+
+                            <div class="card-body p-4">
+
+                                <div class="text-center w-75 m-auto">
+                                    <h4 class="text-dark-50 text-center mt-0 font-weight-bold">CMS管理系统</h4>
+                                    <p class="text-muted mb-4">欢迎登录到一体化服务平台</p>
+                                </div>
+
+                                <form id="loginForm" method="post" action="{% url 'signin' %}">
+                                    {% csrf_token %}
+                                    <div class="form-group mb-3">
+                                        <label for="emailaddress">用户名</label>
+                                        <input class="form-control"  type="text" placeholder="账号" id="account" name="username">
+                                    </div>
+
+                                    <div class="form-group mb-3">
+                                        <label for="password">密码</label>
+                                        <input class="form-control" type="password" placeholder="密码" id="pwd" name="password">
+                                    </div>
+
+                                    <div class="form-group mb-3">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="rememberCheck" checked>
+                                            <label class="custom-control-label" for="rememberCheck">记住我</label>
+                                        </div>
+                                    </div>
+                                    {% if form.errors %}
+                                        <div class="error-mes">
+                                            {% for error in form.non_field_errors %}
+                                                <div class="alert alert-error">{{ error }}</div>
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                    <div class="error-mes fix-info">
+                                        <div class="alert alert-error">
+                                         账号或密码不能为空
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group mb-0 text-center">
+                                        <button class="btn btn-primary" type="submit" id="loginBt"> 登录 </button>
+                                    </div>
+
+                                </form>
+                            </div> <!-- end card-body -->
+                        </div>
+                        <!-- end card -->
+
+
+                        <!-- end row -->
+
+                    </div> <!-- end col -->
+                </div>
+            </div>
+            <!-- end container -->
+        </div>
+        <!-- end page -->
+
+
+        <footer class="footer footer-alt">
+            2018 © abc
+        </footer>
+        <script type="text/javascript">
+			$(document).ready(function () {
+
+				$('#loginForm').submit(function () {
+					var username = $.trim($("#account").val());
+					var passwd = $.trim($("#pwd").val());
+					var fix_mes = $(".fix-info");
+					if (username === '' || passwd === '') {
+						$(".error-mes").hide();
+						fix_mes.show();
+						return false;
+					}
+					fix_mes.hide();
+					return true;
+				})
+			})
+		</script>
+    </body>
+</html>

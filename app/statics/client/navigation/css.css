@@ -1,0 +1,387 @@
+/*----------------------------
+	The Navigation Menu for anzuli
+-----------------------------*/
+
+
+/* will style only the top level li */
+#colorNav > ul > li{
+	float:left;
+    margin-right:1px;
+    font-size: 14px;
+    width:100px;
+    height:40px;
+    position:relative;
+    text-align:center;
+    line-height:40px;
+    vertical-align: middle;
+    display: block;
+    color: #fff;
+    /*padding: 24px 20px 27px;*/
+    cursor: pointer;
+    outline: 0;
+    /*font-weight: bold;*/
+}
+
+#colorNav > ul > li > a{
+	color:inherit;
+	text-decoration:none !important;
+	/*font-size:16px;*/
+	/*padding: 25px;*/
+
+}
+
+#colorNav li ul{
+	position:absolute;
+	list-style:none;
+    z-index: 9999;
+	text-align:center;
+	width:180px;
+	left:50%;
+	margin-left:-90px;
+	top:16px;
+	font:13px 'Open Sans Condensed', sans-serif;
+	/* This is important for the show/hide CSS animation */
+	max-height:0px;
+	overflow:hidden;
+	-webkit-transition:max-height 0.4s linear;
+	-moz-transition:max-height 0.4s linear;
+	transition:max-height 0.4s linear;
+}
+
+#colorNav li ul li{
+	background-color:#0081c2;
+    text-align: left;
+    padding-left: 30px;
+}
+
+#colorNav li ul li a{
+	padding:12px;
+	color:#fff !important;
+	text-decoration:none !important;
+	display:block;
+}
+
+#colorNav li ul li:nth-child(odd){
+	background-color:#0081c2;
+}
+
+#colorNav li ul li:hover{
+	background-color:#444;
+}
+
+/* small tip */
+#colorNav li ul li:first-child{
+	border-radius:3px 3px 0 0;
+	margin-top:25px;
+	position:relative;
+}
+
+/* show the pointer tip */
+#colorNav li ul li:first-child:before{
+	content:'';
+	position:absolute;
+	width:1px;
+	height:1px;
+	border:5px solid transparent;
+	border-bottom-color:#fff;
+	left:50%;
+	top:-10px;
+	margin-left:-5px;
+}
+
+#colorNav li ul li:last-child{
+	border-bottom-left-radius:3px;
+	border-bottom-right-radius:3px;
+}
+
+/* transition animation on hover */
+#colorNav li:hover ul{
+	max-height:1000px;
+}
+
+
+
+#menu {
+	font: 14px "trebuchet MS", Arial, Helvetica;
+}
+#menu a {
+	color: #2A679F;
+}
+#menu, #menu ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#menu:before, #menu:after {
+	content: "";
+	display: table;
+}
+#menu:after {
+	clear: both;
+}
+#menu {
+	zoom: 1;
+}
+#menu li {
+	float: left;
+	/*border-right: 1px solid #222;*/
+	/*-moz-box-shadow: 1px 0 0 #444;*/
+	/*-webkit-box-shadow: 1px 0 0 #444;*/
+	/*box-shadow: 1px 0 0 #444;*/
+	position: relative;
+}
+#menu a {
+	float: left;
+	padding: 12px 15px;
+	color: #fff;
+	text-transform: uppercase;
+	font:14px Arial, Helvetica;
+	text-decoration: none;
+	/*text-shadow: 0 1px 0 #000;*/
+}
+#menu li:hover > a {
+	color: #fafafa;
+}
+*html #menu li a:hover {
+	color: #fafafa;
+}
+#menu ul {
+	margin: 20px 0 0 0;
+	_margin: 0;
+	opacity: 0;
+
+	visibility: hidden;
+	position: absolute;
+	top: 38px;
+	left: 0;
+	z-index: 1;
+	background: #444;
+	background: -moz-linear-gradient(#444, #111);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#444), to(#111));
+	background: -webkit-linear-gradient(#444, #111);
+	background: -o-linear-gradient(#444, #111);
+	background: -ms-linear-gradient(#444, #111);
+	background: linear-gradient(#444, #111);
+	-moz-box-shadow: 0 -1px rgba(255,255,255,.3);
+	-webkit-box-shadow: 0 -1px 0 rgba(255,255,255,.3);
+	box-shadow: 0 -1px 0 rgba(255,255,255,.3);
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-transition: all .2s ease-in-out;
+	-moz-transition: all .2s ease-in-out;
+	-ms-transition: all .2s ease-in-out;
+	-o-transition: all .2s ease-in-out;
+	transition: all .2s ease-in-out;
+}
+#menu li:hover > ul {
+	opacity: 1;
+	visibility: visible;
+	margin: 0;
+}
+#menu ul ul {
+	top: 0;
+	left: 121px;
+	margin: 0 0 0 20px;
+	_margin: 0;
+	/*-moz-box-shadow: -1px 0 0 rgba(255,255,255,.3);*/
+	/*-webkit-box-shadow: -1px 0 0 rgba(255,255,255,.3);*/
+	/*box-shadow: -1px 0 0 rgba(255,255,255,.3);*/
+}
+#menu ul li {
+	float: none;
+	display: block;
+	border: 0;
+    font:12px Arial, Helvetica;
+	_line-height: 0;
+	-moz-box-shadow: 0 1px 0 #111, 0 2px 0 #666;
+	-webkit-box-shadow: 0 1px 0 #111, 0 2px 0 #666;
+	box-shadow: 0 1px 0 #111, 0 2px 0 #666;
+}
+#menu ul li:last-child {
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+#menu ul a {
+	padding: 10px;
+	width: 100px;
+	_height: 10px;
+	display: block;
+    font:12px Arial, Helvetica;
+	white-space: nowrap;
+	float: none;
+	text-transform: none;
+}
+#menu ul a:hover {
+	background-color: #0186ba;
+	background-image: -moz-linear-gradient(#04acec, #0186ba);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#04acec), to(#0186ba));
+	background-image: -webkit-linear-gradient(#04acec, #0186ba);
+	background-image: -o-linear-gradient(#04acec, #0186ba);
+	background-image: -ms-linear-gradient(#04acec, #0186ba);
+	background-image: linear-gradient(#04acec, #0186ba);
+}
+#menu ul li:first-child > a {
+	-moz-border-radius: 3px 3px 0 0;
+	-webkit-border-radius: 3px 3px 0 0;
+	border-radius: 3px 3px 0 0;
+}
+#menu ul li:first-child > a:after {
+	content: '';
+	position: absolute;
+	left: 40px;
+	top: -6px;
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-bottom: 6px solid #444;
+}
+#menu ul ul li:first-child a:after {
+	left: -6px;
+	top: 50%;
+	margin-top: -6px;
+	border-left: 0;
+	border-bottom: 6px solid transparent;
+	border-top: 6px solid transparent;
+	border-right: 6px solid #3b3b3b;
+}
+#menu ul li:first-child a:hover:after {
+	border-bottom-color: #04acec;
+}
+#menu ul ul li:first-child a:hover:after {
+	border-right-color: #0299d3;
+	border-bottom-color: transparent;
+}
+#menu ul li:last-child > a {
+	-moz-border-radius: 0 0 3px 3px;
+	-webkit-border-radius: 0 0 3px 3px;
+	border-radius: 0 0 3px 3px;
+}
+/* Mobile */
+#menu-trigger {
+	display: none;
+}
+@media screen and (max-width: 600px) {
+	/* nav-wrap */
+	#menu-wrap {
+		position: relative;
+	}
+	#menu-wrap * {
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+	/* menu icon */
+	#menu-trigger {
+		display: block;
+		height: 40px;
+		line-height: 40px;
+		cursor: pointer;
+		padding: 0 0 0 35px;
+		border: 1px solid #222;
+		color: #fafafa;
+		font-weight: bold;
+		background-color: #111;
+		-moz-border-radius: 6px;
+		-webkit-border-radius: 6px;
+		border-radius: 6px;
+		-moz-box-shadow: 0 1px 1px #777, 0 1px 0 #666 inset;
+		-webkit-box-shadow: 0 1px 1px #777, 0 1px 0 #666 inset;
+		box-shadow: 0 1px 1px #777, 0 1px 0 #666 inset;
+	}
+	/* main nav */
+	#menu {
+		margin: 0;
+		padding: 10px;
+		position: absolute;
+		top: 40px;
+		width: 100%;
+		z-index: 1;
+		background-color: #444;
+		display: none;
+		-moz-box-shadow: none;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+	}
+	#menu:after {
+		content: '';
+		position: absolute;
+		left: 25px;
+		top: -8px;
+		border-left: 8px solid transparent;
+		border-right: 8px solid transparent;
+		border-bottom: 8px solid #444;
+	}
+	#menu ul {
+		position: static;
+		visibility: visible;
+		opacity: 1;
+		margin: 0;
+		background: none;
+		-moz-box-shadow: none;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+	}
+	#menu ul ul {
+		margin: 0 0 0 20px !important;
+		-moz-box-shadow: none;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+	}
+	#menu li {
+		position: static;
+		display: block;
+		float: none;
+		border: 0;
+		margin: 5px;
+		-moz-box-shadow: none;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+	}
+	#menu ul li {
+		margin-left: 20px;
+		-moz-box-shadow: none;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+	}
+	#menu a {
+		display: block;
+		float: none;
+		padding: 0;
+		color: #999;
+	}
+	#menu a:hover {
+		color: #fafafa;
+	}
+	#menu ul a {
+		padding: 0;
+		width: auto;
+	}
+	#menu ul a:hover {
+		background: none;
+	}
+	#menu ul li:first-child a:after, #menu ul ul li:first-child a:after {
+		border: 0;
+	}
+}
+@media screen and (min-width: 600px) {
+	#menu {
+		display: block !important;
+        line-height: 50px;
+	}
+}
+/* iPad */
+.no-transition {
+	-webkit-transition: none;
+	-moz-transition: none;
+	-ms-transition: none;
+	-o-transition: none;
+	transition: none;
+	opacity: 1;
+	visibility: visible;
+	display: none;
+}
+#menu li:hover > .no-transition {
+	display: block;
+}

@@ -1,0 +1,24 @@
+{% extends "mobileadmin/mobile_safari/change_form.html" %}
+{% load i18n %}
+
+{% block after_field_sets %}
+<h1>{% trans "First, enter a username and password. Then, you'll be able to edit more user options." %}</h1>
+<fieldset>
+<div class="form-row">
+    {{ form.username.errors }}
+    <label for="id_username" class="required">{% trans 'Username' %}:</label> {{ form.username }}
+</div>
+
+<div class="form-row">
+    {{ form.password1.errors }}
+    <label for="id_password1" class="required">{% trans 'Password' %}:</label> {{ form.password1 }}
+</div>
+
+<div class="form-row">
+    <label for="id_password2" class="required">{% trans 'Password (again)' %}:</label> {{ form.password2 }}
+    {{ form.password2.errors }}
+</div>
+
+<script type="text/javascript">document.getElementById("id_username").focus();</script> 
+</fieldset>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% if items %}
+    <div id="pagination-holder-skip" class="clearfix" style="margin-bottom: 10px;">
+        <ul class="pagination pagination-sm" style="margin-bottom: 0;">
+            {% if now_page == '1' %}
+                <li class="disabled">
+                    <a>«</a>
+                </li>
+            {% else %}
+                <li>
+                    <a onclick="{{ callback_name }}('{{ skip_type }}','{{ app_id }}',{{ previous_page }},'{{ fun_name }}','{{ callback_name }}')">«</a>
+                </li>
+            {% endif %}
+
+            {% for page in display_pages %}
+                {% if page == now_page %}
+                    <li class="active">
+                        <a>{{ page }}</a>
+                    </li>
+                {% elif page == '...' %}
+                    <li class="disabled">
+                        <a>{{ page }}</a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a onclick="{{ callback_name }}('{{ skip_type }}','{{ app_id }}',{{ page }},'{{ fun_name }}','{{ callback_name }}')">{{ page }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+
+            {% if now_page == num_pages %}
+                <li class="disabled">
+                    <a>»</a>
+                </li>
+            {% else %}
+                <li>
+                    <a onclick="{{ callback_name }}('{{ skip_type }}','{{ app_id }}',{{ next_page }},'{{ fun_name }}','{{ callback_name }}')">»</a>
+                </li>
+            {% endif %}
+
+        </ul>
+
+        <div class="current">
+                    当前第{{ items.number }}页 共{{ items.paginator.num_pages }}页
+        </div>
+    </div>
+{% else %}
+    <div>
+    no paginators
+    </div>
+{% endif %}

@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% load bootstrap_toolkit %}
+
+{% block link %}
+    <style type="text/css">
+        .del_user {
+            float: right;
+        }
+        .user_delete {
+            display: none;
+        }
+    </style>
+
+{% endblock %}
+{% block content %}
+    <script type="text/javascript">
+
+        if ("{{ fail}}" == '1') {
+            alert("该用户不存在！");
+            window.location.href = "{% url 'user_list' %}";
+        }
+
+    </script>
+    <div class="page-header" style="padding-top: 8px; width: 250px; padding-bottom: 1px;">
+        <h3>用户&权限</h3>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span1"></div>
+        <div class="span11">
+            <div class="pull-left">
+                <form class="form-search" action="{% url 'search_user' %}" method="post">
+                    <input type="text" name='search' id="search" class="input-medium search-query" value="{{ search }}">
+                    <button type="submit" class="btn btn-primary" id="sub">Search</button>
+                </form>
+            </div>
+            {% if user.is_manager %}
+                <div class="pull-right" style="margin-bottom: 20px;">
+{#                    <a href="{% url 'sync_user_perm' %}" role="button" class="btn"><i#}
+{#                            class="icon-refresh"></i>授权</a>#}
+                    {% if user.is_super %}
+                        <a href="{% url 'user_create' %}" role="button" class="btn btn-info"><i class="icon-plus"></i>新增用户</a>
+                    {% endif %}
+                </div>
+            {% endif %}
+            <table class="table table-hover table-bordered">
+                <thead>
+                <tr>
+                    <th width="20%" style="text-align: center;">用户邮箱</th>
+                    <th width="10%" style="text-align: center;">姓名</th>
+                    <th width="12%" style="text-align: center;">创建时间</th>
+                    <th width="8%">状态</th>
+                    <th width="10%" style="text-align: center;">角色</th>
+                    <th width="20%" style="text-align: center;">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td style="word-break:break-all;font-size: 14px;">{{ user.email }}</td>
+                        <td style="word-break:break-all;">{{ user.first_name }}</td>
+                        <td>{{ user.date_joined }}</td>
+                        <td class="user_state">{{ user.active_str }}</td>
+                        <td>{{ user.role_name }}</td>
+                        <td style="text-align: center;">
+                            {% if request.user.is_super %}
+                                <a class="btn btn-small" href="{% url 'user_add' %}?uid={{ user.id }}">
+                                    <i class="icon-pencil"></i>编辑
+                                </a>
+                            {% endif %}
+                            {% if user.is_normal_user %}
+{#                                <a class="btn btn-small" href="{% url 'personal_perm' %}?uid={{ user.id }}">#}
+{#                                    <i class="icon-zoom-in"></i>查看权限#}
+{#                                </a>#}
+                                {% if request.user.is_super %}
+                                    <button class="btn btn-small btn-danger del_user" type="button"><i class="icon-trash"></i>
+                                    删除</button>
+                                    <form class="pass_del" method="post" action="{% url 'user_delete' %}">
+                                        <input type="hidden" value="{{ user.id }}" name="uid">
+                                    </form>
+                                {% endif %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {% if not users %}
+                <div class="alert">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Warning!</strong> 当前没有用户。
+                </div>
+            {% endif %}
+
+            {% bootstrap_pagination users align="right" %}
+
+        </div>
+
+    </div>
+
+
+{% endblock %}
+
+
+{% block js %}
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $(".del_user").bind('click', function(){
+                var sure_flag = confirm('确定删除该用户吗？');
+                if (sure_flag){
+                    $(this).nextAll('.pass_del').submit();
+                }
+            });
+
+            $(".user_state").each(function () {
+                if ($.trim($(this).text()) !== '正常') {
+                    $(this).add($(this).prevAll().eq(-1)).css('color', '#c00');
+                }
+            });
+
+            $("#sub").click(function () {
+                var search = $('#search').val().trim();
+                if (search == "") {
+                    alert('查找内容不能为空');
+                    return false;
+                }
+            })
+        });
+    </script>
+{% endblock %}

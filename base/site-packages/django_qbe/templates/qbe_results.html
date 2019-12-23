@@ -1,0 +1,85 @@
+{% extends "qbe.html" %}
+{% load i18n qbe_tags %}
+
+{% block extrahead %}
+<script type="text/javascript" src="{% firstof STATIC_URL MEDIA_URL %}django_qbe/js/jquery.js"></script>
+<link rel="stylesheet" type="text/css" href="{% firstof STATIC_URL MEDIA_URL %}django_qbe/css/qbe.css" />
+{% endblock %}
+
+{% block breadcrumbs %}<div class="breadcrumbs"><a href="{% url admin:index %}">{% trans 'Home' %}</a>{% if title %} &rsaquo; <a href="{% url qbe_form %}">{{ title }}</a> &rsaquo; {% trans "Results" %}{% endif %}</div>
+{% endblock %}
+
+{% block content_title %}{% if title %}
+<h1>
+    {{ title }}: {{ count|floatformat:0 }} result{{ count|floatformat:0|pluralize }}
+</h1>
+{% endif %}{% endblock %}
+
+{% block content %}
+{% block object-tools %}
+    {% ifequal limit count %}
+    Showing all {{ count|floatformat:0 }} result{{ results|length|pluralize }}
+    {% else %}
+    Showing from {{ offset|floatformat:0 }} to {{ offset_limit|floatformat:0 }} of {{ count|floatformat:0 }} result{{ results|length|pluralize }}
+    {% endifequal %}
+<span id="qbeResultsOptions">
+    {% ifequal limit count %}
+    (<a href="{% url qbe_results query_hash %}">{% trans "show first ones" %}</a>
+    {% else %}
+    (<a href="{% url qbe_results query_hash %}?show=all">{% trans "show all" %}</a>
+    {% endifequal %}
+    | <a href="{% url qbe_form %}?hash={{ query_hash }}">{% trans "edit query" %}</a>
+    | <a href="#" onclick="jQuery('#qbeSQL').toggle();return false;">{% trans "view query" %}</a>)
+</span>
+<ul class="object-tools">
+    <li id="qbeSaveQueryLi">
+        {% trans "Save query as" %}
+    </li>
+    <li>
+        <a href="{% url qbe_bookmark %}?data={{ pickled }}" title="{% trans "Drag this yo your bookmarks bar to save this query" %}" id="qbeBookmarkQuery">{% trans "bookmark" %}</a>
+    </li>
+    {% for format in formats %}
+    <li>
+        <a href="{% url qbe_export format %}?hash={{ query_hash }}" title="{% trans "Export to" %} .{{ format }}" id="qbeExport{{ format }}">.{{ format }}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
+<code id="qbeSQL" style="display: none;">
+{{ query }}
+</code>
+<div id="changelist" class="module">
+<table cellspacing="0">
+    <thead>
+        <tr>
+        {% for label in labels %}
+            <th>{{ label }}</th>
+        {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+    {% for result_tuple in results %}
+        <tr class="{% cycle 'row1' 'row2' %}">
+        {% if admin_urls %}
+            {% for result, url in result_tuple %}
+                {% if url %}
+                <td><a href={{ url }}>{{ result }}</a></td>
+                {% else %}
+                <td>{{ result }}</td>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            {% for result in result_tuple %}
+                <td>{{ result }}</a></td>
+            {% endfor %}
+        {% endif %}
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<p class="paginator">
+{% qbe_paginator count limit page %}
+{{ count|floatformat:0 }} result{{ count|floatformat:0|pluralize }}
+</p>
+</div>
+{% endblock %}

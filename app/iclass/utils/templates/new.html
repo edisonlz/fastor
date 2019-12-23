@@ -1,0 +1,163 @@
+=== extends 'cms_basemain.html' ---
+=== load staticfiles ---
+=== load util_template_tags ---
+
+=== block reset_css ---
+<link rel="stylesheet" href="### STATIC_URL ***file_upload/css/jquery.fileupload-ui.css">
+<link rel="stylesheet" href="### STATIC_URL ***file_upload/css/jquery.fileupload.css">
+<script src="### STATIC_URL ***bootstrap-3/js/bootstrap.min.js"></script>
+    <style>
+        .row {
+            margin: 20px;
+        }
+    </style>
+=== endblock ---
+
+
+=== block nav_right ---
+  
+     <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <h4 class="page-title"> {{ clazz_name }}</h4>
+            </div>
+        </div>
+    </div>
+=== endblock ---
+
+
+=== block col_main ---
+
+<div class="card bg-default">
+    <div class="card-body profile-user-box">
+    === if item ---
+    <form class="form-horizontal" method="post" id="form_id" action="=== url '{{folder}}_new' ---">
+        <fieldset>
+            <div class="form-group">
+                <label for="itemid" class="col-sm-2 control-label">{{clazz_name}}</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="itemid" name="itemid"
+                           value="===if item.id---### item.id ***===endif---" placeholder="由系统自动生成" readonly>
+                </div>
+            </div>
+
+            {% for field in field_list %}{% if field.image_field %}
+            <div class="form-group">
+                <label for="box-u-screen-upload" class="col-sm-2 control-label">{{field.verbose_name}}</label>
+                <div class="col-sm-8">
+                    <span id="u-img">
+                        <span id="box-u-screen-button" class="btn btn-success fileinput-button"
+                        === if item.{{field.name}} ---style="display:none;"=== endif --->
+                            <span>+ 上传图片...</span>
+                            <input id="box-u-screen-upload" type="file" name="files[]" multiple>
+                        </span>
+                        <div id="box-u-screen-success" class="alert alert-success upload-pic"
+                             style="margin:0;=== if not item.{{field.name}} ---display:none;=== endif ---">
+                            <button type="button" class="close">&times;</button>
+                            <img id='box-u-screen-content' src="=== if item.id ---### item.{{field.name}}  ***=== endif ---"
+                                 class="img-polaroid" style="max-height: 150px;">
+                        </div>
+                        <div id="box-u-screen-progress"
+                             class="progress progress-success progress-striped  active"
+                             style="display:none">
+                            <div class="bar"></div>
+                        </div>
+                        <input type='hidden' id="box-u-screen-input" name='{{field.name}}'
+                               value="=== if item.id ---### item.{{field.name}} ***=== endif ---" height="100" width="100"/>
+                    </span>
+ 
+                </div>
+            </div>{% elif field.field_type == "DateTimeField" %}
+            <div class="form-group">
+                <label for="{{field.name}}"  class="col-sm-2 control-label">{{field.verbose_name}}</label>
+                <div  class='input-group date' >
+                    <span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
+
+                    <input  type="text" style="width: 200px" name="{{field.name}}" id="{{field.name}}" class="form_datetime form-control" value="=== if item.{{field.name}} ---###item.{{field.name}}***=== endif ---"/>
+                </div>
+            </div>
+            {% elif field.choices %}<div class="form-group" >
+                <label for="{{field.name}}"  class="col-sm-2 control-label">{{field.verbose_name}}</label>
+                <div class="col-sm-8">
+                    <select name="{{field.name}}" id="{{field.name}}" class="form-control">
+                        {% for value,key in field.choices %}
+                          <option ===ifequal {{value}} item.{{field.name}} ---selected===endifequal--- value='{{value}}'>{{key}}</option>{% endfor %}
+                    </select>
+                </div>
+            </div>
+            {% elif field.foreign_key_cls %}<div class="form-group" >
+                <label for="{{field.name}}"  class="col-sm-2 control-label">{{field.verbose_name}}</label>
+                <div class="col-sm-8">
+                    <select name="{{field.name}}" id="{{field.name}}" class="form-control">
+                        === for vv in {{field.foreign_key_datas}} ---
+                          <option ===ifequal vv.id item.{{field.name}}_id ---selected===endifequal--- value='###vv.id***'>###vv.name***</option>
+                        === endfor ---
+                    </select>
+                </div>
+            </div>{% else %}<div class="form-group">
+                <label for="{{field.name}}" class="col-sm-2 control-label">{{field.verbose_name}}</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="{{field.name}}" name="{{field.name}}" value="### item.{{field.name}}***" />
+                </div>
+            </div>{% endif %}
+            {% endfor %}
+          
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <a class="btn btn-primary" id="submit_btn">保存</a>
+                    <a class="btn btn-default" href="=== url '{{folder}}_list' ---">返回</a>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+    === else ---
+        No data are available.
+    === endif ---
+</div>
+</div>
+
+    <input type="hidden" id="menu-sel" value="100">
+=== endblock ---
+
+=== block js ---
+<script src="### STATIC_URL ***file_upload/js/jquery.fileupload.js"></script>
+<script src="### STATIC_URL ***js/bootstrap.autocomplete.js"></script>
+<script src="### STATIC_URL ***js/json2.js"></script>
+
+<script type="text/javascript">
+    === include "common/image_upload.js" ---
+
+    $(function(){
+
+        function check() {
+
+            return true;
+        }
+
+        $('#submit_btn').click(function(){
+            if(check()) {
+                $('#form_id').submit();
+            }
+        });
+
+        $('.form_datetime').datetimepicker({
+            format: 'yyyy-mm-dd hh:ii',
+            language:  'zh-CN',
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1
+        });
+
+
+        //初始化，主要是设置上传参数，以及事件处理方法(回调函数)
+        var img_upload_arr = ['box-u-screen'];
+        for (var index = 0; index < img_upload_arr.length; index++) {
+            add_upload_handler(generate_upload_dict(img_upload_arr[index]));
+        }
+
+    });
+
+</script>
+=== endblock js ---
+

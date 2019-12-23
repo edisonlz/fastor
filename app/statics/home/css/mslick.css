@@ -1,0 +1,45 @@
+@charset "utf-8";
+
+.slick-dots {
+    width: auto;
+    bottom: 8px;
+    right: 0px;
+    padding: 0px 5px;
+}
+
+.slick-dots li {
+    width: 8px;
+    height: 8px;
+    margin: 0px 1px;
+}
+
+.slick-dots li button {
+    width: 8px;
+    height: 8px;
+    padding: 1px;
+}
+
+.slick-dots li button:before {
+    opacity: 1;
+    content: "";
+    background-image: url(/static/images/banner/lable_unchecked.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    width: 8px;
+    height: 8px;
+}
+
+.slick-dots li.slick-active button:before {
+    opacity: 1;
+    background-image: url(/static/images/banner/lable_checked.png);
+
+}
+
+.slick-main .v {
+    margin-bottom: 0px
+}
+
+.slick-slider {
+    margin-bottom: 0px;
+}
+

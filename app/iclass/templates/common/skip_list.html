@@ -1,0 +1,27 @@
+<style>
+    .table-list {
+        width: 100%;
+    }
+    #pagination-holder-skip {
+        float: right;
+    }
+</style>
+<div class="content">
+    {% if pages %}
+        <table class="table-list">
+            {% for pg in pages %}
+                <tr class="msg-item-v row" id="list_skip_{{ pg.short_id }}">
+                    <td class="col-md-10"><span>{{ pg.title }}</span>
+                    <td>
+                    <td class="col-md-2">
+                        <span class="btn btn-xs btn-info" onclick="{{ fun_name }}('{{ pg.short_id }}','{{ pg.title }}');">选取</span>
+                    <td>
+                </tr>
+            {% endfor %}
+        </table>
+        <div>
+            {% include "common/skip_pagination.html" with items=pages skip_type=skip_type app_id=app_id %}
+        </div>
+        <div style="clear: both;"></div>
+    {% endif %}
+</div>

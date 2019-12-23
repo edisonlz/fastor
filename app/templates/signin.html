@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block link %}
+    <style type="text/css">
+        #sign-box {
+            margin: 70px auto 0;
+        }
+
+        #sign-box div {
+            margin: 0 auto 10px;
+        }
+
+        .controls {
+            width: auto;
+            margin-left: 10px;
+        }
+
+        .control-group {
+            width: 270px;
+        }
+
+        div.controls input {
+            margin-left: 15px;
+        }
+
+        div.alert h4 {
+            text-align: center;
+        }
+
+        #sign-box label.control-label {
+            width: auto;
+        }
+
+        #sign-btn {
+            float: right;
+            margin-right: 10px;
+        }
+        #error-mes {
+            margin: 0 auto;
+            text-align: center;
+        }
+    </style>
+{% endblock %}
+
+
+{% block extra_head %}
+    {{ form.media }}
+{% endblock %}
+
+
+{% block body %}
+
+    <div class="container">
+
+
+        <div class="row login-row">
+                {% if form.errors %}
+                    <div id="error-mes">
+                        {% for error in form.non_field_errors %}
+                        <div class="alert alert-error"><h4> {{ error }}</h4></div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                
+            <div id="sign-box">
+                <form class="form-horizontal" method="post" action="{% url 'signin' %}">
+                    {% csrf_token %}
+                    <h2 style="text-align: center;">欢迎登陆优酷应用中心管理系统</h2>
+
+                    <div class="control-group">
+                        <label class="control-label" for="id_username">账号</label>
+
+                        <div class="controls">{{ form.username }}</div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="id_password">密码</label>
+
+                        <div class="controls">{{ form.password }}</div>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls">
+                            <button class="btn btn-primary" type="submit" id="sign-btn">
+                                登录
+                            </button>
+
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="next" value="{{ next }}"/>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

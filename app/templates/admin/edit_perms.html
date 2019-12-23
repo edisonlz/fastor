@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>优酷移动CMS系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- CSS -->
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+    <link href="/static/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9] -->
+    <script src="/static/js/html5shiv.js"></script>
+</head>
+<body>
+<div class="container">
+<form class="form-horizontal" action="/perm/edit" method="post">
+    <input type="hidden" name="uids" value="{{ uids }}" />
+    <input type="hidden" name="gids" value="{{ gids }}" />
+
+
+    <fieldset>
+        <div class="control-group">
+            <h2 class="">调整{{ member }}的访问权限</h2>
+            <!-- Multiple Checkboxes -->
+            <div class="controls">
+                {% for perm in perms %}
+                <label class="checkbox">
+                    <input type="checkbox" {% if perm.id in given_perm_ids %}checked=""{% endif %} name="chosen_perms" value="{{ perm.id }}" />
+                    {{ perm.ch_platform }}
+                    {{ perm.ch_area }}
+                    {{ perm.ch_family }}
+                    -
+                    {{ perm.ch_operation }}
+                    -
+                    {{ perm.name }}
+                </label>
+                {% endfor %}
+            </div>
+
+        </div>
+
+    </fieldset>
+    <input type="submit" class="btn large" />
+</form>
+</div>
+</body>
+</html>

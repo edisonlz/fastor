@@ -1,0 +1,18 @@
+{% if fieldset.name %}<h2>{{ fieldset.name }}</h2>{% endif %}
+<fieldset>
+  {% for line in fieldset %}
+      <div class="form-row{% if line.errors %} errors{% endif %} {% for field in line %}{{ field.field.name }} {% endfor %} ">
+      {{ line.errors }}
+      {% for field in line %}
+          {% if field.field.field.help_text %}
+          <a class="help-link" href="javascript:;" title="{{ field.field.field.help_text|striptags|escape }}" onclick="alert(this.title)">?</a>
+          {% endif %}
+          {% if field.is_checkbox %}
+              {{ field.field }}<label for="{{ field.field.auto_id }}" class="vCheckboxLabel" onclick="javascript:;">{{ field.field.label }}</label>
+          {% else %}
+              {{ field.label_tag }}{{ field.field }}
+          {% endif %}
+      {% endfor %}
+      </div>
+  {% endfor %}
+</fieldset>

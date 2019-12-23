@@ -1,0 +1,50 @@
+{% extends "mobileadmin/mobile_safari/base.html" %}
+{% load i18n mobile_admin_modify %}
+
+{% block breadcrumbs %}
+<a href="javascript:;" id="_applist" class="float-left active">{% trans "Site administration" %}</a>
+<a href="javascript:;" id="_recent" class="float-right inactive">{% trans 'Recent Actions' %}</a>
+{% endblock %}
+
+{% block content %}
+{% if app_list %}
+    <ul id="applist" selected="true">
+    {% for app in app_list %}
+    <li><a href="{{ app.app_url }}/" id="{{ app.name|slugify }}_app">{% blocktrans with app.name as name %}{{ name }}{% endblocktrans %}</a></li>
+    <script type="text/javascript">truncate({'{{ app.name|slugify }}_app': 35});</script>
+    {% endfor %}
+    </ul>
+{% else %}
+    <div class="panel" selected="true">
+        <h1 class="error">{% trans "You don't have permission to edit anything." %}</p>
+    </div>
+{% endif %}
+
+<ul id="recent">
+    <li class="group subgroup">{% trans 'My Actions' %}</li>
+    {% load log %}
+    {% get_admin_log 10 as admin_log for_user user %}
+    {% if not admin_log %}
+    <li>{% trans 'None available' %}</li>
+    {% else %}
+    {% for entry in admin_log %}
+    <li class="{% if entry.is_addition %}addlink{% endif %}{% if entry.is_change %}changelink{% endif %}{% if entry.is_deletion %}deletelink{% endif %}">
+        {% if not entry.is_deletion %}<a href="{{ entry.get_admin_url }}">{% endif %}
+        {% filter capfirst %}{% trans entry.content_type.name %}{% endfilter %}: <span id="entry_{{ entry.pk }}">{{ entry.object_repr|escape }}</span>
+        {% if not entry.is_deletion %}</a>{% endif %}
+        <script type="text/javascript">truncate({'entry_{{ entry.pk }}': 15});</script>
+    </li>
+    {% endfor %}
+    {% endif %}
+</ul>
+<script type="text/javascript">
+   switch_tabs({
+       'recent': 'applist',
+       'applist': 'recent',
+   });
+   truncate({
+       '_applist': 14,
+       '_recent': 14
+   });
+</script>
+{% endblock %}

@@ -1,0 +1,30 @@
+from django.shortcuts import render_to_response
+from django.template.context import RequestContext
+from django.db.models import Sum, Avg, Count
+from base import Report
+
+
+
+
+from booking.models import PropertyBooking
+
+class PropertyBookingReport(Report):
+    model = PropertyBooking
+    annotate = (
+        ('id', Count),
+        ('cost', Sum),
+        ('commission', Sum),
+        ('extras_cost', Sum),
+        ('crown_jewels_cost', Sum),
+        ('number_of_people', Avg),
+    )
+    group_by = ['property_booked', 'property_booked__landlord', 'check_out']
+    list_filter = ['property_booked', 'number_of_people', 'check_out']
+    
+
+
+def test_report(request):
+    report = PropertyBookingReport(request)
+    data = {'report': report}
+    return render_to_response('myreport.html', data, 
+                              context_instance=RequestContext(request))

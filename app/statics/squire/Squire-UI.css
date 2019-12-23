@@ -1,0 +1,291 @@
+body {
+    margin: 0;
+    font-family: 'Lato', sans-serif !important;
+}
+
+.header {
+    padding: 50px 0 30px;
+    color: #fff;
+    text-align: center;
+    background: #1d193d;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-size: 8em;
+    line-height: 1em;
+    font-weight: 900;
+}
+
+.header h2 {
+    margin-bottom: 1em;
+    font-size: 3em;
+    font-weight: 300;
+    text-transform: lowercase;
+    color: #afaedf;
+}
+
+    .col-centered{
+        float: none;
+        margin: 0 auto;
+        width: 80%;
+    }
+
+.alignCenter {
+    text-align: center;
+}
+
+iframe {
+    width: 100%;
+    border: 1px #919191 solid;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    padding: 7px 8px;
+    color: #333;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: right center;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    outline: none;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);
+}
+
+.menu .item {
+    color:#000;
+    float:left;
+    background:#FFF;
+    padding:10px;
+    border-left:1px #EEE solid;
+    border-bottom: 3px transparent solid;
+    -webkit-font-smoothing:subpixel-antialiased
+}
+
+.menu .group {
+    border-radius:3px;
+    display:inline-block;
+    border:1px #EEE solid;
+    margin:5px
+}
+
+.menu .group .item .flip {
+    -ms-transform:rotateY(180deg);
+    -webkit-transform:rotateY(180deg);
+    -moz-transform:rotateY(180deg);
+    transform:rotateY(180deg)
+}
+
+.Squire-UI .btn, .drop .btn {
+    background: #516066;
+    display: block;
+    position: relative;
+    padding: 10px 15px;
+    margin-top: 10px;
+    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: 500;
+    color: #fff;
+    text-align: center;
+    overflow: hidden;
+    letter-spacing: 1px;
+    border-radius: 4px;
+}
+
+input[type=text] {
+    background-color: #fff;
+    vertical-align: middle;
+    max-width: 100%;
+    border: 1px solid #a8afb2;
+    border-color: #a8afb2 #d4d7d9 #d4d7d9;
+    color: #516066;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: border linear 150ms;
+    -moz-transition: border linear 150ms;
+    -o-transition: border linear 150ms;
+    transition: border linear 150ms;
+    font-size: 14px;
+    padding: 5px;
+    width: 100%;
+}
+
+.menu .group .item:hover, .menu .item:first-child:hover {
+	border-bottom: 3px #55ACEE solid;
+}
+
+.menu .item:first-child {
+    border-left:none;
+}
+.menu {
+    text-align: center;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.drop {
+    border: 1px solid #dbdbdb;
+    padding: 14px;
+    background: white;
+    box-shadow: 0 1px 0 rgba(255,255,255,0),0 0 10px rgba(0,0,0,0.1);
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+.hidden {
+    display: none;
+}
+
+.quit {
+    float: right;
+    top:0;
+    right:0;
+    margin-bottom: 5px;
+}
+.drop-element, .drop-element:after, .drop-element:before, .drop-element *, .drop-element *:after, .drop-element *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+.drop-element {
+  position: absolute;
+  display: none; }
+  .drop-element.drop-open {
+    display: block; }
+
+.drop-element.drop-theme-arrows {
+  max-width: 100%;
+  max-height: 100%; }
+  .drop-element.drop-theme-arrows .drop-content {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+    position: relative;
+    font-family: inherit;
+    background: #eeeeee;
+    color: #444444;
+    padding: 1em;
+    font-size: 1.1em;
+    line-height: 1.5em;
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
+    -moz-filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2)); }
+    .drop-element.drop-theme-arrows .drop-content:before {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-color: transparent;
+      border-width: 16px;
+      border-style: solid; }
+  .drop-element.drop-theme-arrows.drop-element-attached-bottom.drop-element-attached-center .drop-content {
+    margin-bottom: 16px; }
+    .drop-element.drop-theme-arrows.drop-element-attached-bottom.drop-element-attached-center .drop-content:before {
+      top: 100%;
+      left: 50%;
+      margin-left: -16px;
+      border-top-color: #eeeeee; }
+  .drop-element.drop-theme-arrows.drop-element-attached-top.drop-element-attached-center .drop-content {
+    margin-top: 16px; }
+    .drop-element.drop-theme-arrows.drop-element-attached-top.drop-element-attached-center .drop-content:before {
+      bottom: 100%;
+      left: 50%;
+      margin-left: -16px;
+      border-bottom-color: #eeeeee; }
+  .drop-element.drop-theme-arrows.drop-element-attached-right.drop-element-attached-middle .drop-content {
+    margin-right: 16px; }
+    .drop-element.drop-theme-arrows.drop-element-attached-right.drop-element-attached-middle .drop-content:before {
+      left: 100%;
+      top: 50%;
+      margin-top: -16px;
+      border-left-color: #eeeeee; }
+  .drop-element.drop-theme-arrows.drop-element-attached-left.drop-element-attached-middle .drop-content {
+    margin-left: 16px; }
+    .drop-element.drop-theme-arrows.drop-element-attached-left.drop-element-attached-middle .drop-content:before {
+      right: 100%;
+      top: 50%;
+      margin-top: -16px;
+      border-right-color: #eeeeee; }
+  .drop-element.drop-theme-arrows.drop-element-attached-top.drop-element-attached-left.drop-target-attached-bottom .drop-content {
+    margin-top: 16px; }
+    .drop-element.drop-theme-arrows.drop-element-attached-top.drop-element-attached-left.drop-target-attached-bottom .drop-content:before {
+      bottom: 100%;
+      left: 16px;
+      border-bottom-color: #eeeeee; }
+  .drop-element.drop-theme-arrows.drop-element-attached-top.drop-element-attached-right.drop-target-attached-bottom .drop-content {
+    margin-top: 16px; }
+    .drop-element.drop-theme-arrows.drop-element-attached-top.drop-element-attached-right.drop-target-attached-bottom .drop-content:before {
+      bottom: 100%;
+      right: 16px;
+      border-bottom-color: #eeeeee; }
+  .drop-element.drop-theme-arrows.drop-element-attached-bottom.drop-element-attached-left.drop-target-attached-top .drop-content {
+    margin-bottom: 16px; }
+    .drop-element.drop-theme-arrows.drop-element-attached-bottom.drop-element-attached-left.drop-target-attached-top .drop-content:before {
+      top: 100%;
+      left: 16px;
+      border-top-color: #eeeeee; }
+  .drop-element.drop-theme-arrows.drop-element-attached-bottom.drop-element-attached-right.drop-target-attached-top .drop-content {
+    margin-bottom: 16px; }
+    .drop-element.drop-theme-arrows.drop-element-attached-bottom.drop-element-attached-right.drop-target-attached-top .drop-content:before {
+      top: 100%;
+      right: 16px;
+      border-top-color: #eeeeee; }
+  .drop-element.drop-theme-arrows.drop-element-attached-top.drop-element-attached-right.drop-target-attached-left .drop-content {
+    margin-right: 16px; }
+    .drop-element.drop-theme-arrows.drop-element-attached-top.drop-element-attached-right.drop-target-attached-left .drop-content:before {
+      top: 16px;
+      left: 100%;
+      border-left-color: #eeeeee; }
+  .drop-element.drop-theme-arrows.drop-element-attached-top.drop-element-attached-left.drop-target-attached-right .drop-content {
+    margin-left: 16px; }
+    .drop-element.drop-theme-arrows.drop-element-attached-top.drop-element-attached-left.drop-target-attached-right .drop-content:before {
+      top: 16px;
+      right: 100%;
+      border-right-color: #eeeeee; }
+  .drop-element.drop-theme-arrows.drop-element-attached-bottom.drop-element-attached-right.drop-target-attached-left .drop-content {
+    margin-right: 16px; }
+    .drop-element.drop-theme-arrows.drop-element-attached-bottom.drop-element-attached-right.drop-target-attached-left .drop-content:before {
+      bottom: 16px;
+      left: 100%;
+      border-left-color: #eeeeee; }
+  .drop-element.drop-theme-arrows.drop-element-attached-bottom.drop-element-attached-left.drop-target-attached-right .drop-content {
+    margin-left: 16px; }
+    .drop-element.drop-theme-arrows.drop-element-attached-bottom.drop-element-attached-left.drop-target-attached-right .drop-content:before {
+      bottom: 16px;
+      right: 100%;
+      border-right-color: #eeeeee; }
+/*!
+ *  Font Awesome 4.1.0 by @davegandy - http://fontawesome.io - @fontawesome
+ *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
+ */@font-face{font-family:'FontAwesome';src:url('../font/fontawesome-webfont.eot?v=4.1.0');src:url('../font/fontawesome-webfont.eot?#iefix&v=4.1.0') format('embedded-opentype'),url('../font/fontawesome-webfont.woff?v=4.1.0') format('woff'),url('../font/fontawesome-webfont.ttf?v=4.1.0') format('truetype'),url('../font/fontawesome-webfont.svg?v=4.1.0#fontawesomeregular') format('svg');font-weight:normal;font-style:normal}
+ .fa{display:inline-block;font-family:FontAwesome;font-style:normal;font-weight:normal;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+ .fa-bold:before{content:"\f032"}
+ .fa-italic:before{content:"\f033"}
+ .fa-underline:before{content:"\f0cd"}
+ .fa-font:before{content:"\f031"}
+ .fa-link:before{content:"\f0c1"}
+ .fa-list-alt:before{content:"\f022"}
+ .fa-list:before{content:"\f03a"}
+ .fa-picture-o:before{content:"\f03e"}
+ .fa-video-o:before{content:"\f008"}
+ .fa-quote-right:before{content:"\f10e"}
+ .fa-chevron-up:before{content:"\f077"}
+ /*.fa-header:before{content:"\f1dc"}*/
+ .fa-header:before{content:"H"}
+.fa-align-left:before{content:"\f036"}
+.fa-align-center:before{content:"\f037"}
+.fa-align-right:before{content:"\f038"}
+.fa-align-justify:before{content:"\f039"}
+.fa-undo:before{content:"\f0e2"}
+.fa-heart:before{content:"\f004"}

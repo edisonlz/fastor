@@ -1,0 +1,116 @@
+{% load util_template_tags %}
+{% block reset_css %}
+    <style>
+        .current{
+            font-weight: 600;
+            padding-top: 0.85em;
+            white-space: nowrap;
+        }
+    </style>
+{% endblock %}
+
+<style>
+    #pagination-holder{
+        margin: 0;
+        white-space: nowrap;
+        text-align: right;
+    }
+
+    .pagination{
+        margin: 2px 0;
+        white-space: nowrap;
+        justify-content: flex-end;
+        display: flex;
+        padding-left: 0;
+        list-style: none;
+        border-radius: .25rem;
+    }
+    .pagination .disabled .page-link{
+        color: #6c757d;
+        pointer-events: none;
+        cursor: auto;
+        background-color: #fff;
+        border-color: #dee2e6;
+    }
+    .pagination .active .page-link{
+        z-index: 1;
+        color: #fff;
+        background-color: #727cf5;
+        border-color: #727cf5;
+    }
+    .page-link:not(:disabled):not(.disabled) {
+        cursor: pointer;
+    }
+    .pagination .page-link{
+        border-radius: 30px!important;
+        margin: 0 3px;
+        border: none;
+        position: relative;
+        display: block;
+        padding: .5rem .75rem;
+        margin-left: -1px;
+        line-height: 1.25;
+        color: #313a46;
+        background-color: #fff;
+    }
+
+</style>
+
+
+
+{% if items %}
+    <div class="row pct100">
+        <div class="col-sm-12 col-md-5">
+            <div class="current ml20">
+                    当前第{{ items.number }}页 共{{ items.paginator.num_pages }}页
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-7">
+            <div id="pagination-holder" class="clearfix" style="margin-bottom: 10px;">
+                <ul class="pagination pagination-sm" style="margin-bottom: 0;">
+                    {% if now_page == '1' %}
+                        <li class="disabled">
+                            <a class="page-link"> <i class="mdi mdi-chevron-left"></i> </a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a class="page-link" href="?page={{ previous_page }}&app_id={{ app_id }}&search_key={{search_key}}&{{query_key|to_query_key_string}}"><i class="mdi mdi-chevron-left"></i></a>
+                        </li>
+                    {% endif %}
+
+                    {% for page in display_pages %}
+                        {% if page == now_page %}
+                            <li class="active">
+                                <a class="page-link" href="?page={{ page }}&app_id={{ app_id }}&search_key={{search_key}}&{{query_key|to_query_key_string}}">{{ page }}</a>
+                            </li>
+                        {% elif page == '...' %}
+                            <li class="disabled">
+                                <a class="page-link">{{ page }}</a>
+                            </li>
+                        {% else %}
+                            <li>
+                                <a class="page-link" href="?page={{ page }}&app_id={{ app_id }}&search_key={{search_key}}&{{query_key|to_query_key_string}}">{{ page }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if now_page == num_pages %}
+                        <li class="disabled">
+                            <a class="page-link"> <i class="mdi mdi-chevron-right"></i></a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a class="page-link" href="?page={{ next_page }}&app_id={{ app_id }}&search_key={{search_key}}&{{query_key|to_query_key_string}}"><i class="mdi mdi-chevron-right"></i></a>
+                        </li>
+                    {% endif %}
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+{% else %}
+    <div>
+    no paginators
+    </div>
+{% endif %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load markup %}
+
+{% block title_tag %}
+	News Categories
+{% endblock %}
+
+{% block main_content %}
+<h1>Categories</h1>
+	<ul id='category-list'>
+	{% for item in item_list %}
+		<li><a href='{% url news-by-category category_slug=item.slug %}'>{{ item.name }}</a></li>
+	{% endfor %}
+	</ul>
+{% endblock %}

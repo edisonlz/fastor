@@ -1,0 +1,65 @@
+div#addWrapper {
+            text-align: left;
+            /*margin-left: 13%;*/
+        }
+
+        div#addPage {
+            /*display: inline-block;*/
+            text-align: center;
+            margin-top: 20px;
+        }
+        div#addPage h3 {
+            width: 80%;
+        }
+
+        tbody {
+            border: none;
+        }
+
+        .table {
+            width: 80%;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+
+        #addWrapper .table tr td,#addWrapper .table th td  {
+            text-align: center;
+            vertical-align: middle;
+            padding:2px;
+            min-width: 105px;
+            border: 1px solid #dddddd;
+            max-width: 250px;
+        }
+
+        #addWrapper .table td label{
+            margin-bottom: 0;
+        }
+        #addWrapper .table td input,
+        #addWrapper .table td select{
+            margin:10px 30px;
+        }
+
+        #addWrapper .table td.up_pic{
+            height: 161px;
+        }
+
+        #addWrapper .table td #screen-content{
+            height: auto;
+            width: auto;
+        }
+        #addWrapper form .commit-content{
+            width: 80%;
+            text-align: center;
+        }
+        #addWrapper form .commit-content button{
+            margin-right: 25px;
+        }
+        #addWrapper form .commit-content a{
+            margin-left: 25px;
+        }
+
+
+        #addWrapper .table td img{
+            max-height: 117px;
+        }

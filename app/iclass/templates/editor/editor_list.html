@@ -1,0 +1,119 @@
+{% extends 'cms_basemain.html' %}
+{% load staticfiles %}
+{% load util_template_tags %}
+
+{% block reset_css %}
+    <style>
+    </style>
+{% endblock %}
+
+{% block col_main %}
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                       <li class="breadcrumb-item active">内容列表</li>
+                    </ol>
+                </div>
+                <h4 class="page-title">内容列表</h4>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card bg-default"><div class="card-body profile-user-box">
+
+        <div class="row">
+
+            <div class="col-10">
+                <div id="form-holder" >
+                        <form class="form-inline" id="search_app_form" method="get" action="{% url 'editor_list' %}">
+                            <div class="form-group">
+                                <label for="search_keyword" class="sr-only">搜索关键字:</label>
+                                <input type="search" class="form-control" name="search_key" id="search_keyword" placeholder="请输入搜索关键字" value="{{ search_key }}"/>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">搜索</button>
+
+                        </form>
+                    </div>
+            </div>
+
+            <div class="col-2 text-right">
+                <a href="{% url 'editor_new' %}" class="btn btn-primary"><i class="mdi mdi-plus-circle-outline"></i>内容</a>
+            </div>
+
+        </div>
+
+    </div></div>
+
+
+
+
+    <div class="card bg-default"><div class="card-body profile-user-box">
+
+    <div class="row">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>标题</th>
+                        <th>状态</th>
+                        <th>创建时间</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="sortable">
+                    {% for data in datas %}
+                    <tr class="sort-item" id="module{{ data.id }}" value="{{ data.id }}">
+                        <input type="hidden" name="status_item_id" value="{{ data.id }}">
+                        <td>{{ data.id }}</td>
+                        <td><a href='{{ data.short_url }}' target="_blank">{{ data.title }}</a></td>
+                        <td class="status">{{ data.status_ch }}</td>
+                        <td>{{ data.created_at }}</td>
+
+                        <td>
+                            <button class="btn btn-warning item_status">
+                                {% if data.status %}
+                                    开启
+                                {% else %}
+                                    删除
+                                {% endif %}
+                            </button>
+                            <a href="{% url 'editor_new' %}?itemid={{ data.id }}"
+                               class="btn btn-primary" role="button">编辑</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        {% if not datas %}
+        <div class="col-md-12">
+            <div class="alert alert-primary" role="alert"><strong>Warning!</strong> 数据为空,请创建数据。</div>
+        </div>
+        {% endif %}
+
+        {% if datas %}
+        {% include "common/pagination.html" with items=datas %}
+        {% endif %}
+    </div>
+
+    </div></div>
+
+
+    <input type="hidden" id="menu-sel" value="106">
+{% endblock %}
+
+
+{% block endlink %}
+    <script src="{{ STATIC_URL }}toast_message/jquery.toastmessage.js"></script>
+
+    <script>
+        {% include "common/common_update_status.js" with item_class='Editor' %}
+    </script>
+{% endblock %}
+

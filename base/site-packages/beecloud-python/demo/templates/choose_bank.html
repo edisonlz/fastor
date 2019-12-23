@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>订单信息</title>
+</head>
+<body>
+<form method="post" action="/bill" target="_blank" style="width:85%;margin: 0 auto;">
+<input type="hidden" name="channel" value="BC_GATEWAY" /> 
+<select name="bank">
+    {% for k,v in banks.items() %}
+        <option value ="{{ k }}">{{ v }}</option>
+    {% endfor %}
+</select>
+<input type="submit" class="button" value="确认付款" />
+</form>
+</body>
+</html>

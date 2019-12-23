@@ -1,0 +1,23 @@
+{% extends "mobileadmin/mobile_safari/base.html" %}
+{% load mobile_admin_modify i18n %}
+
+{% block breadcrumbs %}<a href="../" class="inactive float-left" id="object_{{ object.pk }}">{{ object|escape }}</a> </a><span class="float-right active">{% trans 'History' %}</span>
+<script type="text/javascript">truncate({'object_{{ object.pk }}': 20});</script>
+{% endblock %}
+
+{% block content %}
+{% if action_list %}
+<ul id="{{ object.lower }}" title="{{ title }}" selected="true">
+    {% for action in action_list %}
+    <li>
+    {{ action.user.username }}, {{ action.action_time|date:_("DATETIME_FORMAT") }}<br />
+    {{ action.change_message }}
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<div class="panel" selected="true">
+<h1>{% trans "This object doesn't have a change history. It probably wasn't added via this admin site." %}</h1>
+</div>
+{% endif %}
+{% endblock %}

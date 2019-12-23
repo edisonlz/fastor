@@ -1,0 +1,180 @@
+/*css below can copy to other page to realize the same table display effect*/
+div.nav-group {
+    position: relative;
+    min-height: 40px;
+}
+
+.img-polaroid {
+    height: 60px;
+    max-width: 100%;
+    min-width: 60px;
+}
+
+.btn-table {
+    padding: 2px 5px;
+}
+
+.active-item-shadow {
+    box-shadow: rgba(133, 133, 133, 0.1) 0 0 5px 2px, rgba(133, 133, 133, 0.3) 0 0 2px;
+}
+
+.btn-block {
+    display: inline-block;
+    width: auto;
+    margin-left: 5px;
+}
+
+#save_position_form {
+    margin: 0 0 10px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+#batch-form {
+    display: inline-block;
+    text-align: right;
+    margin: 0 0 10px;
+}
+
+table {
+    font-size: 13px;
+}
+
+td.canBeEdit {
+    max-width: 195px;
+    min-width: 130px;
+}
+
+.text-block {
+    display: none;
+}
+
+.text-block > textarea {
+    font-size: 13px;
+    padding: 0;
+    margin: 0;
+    display: block;
+    max-height: 100px;
+    resize: vertical;
+    width: 100%;
+}
+
+.text-block > button {
+    float: right;
+    margin-left: 3px;
+    margin-top: 2px;
+}
+
+.nav-group .filter {
+    display: inline;
+    margin-left: 0;
+    margin-right: 20px;
+    height: 30px;
+    text-align: center;
+}
+
+.nav-group .filter span {
+    margin-right: 10px;
+}
+
+.nav-group .filter select {
+    margin: 0;
+    width: 80px;
+}
+
+.nav-group .filter #acid {
+    width: 140px;
+}
+
+.nav-group .filter #filter_btn {
+    margin-left: 20px;
+}
+
+.nav-group .filter #filter_btn .icon-search {
+    margin-right: 5px;
+}
+
+.nav-group .new_add_btn {
+    float: right;
+    margin-right: 5px;
+}
+
+.cut_off_d_line hr {
+    border-top: 2px solid #CDCDCD;
+}
+
+.nav-content table thead .td-id {
+    min-width: 25px;
+}
+.nav-content table thead .td-big-id {
+    min-width: 40px;
+}
+
+.nav-content table thead .td-position {
+    min-width: 30px;
+}
+
+.nav-content table thead .td-ac {
+    min-width: 70px;
+}
+
+.nav-content table thead .td-plat {
+    min-width: 50px;
+}
+
+.nav-content table thead .td-count {
+    min-width: 70px;
+}
+
+.nav-content table thead .td-name {
+    min-width: 70px;
+}
+
+.nav-content table thead .td-ver {
+    min-width: 50px;
+}
+
+.nav-content table thead .td-publish {
+    width: 70px;
+}
+
+.nav-content table thead .td-size {
+    min-width: 50px;
+}
+
+.nav-content table thead .td-star {
+    min-width: 30px;
+}
+
+.nav-content table thead .td-show {
+    min-width: 30px;
+}
+
+.nav-content table thead .td-state {
+    min-width: 30px;
+}
+
+.nav-content table thead .td-manage {
+    min-width: 105px;
+    text-align: center;
+}
+
+.nav-content table #sortable .td-manage {
+    text-align: center;
+}
+
+.nav-content table thead .td-log-small {
+    min-width: 30px;
+}
+
+.nav-content table thead .td-log-middle {
+    min-width: 100px;
+}
+
+.nav-content table thead .td-log-datetime {
+    min-width: 130px;
+}
+
+.nav-content table thead .td-log-detail {
+    min-width: 600px;
+}

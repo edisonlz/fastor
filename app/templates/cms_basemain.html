@@ -1,0 +1,291 @@
+{% load staticfiles %}
+{% load util_template_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+
+		<meta charset="utf-8" />
+        <title>内容运营系统</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+		<meta content="Coderthemes" name="author" />
+
+        <script src="{{ STATIC_URL }}Hyper-newstyle/js/app.min.js"></script>
+
+        <script src="{{ STATIC_URL }}js/jquery-1.11.3.min.js"></script>
+        <script src="{{ STATIC_URL }}js/jquery-ui.js"></script>
+         <link rel="icon" href="{{ STATIC_URL }}Hyper-newstyle/htmlimg/icon.png" type="image/x-icon" />
+
+
+        
+        <link href="{{ STATIC_URL }}toast_message/jquery.toastmessage.css" rel="stylesheet" type="text/css"/>
+
+
+        <script src="{{ STATIC_URL }}jquery-validate/jquery.validate.js"></script>
+
+        
+
+        <link href="{{ STATIC_URL }}Hyper-newstyle/css/app.min.css" rel="stylesheet">
+        <link href="{{ STATIC_URL }}Hyper-newstyle/css/base.css" rel="stylesheet">
+
+
+        
+        <script type="text/javascript" src="{{ STATIC_URL }}bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}bootstrap-datetimepicker-master/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+        <link href="{{ STATIC_URL }}bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+
+        
+        <link href="{{ STATIC_URL }}Hyper-newstyle/css/main.css" rel="stylesheet">
+        
+
+         <style>
+           
+                .wrapper {
+                    height: 100%;
+                    overflow: hidden;
+                    width: 100%;
+
+                }
+            .logo_class{
+                font-size: 24px !important;
+                color: #fff !important;
+            }
+            
+            </style>
+
+        {% block reset_css %}
+           
+        {% endblock %}
+
+        {% block header_link %}
+        {% endblock %}
+
+        {% block link %}
+        {% endblock %}
+	</head>
+
+	<body>
+
+		<!-- Begin page -->
+		<div class="wrapper">
+
+			<!-- ========== 左侧导航卡 ========== -->
+			<div class="left-side-menu">
+
+				<div class="slimscroll-menu">
+
+					<!-- LOGO -->
+					<a href="#" class="logo text-center mb-4">
+						<span class="logo-lg logo_class">
+                           Fastor
+                        </span>
+						<span class="logo-sm logo_class">
+                           Fastor
+                        </span>
+					</a>
+
+                    {% include 'cms_index/left_side_menu.html' %}
+
+					<!-- End Sidebar -->
+
+					<div class="clearfix"></div>
+
+				</div>
+				<!-- Sidebar -left -->
+
+			</div>
+			<!-- 左侧导航卡 End -->
+
+			<!-- ============================================================== -->
+			<!--开始 右侧内容-->
+			<!-- ============================================================== -->
+
+			<div class="content-page">
+				<div class="content">
+					<!-- Start TOP -->
+					<div class="navbar-custom">
+						<!--右侧设置-->
+						<ul class="list-unstyled topbar-right-menu float-right mb-0">
+
+                            <!--通知-->
+                            <li class="dropdown notification-list">
+                                <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="" role="button" aria-haspopup="false" aria-expanded="false">
+                                    <i class="mdi mdi-bell noti-icon"></i>
+                                    <span class="badge badge-danger noti-icon-badge">2</span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated dropdown-lg">
+
+                                    <!-- item-->
+                                    <div class="dropdown-item noti-title">
+                                        <h5 class="m-0">
+                                            通知
+                                        </h5>
+                                    </div>
+
+                                    <div class="slimscroll" style="height: 125px;">
+                                        <!-- item-->
+                                        <a href="#" class="dropdown-item notify-item">
+                                            <div class="notify-icon bg-primary">
+                                                <i class="mdi mdi-comment-account-outline"></i>
+                                            </div>
+                                            <p class="notify-details">课程挂课数量
+                                                <small class="text-muted">{{ course.course_guake_count }}个</small>
+                                            </p>
+                                        </a>
+
+                                        <!-- item-->
+                                        <a href="#" class="dropdown-item notify-item">
+                                            <div class="notify-icon bg-info">
+                                                <i class="mdi mdi-account-plus"></i>
+                                            </div>
+                                            <p class="notify-details">模考数量
+                                                <small class="text-muted">{{ subject.mock_page_count }}个</small>
+                                            </p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+
+
+                            <!--系统设置-->
+							<li class="dropdown notification-list">
+								<a href="" class="nav-link right-bar-toggle mr-0">
+									<i class="mdi mdi-settings noti-icon"></i>
+								</a>
+							</li>
+
+                            {% if request.user.is_authenticated %}
+							<!--个人信息-->
+
+							<li class="dropdown notification-list">
+                                <a id="dropdownMenuLink" class="nav-link dropdown-toggle nav-user arrow-none mr-0" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    <img src="{{ STATIC_URL }}Hyper-newstyle/htmlimg/head.png" alt="" class="rounded">
+                                    {{ request.user }}
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated profile-dropdown " aria-labelledby="dropdownMenuLink">
+                                    <!-- item-->
+                                    <div class=" dropdown-header noti-title">
+                                        <h6 class="text-overflow m-0">欢迎 !</h6>
+                                    </div>
+
+                                    <!-- item-->
+                                    <a href="" class="dropdown-item notify-item">
+                                        <i class="mdi mdi-account-circle"></i>
+                                        <span>我的账号</span>
+                                    </a>
+
+                                    <!-- item-->
+                                    <a href="" class="dropdown-item notify-item">
+                                        <i class="mdi mdi-account-settings-variant"></i>
+                                        <span>设置</span>
+                                    </a>
+
+                                    <!-- item-->
+                                    <a  href="/signout" class="dropdown-item notify-item">
+                                        <i class="mdi mdi-logout"></i>
+                                        <span>退出</span>
+                                    </a>
+
+                                </div>
+                            </li>
+                            {% endif %}
+                        </ul>
+                        <!--左侧设置-->
+                        <div class="app-search ">
+                            <form>
+                                <div class="input-group ">
+                                    <input type="text " class="form-control " placeholder="请输入客户手机号 ">
+                                    <span class="mdi mdi-magnify "></span>
+                                    <div class="input-group-append ">
+                                        <button class="btn btn-primary " type="submit ">搜索</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <button class="button-menu-mobile open-left disable-btn ">
+                            <i class="mdi mdi-menu "></i>
+                        </button>
+                    </div>
+                    <!-- end TOP -->
+
+                    <!-- Start 主要内容 -->
+                    <div class="container-fluid ">
+                        {% block col_main %}
+
+                        {% endblock %}
+                    </div>
+                    <!-- end 主要内容 -->
+
+                </div>
+                <!-- content -->
+
+                <footer class="footer ">
+                    <div class="container-fluid ">
+                        <div class="row ">
+                            <div class="col-md-6 ">
+
+                            </div>
+                            <div class="col-md-6 ">
+                                <div class="text-md-right footer-links d-none d-sm-block ">
+                                    <a href=" ">关于我们</a>
+                                    <a href=" ">支持</a>
+                                    <a href=" ">联系我们 Us</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+
+            </div>
+
+        </div>
+
+        <!-- END wrapper -->
+        {% block endlink %}
+        {% endblock %}
+
+        {% block js %}
+        {% endblock %}
+
+        {% block endjs %}
+        {% endblock %}
+
+        {% block external_js %}
+        {% endblock %}
+
+        <script src="{{ STATIC_URL }}js/metisMenu.min.js"></script>
+        <script src="{{ STATIC_URL }}js/jquery.slimscroll.min.js"></script>
+
+        <script type="text/javascript" language="javascript">
+        var localpath = window.location.pathname.split("/");
+        var localpath0 = localpath[2];
+        $(document).ready(function () {
+
+            $(".del").click(function () {
+                var status = confirm("确认删除吗?");
+                if (!status) {
+                    return false;
+                }
+            });
+
+            var menu_target = $("#menu-sel").val();
+
+            $(".menu_item").each(function(){
+                if ($(this).data("menu-id") === parseInt(menu_target)){
+                    $(this).addClass("active");
+                    $(this).parent().parent(".side-nav-item").addClass("active");
+                }
+            })
+        });
+
+        </script>
+
+
+    </body>
+
+
+</html>

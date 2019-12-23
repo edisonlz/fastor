@@ -1,0 +1,15 @@
+production:
+  servers: localhost
+  port: 6379
+  db: 10
+
+test:
+  servers: localhost
+  port: 6379
+  db: 12
+ 
+development:
+  servers: localhost
+  port: 6379
+  db: 11
+  

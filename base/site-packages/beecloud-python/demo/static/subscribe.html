@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script language="JavaScript" type="text/javascript" src="/static/jquery-2.1.4.min.js"></script>
+
+    <meta charset="UTF-8">
+    <title>订阅支付示例</title>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.ajax({
+                type: 'get',
+                url: '/subscription/banks',
+                dataType: 'json',
+                success: function (data) {
+                    $.each(data, function (index, value) {
+                        $("#banks").append("<option value='" + value + "'>" + value + "</option>");
+                    });
+                }
+            });
+
+            $.ajax({
+                type: 'get',
+                url: '/subscription/plans',
+                dataType: 'json',
+                success: function (data) {
+                    $.each(data, function (index, value) {
+                        $("#plans").append("<option value='" + value.id + "'>" + value.name + "</option>");
+                    });
+                }
+            });
+        });
+
+        function send_sms() {
+            $.ajax({
+                type: 'get',
+                url: '/sms?mobile=' + $('#mobile').val(),
+                dataType: 'text',
+                success: function (data) {
+                    $('#sms_id').val(data);
+                    alert("code sent successfully")
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+<h3 style="color: #ff6c2c">初次注册的用户需要通过[订阅用户银行名称、订阅用户银行卡号、订阅用户身份证姓名、
+    订阅用户身份证号、订阅用户银行预留手机号]来校验扣费账户，订阅成功后会返回以上要素对应的唯一card_id，
+    商户可保存下来下次直接使用</h3>
+
+<p>以下所有为必填项，页面会加载订阅计划和银行列表(常用的)，没有可选项请等待</p>
+<form id="subscription_form" action="/subscribe" method="post">
+    订阅的用户id：<input type="text" name="buyer_id"><br/><br/>
+    选择订阅计划：
+    <select id="plans" name="plan_id">
+    </select>
+    <br/><br/>
+
+    选择支付的银行：
+    <select id="banks" name="bank_name">
+    </select>
+    <br/><br/>
+
+    订阅用户银行卡号：<input type="text" name="card_no"><br/><br/>
+
+    订阅用户身份证姓名：<input type="text" name="id_name"><br/><br/>
+
+    订阅用户身份证号：<input type="text" name="id_no"><br/><br/>
+
+    订阅用户银行预留手机号：<input id="mobile" type="text" name="mobile"><br/><br/>
+
+    验证码：<input type="text" name="sms_code">
+    <input onclick="send_sms()" type="button" value="发送验证码"><br/><br/>
+    sms id: <input readonly="readonly" type="text" id="sms_id" name="sms_id"/><br/><br/>
+
+    <input type="submit" value="提交" />
+
+</form>
+</body>
+</html>

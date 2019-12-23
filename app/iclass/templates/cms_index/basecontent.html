@@ -1,0 +1,392 @@
+{% extends 'cms_basemain.html' %}
+{% load staticfiles %}
+{% load util_template_tags %}
+
+{% block reset_css %}
+    <style>
+
+    </style>
+{% endblock %}
+
+{% block col_main %}
+    <!-- 数据概览 -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control form-control-light" id="dash-daterange">
+                                <div class="input-group-append">
+                                    <span class="input-group-text bg-primary border-primary text-white">
+                                        <i class="mdi mdi-calendar-range"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="" class="btn btn-primary ml-2">
+                            <i class="mdi mdi-autorenew"></i>
+                        </a>
+                        <a href="" class="btn btn-primary ml-1">
+                            <i class="mdi mdi-filter-variant"></i>
+                        </a>
+                    </form>
+                </div>
+                <h4 class="page-title">{{app.title}}-数据概览</h4>
+            </div>
+        </div>
+    </div>
+    <!-- end page title -->
+
+    <div class="row">
+        <div class="col-xl-5">
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card widget-flat">
+                        <div class="card-body">
+                            <h5 class="text-muted font-weight-normal mt-0" title="">课程数量</h5>
+                            <h3 class="mt-3">{{ course.course_count }}</h3>
+                            <span class="text-nowrap text-muted mb-3">总量</span>
+                            <p class="mb-0 text-muted mt-3">
+                                <span class="text-danger mr-2"><i class="mdi mdi-arrow-up-bold"></i> {{ course.course_guake_count }}</span>
+                                <span class="text-nowrap">课程挂课数量</span>
+                            </p>
+                        </div> <!-- end card-body-->
+                    </div> <!-- end card-->
+                </div> <!-- end col-->
+
+                <div class="col-lg-6">
+                    <div class="card widget-flat">
+                        <div class="card-body">
+                            <div class="float-right">
+                                <i class="mdi mdi-cart-plus widget-icon"></i>
+                            </div>
+                            <h5 class="text-muted font-weight-normal mt-0" title="">题库数量</h5>
+                            <h3 class="mt-3">{{ subject.subject_count }}</h3>
+                            <span class="text-nowrap text-muted mb-3">总量</span>
+                            <p class="mb-0 text-muted mt-3">
+                                <span class="text-danger mr-2"><i class="mdi mdi-arrow-up-bold"></i> {{ subject.mock_page_count }}</span>
+                                <span class="text-nowrap">模考数量</span>
+                            </p>
+                        </div> <!-- end card-body-->
+                    </div> <!-- end card-->
+                </div> <!-- end col-->
+            </div> <!-- end row -->
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card widget-flat">
+                        <div class="card-body">
+                            <div class="float-right">
+                                <i class="mdi mdi-currency-usd widget-icon"></i>
+                            </div>
+                            <h5 class="text-muted font-weight-normal mt-0" title="">真题试卷数量</h5>
+                            <h3 class="mt-3 mb-3">{{ paper.paper_count }}</h3>
+                        </div> <!-- end card-body-->
+                    </div> <!-- end card-->
+                </div> <!-- end col-->
+
+                <div class="col-lg-6">
+                    <div class="card widget-flat">
+                        <div class="card-body">
+                            <div class="float-right">
+                                <i class="mdi mdi-pulse widget-icon"></i>
+                            </div>
+                            <h5 class="text-muted font-weight-normal mt-0" title="">问答数量</h5>
+                            <h3 class="mt-3 mb-3">{{ question.question_count }}</h3>
+                        </div> <!-- end card-body-->
+                    </div> <!-- end card-->
+                </div> <!-- end col-->
+            </div> <!-- end row -->
+
+        </div> <!-- end col -->
+
+        <div class="col-xl-7">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title mb-3">每日用户新增</h4>
+
+                    <div style="height: 262px;" class="chartjs-chart">
+                        <canvas id="high-performing-product"></canvas>
+                    </div>
+                </div> <!-- end card-body-->
+            </div> <!-- end card-->
+
+        </div> <!-- end col -->
+    </div>
+    <!-- end row -->
+
+
+     <!-- 通用数据 -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <h4 class="page-title">通用指标</h4>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-xl-8">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title mb-3">用户下单时间分布</h4>
+
+
+                    <div class="mt-3 chartjs-chart" style="height: 364px;">
+                        <canvas id="revenue-chart"></canvas>
+                    </div>
+                </div> <!-- end card-body-->
+            </div> <!-- end card-->
+        </div> <!-- end col-->
+
+        <div class="col-xl-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">用户地域分布TOP6</h4>
+                    {% for area in sql_area_count %}
+                    <h5 class="mb-1 mt-0 font-weight-normal">{{ area.0 }}</h5>
+                    <div class="progress-w-percent">
+                        <span class="progress-value font-weight-bold">{{ area.1 }}人 </span>
+                        <div class="progress progress-sm">
+                            <div class="progress-bar" role="progressbar" style="width: {{ area.1|percent:sql_area_count.0.1 }}%;" aria-valuenow="{{ area.1 }}" aria-valuemin="0" aria-valuemax="2000"></div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div> <!-- end card-body-->
+            </div> <!-- end card-->
+        </div> <!-- end col-->
+    </div>
+    <!-- end row -->
+
+
+    </div>
+    <!-- end row -->
+{% endblock %}
+
+
+{% block endjs %}
+   图表
+    <script src="{{ STATIC_URL }}Hyper-newstyle/js/Chart.bundle.js"></script>
+
+
+    <script type="text/javascript">
+
+        function respChart(selector, type, data, options) {
+            var draw = Chart.controllers.line.prototype.draw;
+            Chart.controllers.line.prototype.draw = function () {
+                draw.apply(this, arguments);
+                var ctx = this.chart.chart.ctx;
+                var _stroke = ctx.stroke;
+                ctx.stroke = function () {
+                    ctx.save();
+                    ctx.shadowColor = 'rgba(0,0,0,0.01)';
+                    ctx.shadowBlur = 20;
+                    ctx.shadowOffsetX = 0;
+                    ctx.shadowOffsetY = 5;
+                    _stroke.apply(this, arguments);
+                    ctx.restore();
+                }
+            };
+
+            var draw2 = Chart.controllers.doughnut.prototype.draw;
+            Chart.controllers.doughnut = Chart.controllers.doughnut.extend({
+                draw: function () {
+                    draw2.apply(this, arguments);
+                    var ctx = this.chart.chart.ctx;
+                    var _fill = ctx.fill;
+                    ctx.fill = function () {
+                        ctx.save();
+                        ctx.shadowColor = 'rgba(0,0,0,0.03)';
+                        ctx.shadowBlur = 4;
+                        ctx.shadowOffsetX = 0;
+                        ctx.shadowOffsetY = 3;
+                        _fill.apply(this, arguments)
+                        ctx.restore();
+                    }
+                }
+            });
+
+            var draw3 = Chart.controllers.bar.prototype.draw;
+            Chart.controllers.bar = Chart.controllers.bar.extend({
+                draw: function () {
+                    draw3.apply(this, arguments);
+                    var ctx = this.chart.chart.ctx;
+                    var _fill = ctx.fill;
+                    ctx.fill = function () {
+                        ctx.save();
+                        ctx.shadowColor = 'rgba(0,0,0,0.01)';
+                        ctx.shadowBlur = 20;
+                        ctx.shadowOffsetX = 4;
+                        ctx.shadowOffsetY = 5;
+                        _fill.apply(this, arguments)
+                        ctx.restore();
+                    }
+                }
+            });
+
+            // get selector by context
+            var ctx = selector.get(0).getContext("2d");
+            // pointing parent container to make chart js inherit its width
+            var container = $(selector).parent();
+
+            // this function produce the responsive Chart JS
+            function generateChart() {
+                // make chart width fit with its container
+                var ww = selector.attr('width', $(container).width());
+                var chart;
+                switch (type) {
+                    case 'Line':
+                        chart = new Chart(ctx, { type: 'line', data: data, options: options });
+                        break;
+                    case 'Doughnut':
+                        chart = new Chart(ctx, { type: 'doughnut', data: data, options: options });
+                        break;
+                    case 'Pie':
+                        chart = new Chart(ctx, { type: 'pie', data: data, options: options });
+                        break;
+                    case 'Bar':
+                        chart = new Chart(ctx, { type: 'bar', data: data, options: options });
+                        break;
+                    case 'Radar':
+                        chart = new Chart(ctx, { type: 'radar', data: data, options: options });
+                        break;
+                    case 'PolarArea':
+                        chart = new Chart(ctx, { data: data, type: 'polarArea', options: options });
+                        break;
+                }
+                return chart;
+            };
+            // run function - render chart at first load
+            return generateChart();
+        }
+
+        // 曲线图
+        var lineChart = {
+            labels: [
+                {% for dd in order_time_datas %}
+                    "{{ dd.0 }}",
+                {% endfor %}
+            ],
+            datasets: [{
+                label: "购买个数",
+                backgroundColor: "transparent",
+                borderColor: "#0acf97",
+                data: [
+                    {% for dd in order_time_datas %}
+                        {{ dd.1 }},
+                    {% endfor %}
+                ]
+            }]
+        };
+        var lineOpts = {
+            maintainAspectRatio: false,
+            legend: {
+                display: false
+            },
+            tooltips: {
+                intersect: false
+            },
+            hover: {
+                intersect: true
+            },
+            plugins: {
+                filler: {
+                    propagate: false
+                }
+            },
+            pointDotStrokeWidth : 0,
+            pointDot : false,
+            pointDotRadius:0,            
+            scales: {
+                pointDot : false,
+                xAxes: [{
+                    reverse: true,
+                    gridLines: {
+                        color: "rgba(0,0,0,0.05)"
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        stepSize: 20
+                    },
+                    display: true,
+                    borderDash: [5, 5],
+                    gridLines: {
+                        color: "rgba(0,0,0,0)",
+                        fontColor: '#fff'
+                    }
+                }]
+            }
+        };
+
+        // 柱状图
+        var barChart = {
+            labels: [
+                {% for foo in user_incr_datas %}
+                        "{{ foo.0 }}",
+                {% endfor %}
+            ],
+            datasets: [{
+                label: "每日用户新增",
+                backgroundColor: "#727cf5",
+                borderColor: "#727cf5",
+                hoverBackgroundColor: "#727cf5",
+                hoverBorderColor: "#727cf5",
+                data: [
+                    {% for foo in user_incr_datas %}
+                        {{ foo.1 }},
+                    {% endfor %}
+                ]
+            }, {
+                label: "每日用户新增注册成功",
+                backgroundColor: "#e3eaef",
+                borderColor: "#e3eaef",
+                hoverBackgroundColor: "#e3eaef",
+                hoverBorderColor: "#e3eaef",
+                data: [
+                     {% for dd in user_incr_success_datas %}
+                        {{ dd.1 }},
+                     {% endfor %}
+                ]
+            }]
+        };
+        var barOpts = {
+            maintainAspectRatio: !1,
+            legend: {
+                display: !1
+            },
+            scales: {
+                yAxes: [{
+                    gridLines: {
+                        display: !1
+                    },
+                    stacked: !1,
+                    ticks: {
+                        stepSize: 200
+                    }
+                }],
+                xAxes: [{
+                    barPercentage: .7,
+                    categoryPercentage: .5,
+                    stacked: !1,
+                    gridLines: {
+                        color: "rgba(0,0,0,0.01)"
+                    }
+                }]
+            }
+        };
+
+        // 曲线图
+        respChart($("#revenue-chart"), 'Line', lineChart, lineOpts);
+
+        // 柱状图
+        respChart($("#high-performing-product"), 'Bar', barChart, barOpts);
+    </script>
+
+{% endblock %}
+
+

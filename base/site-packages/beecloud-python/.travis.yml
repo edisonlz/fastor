@@ -1,0 +1,17 @@
+language: python
+python:
+  - "2.7"
+  - "3.4"
+  - "3.5"
+  - "pypy"
+# command to install dependencies
+install:
+  - pip install requests
+  - cd sdk
+  - python setup.py install
+  - cd ..
+# command to run tests
+script:
+   - python tests/unit/test_utils.py
+   - python tests/unit/test_pay.py
+   - python tests/unit/test_query.py

@@ -1,0 +1,168 @@
+/**
+ * Containers
+ */
+
+div.qbeDiagram {
+    margin-top: 10px;
+    margin-right: 5px;
+}
+
+div.qbeDiagram div.body {
+    margin: 0px;
+    background: white;
+    color: black;
+    border: 2px solid #417690;
+    line-height: 20px;
+    width: 170px;
+    z-index: 20;
+    float: left;
+    position: absolute;
+    box-shadow: 2px 2px 5px #aaa;
+   -o-box-shadow: 2px 2px 5px #aaa;
+   -webkit-box-shadow: 2px 2px 5px #aaa;
+   -moz-box-shadow: 2px 2px 5px #aaa;
+    opacity: 0.8; 
+    filter: alpha(opacity=80); 
+}
+
+div.qbeDiagram div.body:hover {
+    box-shadow: 2px 2px 5px #444;
+   -o-box-shadow: 2px 2px 5px #444;
+   -webkit-box-shadow: 2px 2px 5px #444;
+   -moz-box-shadow: 2px 2px 5px #444;
+    opacity: 0.95; 
+    filter: alpha(opacity=95);
+}
+
+div.qbeDiagram div.title {
+   width: 100%;
+   height: 20px;
+   background: #417690;
+   color: #F4F379;
+   font-weight: normal;
+   text-align: center;
+   padding-top: 2px;
+   line-height: 150%;
+   cursor: move;
+   font-size: 12px;
+   overflow: hidden;
+}
+
+div.qbeDiagram div.fieldsContainer {
+/*    border-top: 1px dashed #99999D;*/
+    height: 95px;
+    overflow: auto;
+}
+
+div.qbeDiagram div.noOverflow {
+/*    border-top: 1px dashed #99999D;*/
+    overflow: none;
+}
+
+option.field,div.qbeDiagram div.field {
+    color: #99999D;
+    height: 20px;
+    font-size: 12px;
+    padding: 2px 5px 2px 5px;
+    overflow: hidden;
+}
+
+option.primary,div.qbeDiagram div.primary {
+    font-weight: bold;
+    background: url("/media/django_qbe/img/key.gif") no-repeat center right #eee;
+}
+
+option.foreign,div.qbeDiagram div.foreign {
+    font-style: italic;
+    background: url("/media/django_qbe/img/right_arrow.gif") no-repeat scroll right center #FAFAFA;
+    cursor: pointer;
+}
+
+option.many,div.qbeDiagram div.many {
+    font-style: italic;
+    text-decoration: underline;
+    background: url("/media/django_qbe/img/right_arrow_red.gif") no-repeat scroll right center #FAFAFA;
+    cursor: pointer;
+}
+
+div.qbeDiagram #qbeDiagramContainer {
+/*    background-color: #EEE0FE;*/
+    border: 1px dashed #EEE0FE;
+    float: left;
+    height: 300px;
+    opacity: 0.9;
+    overflow: auto;
+    position: relative;
+    width: 100%;
+    background: url("/media/django_qbe/img/grid.jpg") scroll left top #FAFAFA;
+    margin-bottom: 0px;
+}
+
+div.qbeDiagram #qbeBoxAnchor {
+    position: relative;
+    float: left;
+    border: 1px #eee dashed;
+    left: 500px;
+}
+
+div.qbeDiagram .resizehandle {
+   position: absolute;
+   bottom: 0;
+   right: 0;
+   width: 10px;
+   height: 10px;
+   cursor: se-resize;
+}
+
+
+ 
+/**
+ * Layers
+ */
+
+div.qbeLeftMenu {
+    position: absolute;
+}
+
+code#qbeSQL {
+    font-size: 15px;
+    font-weight: bold;
+    display: block;
+}
+
+#qbeResultsOptions {
+    font-size: 10px;
+}
+
+#qbeResultsOptions a {
+    font-size: 10px;
+}
+
+#qbeSaveQueryLi {
+    background: none;
+    padding: 2px 5px 0 0;
+}
+
+#qbeSaveQueryLi a {
+    background: none;
+    color: #999;
+}
+
+.qbeContainer {
+    float: left;
+    width: 100%;
+}
+
+input.qbeCheckModels {
+/*    display: none;*/
+    float: right;
+}
+
+#changelist-filter {
+    display: none;
+    position: relative;
+    width: 14%;
+    float: right;
+    overflow: auto;
+    margin-top: 10px;
+}

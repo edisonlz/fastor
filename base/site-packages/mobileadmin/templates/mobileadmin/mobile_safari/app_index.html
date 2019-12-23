@@ -1,0 +1,19 @@
+{% extends "mobileadmin/mobile_safari/index.html" %} 
+{% load i18n %} 
+
+{% block breadcrumbs %}<span id="title">{{ title }}</span>{% endblock %}
+
+{% block content %}
+    <ul id="applist" selected="true">
+    {% for app in app_list %}
+    {% for model in app.models %}
+        {% if model.perms.change %}
+            <li><a target="_self" href="{{ model.admin_url }}">{{ model.name }}</a></li>
+        {% else %}
+            <li>{{ model.name }}</li>
+        {% endif %}
+    {% endfor %}
+    {% endfor %}
+    </ul>
+    <script type="text/javascript">truncate({'title': 30});</script>
+{% endblock %}

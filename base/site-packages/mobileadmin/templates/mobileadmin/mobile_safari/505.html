@@ -1,0 +1,12 @@
+{% extends "mobileadmin/mobile_safari/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans 'Server error (500)' %}{% endblock %}
+{% block breadcrumbs %}{% trans 'Server error (500)' %}{% endblock %}
+{% block tools %}{% endblock tools %}
+
+{% block content %}
+<div class="panel" selected="true">
+    <h1>{% trans "There's been an error. It's been reported to the site administrators via e-mail and should be fixed shortly. Thanks for your patience." %}</h1>
+</div>
+{% endblock %}

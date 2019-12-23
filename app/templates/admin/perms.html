@@ -1,0 +1,30 @@
+<fieldset class="_module _aligned" id="fieldset-{{ i.id }}" style="background:transparent">
+    {% if i.name %}
+        <legend>
+            <a data-toggle="collapse" data-target="#fieldset-{{ i.id }} .fields">
+            {{ i.name }}
+                &nbsp;<span class="btn btn-mini"><i class="icon-resize-full"></i></span>
+                </a>
+
+        </legend>
+    {% endif %}
+    <div class="fields {% if not errors %}{{ fieldset.classes }}{% endif %}">
+            <div class="description">配置&nbsp;{{ i.name }}&nbsp;的权限</div>
+            <div class="control-group ">
+                    <div class="field-box field-{{ i.name }}">
+                            <div class="control-label">
+                                {{ i.name }}
+                            </div>
+                            <div class="controls">
+                                <div class="checkbox">
+                                    <ul>
+                                        {% for perm in perms %}
+                                        <li><input type='checkbox' name="chosen_perms" value="{{ perm.id }}" />{{ perm.name }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</fieldset>

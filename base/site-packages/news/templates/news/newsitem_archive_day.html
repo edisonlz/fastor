@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load markup %}
+
+{% block title_tag %}
+	News from {{ day|date:"F j, Y" }}
+{% endblock %}
+
+{% block main_content %}
+<h1>News from {{ day|date:"F j, Y" }}</h1>
+	{% for item in item_list %}
+		<h2><a href="{{ item.get_absolute_url }}">{{ item.title }}</a></h2>
+		<h3>{{ item.date|date:"F j, Y" }}</h3>
+		{{ item.body|textile }}
+	{% endfor %}
+{% endblock %}

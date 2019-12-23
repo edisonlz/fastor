@@ -1,0 +1,395 @@
+@charset "utf-8";
+
+.yk-header {
+    width: 100%;
+    height: 40px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    outline: none
+}
+
+.yk-header * {
+    font-family: "Microsoft YaHei", SimHei, helvetica, arial, verdana, tahoma, sans-serif
+}
+
+.yk-header img {
+    border: 0 none;
+    vertical-align: middle;
+    -ms-interpolation-mode: bicubic;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none
+}
+
+.yk-header a {
+    text-decoration: none;
+    color: #555
+}
+
+.yk-header a:hover {
+    text-decoration: none;
+    color: #c31
+}
+
+.yk-header ul, .yk-header li {
+    margin: 0;
+    padding: 0;
+    list-style: none
+}
+
+.yk-header dl, .yk-header dt, .yk-header dd {
+    margin: 0;
+    padding: 0
+}
+
+.yk-header input {
+    -webkit-appearance: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    height: 30px;
+    padding: 4px 5px;
+    border: 1px solid #a0a0a0;
+    outline: none;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    background: #fff none;
+    font-family: "Microsoft YaHei", SimHei, helvetica, arial, verdana, tahoma, sans-serif;
+    font-size: 14px;
+    line-height: 20px
+}
+
+.yk-header input.input-default {
+    color: #bbb
+}
+
+.yk-header input:focus {
+    -webkit-tap-highlight-color: transparent;
+    outline: none
+}
+
+.yk-header input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none
+}
+
+.yk-header button, .yk-header input[type="button"] {
+    cursor: pointer;
+    -webkit-appearance: none;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    outline: none;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    background: transparent none;
+    font-family: "Microsoft YaHei", SimHei, helvetica, arial, verdana, tahoma, sans-serif
+}
+
+.yk-header .ico-search{
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    font-size: 0;
+    line-height: 0;
+    vertical-align: middle;
+    width: 24px;
+    height: 24px;
+    background: transparent url("/static/home/img/mheader/search0.png") no-repeat
+}
+
+.yk-header .ico-search{
+    width: 23px;
+    height: 23px
+}
+
+.yk-header .ico-search {
+    background-position: 0px 0
+}
+
+.yk-header .yk-handle {
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    min-width: 24px;
+    height: 40px;
+    padding: 0 10px;
+    text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent
+}
+
+.yk-header .yk-handle i[class^='ico-'] {
+    margin-top: 8px
+}
+
+.yk-header .yk-handle .caption {
+    display: block;
+    line-height: 16px;
+    font-size: 12px;
+    color: #555
+}
+
+.yk-header .yk-handle.yk-handle-expand {
+    background: rgba(187, 187, 187, 0.1)
+}
+
+.yk-header .yk-handle.yk-handle-expand .caption {
+    color: #06a7e1
+}
+
+.yk-header .yk-handle.yk-handle-expand::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: 0;
+    width: 100%;
+    height: 150%;
+    -webkit-box-shadow: inset 0 5px 3px rgba(105, 105, 105, 0.75);
+    -moz-box-shadow: inset 0 5px 3px rgba(105, 105, 105, 0.75);
+    box-shadow: inset 0 5px 3px rgba(105, 105, 105, 0.75)
+}
+
+.yk-header .yk-handle.yk-handle-expand .ico-channel {
+    background-position: -48px 0
+}
+
+.yk-header .yk-handle.yk-handle-expand .ico-search {
+    background-position: -72px 0
+}
+
+.yk-header .yk-handle.yk-handle-expand .ico-record {
+    background-position: -72px -24px
+}
+
+.yk-header .yk-header-container {
+    z-index: 1290;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 40px;
+    background: #f6f6f6
+}
+
+.yk-header .yk-header-box {
+    z-index: 2;
+    position: relative;
+    min-width: 300px;
+    max-width: 984px;
+    margin: 0 auto;
+    padding: 0 20px;
+    height: 100%;
+    background: #ffffff;
+    *zoom: 1
+}
+
+.yk-header .yk-header-box:before, .yk-header .yk-header-box:after {
+    display: table;
+    content: "";
+    line-height: 0
+}
+
+.yk-header .yk-header-box:after {
+    clear: both
+}
+
+.yk-header .yk-header-mask {
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    width: 100%;
+    height: 40px;
+    border: none;
+    background: #fff
+}
+
+.yk-header .yk-logo {
+    overflow: hidden;
+    float: left;
+    padding-top: 5px;
+    margin-right: 20px
+}
+
+.yk-header .yk-logo a, .yk-header .yk-logo .yk-logo {
+    display: block;
+    width: 44px;
+    height: 29px
+}
+
+.yk-header .yk-logo .yk-logo {
+    background: transparent url("") no-repeat
+}
+
+.yk-header .yk-channel {
+    z-index: 1051;
+    position: absolute;
+    top: 0px;
+    left: 150px
+}
+
+.yk-header .yk-ucenter {
+    z-index: 1050;
+    position: relative;
+    float: right;
+    height: 100%
+}
+
+.yk-header .yk-ucenter .yk-playrecords, .yk-header .yk-ucenter .yk-userlog {
+    float: right
+}
+
+.yk-header .yk-ucenter .yk-userlog .yk-userlog-before {
+    cursor: pointer;
+    min-width: 24px;
+    padding: 0 10px;
+    text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent
+}
+
+.yk-header .yk-ucenter .yk-userlog .yk-userlog-before .ico-user {
+    width: 16px;
+    height: 16px;
+    margin-top: 3px
+}
+
+.yk-header .yk-ucenter .yk-userlog .yk-userlog-before .caption {
+    display: block;
+    line-height: 16px;
+    color: #555
+}
+
+.yk-header .yk-ucenter .yk-userlog .yk-userlog-after {
+    height: 100%
+}
+
+.yk-header .yk-ucenter .yk-userlog .yk-userlog-after .yk-userlog-info {
+    height: 100%
+}
+
+.yk-header .yk-ucenter .yk-userlog .yk-userlog-after .yk-userlog-info .yk-userlog-avatar {
+    height: 100%;
+    line-height: 40px
+}
+
+.yk-header .yk-ucenter .yk-userlog .yk-userlog-after .yk-userlog-info .yk-userlog-avatar img {
+    width: 30px;
+    height: 30px;
+    margin-top: -2px
+}
+
+.yk-header .yk-so {
+    float: right;
+    height: 100%
+}
+
+.yk-header .yk-so .yk-so-phone {
+    display: block;
+}
+
+.yk-header .yk-searchbox-phone {
+    display: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 50px;
+    padding: 10px;
+    background-color: #ffffff;
+}
+
+@media screen and (max-width:767px) {
+    .yk-header {
+        height: 90px
+    }
+
+    .yk-header .yk-header-box {
+        padding-left: 10px;
+        padding-right: 10px
+    }
+
+    .yk-header .yk-channel {
+        left: 134px
+    }
+
+    .yk-header .yk-ucenter .yk-playrecords .yk-handle .caption .phone-show {
+        display: inline-block
+    }
+
+    .yk-header .yk-ucenter .yk-playrecords .yk-handle .caption .pad-show {
+        display: none
+    }
+
+    .yk-header .yk-ucenter .yk-userlog .yk-userlog-after .yk-handle {
+        padding-left: 7px;
+        padding-right: 7px
+    }
+
+    .yk-header .yk-so .yk-so-phone {
+        display: block
+    }
+
+    .yk-header .yk-searchbox-phone {
+        display: block
+    }
+}
+
+@media screen and (min-width:767px) {
+    .yk-header .yk-handle, .yk-header .yk-ucenter .yk-userlog .yk-userlog-before {
+        line-height: 40px
+    }
+
+    .yk-header .yk-handle i[class^='ico-'], .yk-header .yk-ucenter .yk-userlog .yk-userlog-before .ico-user {
+        margin-top: -4px;
+        margin-right: 5px
+    }
+
+    .yk-header .yk-handle .caption, .yk-header .yk-ucenter .yk-userlog .yk-userlog-before .caption {
+        display: inline-block;
+        font-size: 14px;
+        line-height: inherit
+    }
+}
+
+@media screen and (-webkit-max-device-pixel-ratio:1.4), screen and (max--moz-device-pixel-ratio:1.4), screen and (-o-max-device-pixel-ratio:7/5), screen and (max-device-pixel-ratio:1.4) {
+    .yk-header .yk-logo .youkulogo {
+        background-image: url("/static/home/img/mheader/logo.png")
+    }
+
+    .yk-header .ico-search {
+        background-image: url("/static/home/img/mheader/search0.png")
+    }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:1.5), screen and (min--moz-device-pixel-ratio:1.5), screen and (-o-min-device-pixel-ratio:3/2), screen and (min-device-pixel-ratio:1.5) {
+    .yk-header .yk-logo .youkulogo {
+        background-image: url("/static/home/img/mheader/logo@2x.png");
+        -webkit-background-size: 44px 29px;
+        -moz-background-size: 44px 29px;
+        -o-background-size: 33px 29px;
+        background-size: 44px 29px
+    }
+
+    .yk-header .ico-sesrch {
+        background-image: url("/static/home/img/mheader/search0@2x.png");
+        -webkit-background-size: 23px 23px;
+        -moz-background-size: 23px 23px;
+        -o-background-size: 23px 23px;
+        background-size: 23px 23px
+    }
+}

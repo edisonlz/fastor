@@ -1,0 +1,33 @@
+{% extends "mobileadmin/mobile_safari/base.html" %}
+{% load i18n %}
+
+{% block breadcrumbs %}<a href="../" class="inactive float-left" id="title">{{ object|escape }}</a><span class="active float-right">{% trans "Delete" %}</span>{% endblock %}
+
+{% block content %}
+{% if perms_lacking %}
+    <div class="panel" selected="true">
+    <h1>{% blocktrans with object|escape as escaped_object %}Deleting the {{ object_name }} '{{ escaped_object }}' would result in deleting related objects, but your account doesn't have permission to delete the following types of objects:{% endblocktrans %}</h1>
+    <fieldset>
+    {% for obj in perms_lacking %}
+        <div class="form-row delete">
+            <label>{{ obj }}</label>
+        </div>
+    {% endfor %}
+    </fieldset>
+    </div>
+{% else %}
+    <form action="" method="post" class="panel" selected="true">
+    <h1>{% blocktrans with object|escape as escaped_object %}Are you sure you want to delete the {{ object_name }} "{{ escaped_object }}"? All of the following related items will be deleted:{% endblocktrans %}</h1>
+    <fieldset>
+    <div class="form-row delete">
+        <ul>{{ deleted_objects|unordered_list|removetags:"a"|safe }}</ul>
+    </div>
+    </fieldset>
+    <input type="hidden" name="post" value="yes" />
+    <div class="submit-row" selected="true">
+        <a href="javascript:;" onclick="document.forms[0].submit()" class="inactive float-right">{% trans "Yes, I'm sure" %}</a>
+    </div>
+    </form>
+{% endif %}
+<script type="text/javascript">truncate({'title': 25});</script>
+{% endblock %}

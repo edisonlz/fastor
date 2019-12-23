@@ -1,0 +1,10 @@
+{% extends "mobileadmin/mobile_safari/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="panel" selected="true">
+    <h1>{% trans "Something's wrong with your database installation. Make sure the appropriate database tables have been created, and make sure the database is readable by the appropriate user." %}</h1>
+</div>
+{% endblock %}

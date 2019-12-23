@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>退款订单列表</title>
+</head>
+<body>
+<h3 style="color: #ff6c2c">本页面展示根据 <i>退款记录的唯一标识</i> 查询退款订单的结果</h3>
+<p><span style="color:#ff6c2c">退款记录的唯一标识：</span>{{ m_refund.id }}</p>
+<p><span style="color:#ff6c2c">支付订单号：</span>{{ m_refund.bill_no }}</p>
+<p><span style="color:#ff6c2c">支付渠道：</span>{{ m_refund.channel }}</p>
+<p><span style="color:#ff6c2c">支付子渠道：</span>{{ m_refund.sub_channel }}</p>
+<p><span style="color:#ff6c2c">退款是否完成：</span>{{ m_refund.finish }}</p>
+<p><span style="color:#ff6c2c">退款创建时间：</span>{{ m_refund.create_time | format_utc_time }}</p>
+<p><span style="color:#ff6c2c">附加数据：</span>{{ m_refund.optional }}</p>
+<p><span style="color:#ff6c2c">退款是否成功：</span>{{ m_refund.result }}</p>
+<p><span style="color:#ff6c2c">商品标题：</span>{{ m_refund.title }}</p>
+<p><span style="color:#ff6c2c">订单金额，单位为分：</span>{{ m_refund.total_fee }}</p>
+<p><span style="color:#ff6c2c">退款金额，单位为分：</span>{{ m_refund.refund_fee }}</p>
+<p><span style="color:#ff6c2c">退款单号：</span>{{ m_refund.refund_no }}</p>
+<p><span style="color:#ff6c2c">渠道详细信息：</span>{{ m_refund.message_detail }}</p>
+</body>
+</html>

@@ -1,0 +1,676 @@
+/* main.css (c) 2007-2008 Jannis Leidel, see LICENSE.txt for license */
+
+/* parts from iui.css (c) 2007 by iUI Project Members */
+
+body {
+    margin: 0;
+    font-family: Helvetica;
+    background: #fff;
+    color: #000;
+    overflow-x: hidden;
+    -webkit-user-select: none;
+    -webkit-text-size-adjust: none;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.clear {
+    clear: both;
+}
+
+body > *:not(.toolbar) {
+    display: none;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    left: 0;
+    top: 100px;
+    width: 100%;
+    min-height: 372px;
+}
+
+body[orient="landscape"] > *:not(.toolbar|.breadcrumb) {
+    min-height: 268px;
+}
+
+body > *[selected="true"] {
+    display: block;
+}
+
+body > .toolbar {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border-bottom: 1px solid #37657b;
+    padding: 8px 7px 3px 2px;
+    height: 60px;
+    background: #417690 repeat-x;
+    vertical-align: middle;
+}
+
+.toolbar > h1 {
+    float: left;
+    overflow: hidden;
+    padding: 8px 4px 5px 2px;
+    font-size: 20px;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.toolbar > h1 a {
+    color: #f4f379;
+    text-decoration: none;
+    padding: 5px 6px;
+}
+
+.toolbar > h1 a:active {
+    background: none;
+    background-color: none;
+}
+
+.toolbar div.greeting {
+    color: #f4f379;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 1px 4px;
+    line-height: 20px;
+}
+
+.toolbar > div.user-tools a,
+.toolbar > div.user-tools a:active,
+.toolbar > div.user-tools a:visited {
+    line-height: 20px;
+    padding: 1px 4px;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #fff;
+    text-align: right;
+    float: right;
+}
+
+body > ul > li {
+    position: relative;
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+    list-style: none;
+    border-bottom: 1px solid #d9d9d9;
+    padding: 10px 0 10px 10px;
+    color: #444;
+}
+
+body > ul > li.group, ul#filter h3 {
+    position: relative;
+    font-weight: bold;
+    color: #fff;
+    background: url(../img/default-bg.gif) repeat-x;
+    border-top: 1px solid #bdcddf;
+    border-bottom: 1px solid #86a4c2;
+    font-size: 16px;
+    padding: 3px 10px 2px;
+    margin-top: -1px;
+}
+
+body > ul > li.subgroup {
+    background: url(../img/nav-bg.gif) -10px repeat-x;
+    border-bottom: 1px solid #d9d9d9;
+    color: #666;
+}
+
+body > ul > li.group:first-child {
+    top: 0;
+    border-top: none;
+    margin-top: 0px;
+}
+
+body > ul > li > a {
+    margin: -10px 0 -10px -10px;
+    padding: 10px 32px 10px 10px;
+    text-decoration: none;
+    color: #5B80B2;
+    font-size: 20px;
+    display: block;
+    background: url(../img/arrow.png) no-repeat right center;
+}
+
+body > ul > li > a.selected {
+    color: #666;
+    background: none;
+}
+
+ul#filter li.selected a, ul#filter li.selected a:link {
+    color: #666;
+    background: none;
+}
+
+body > ul > li.paginator {
+    color: #666;
+    background: #fff url(../img/nav-bg-reverse.gif) repeat-x top;
+    min-height: 21px;
+    padding: 9px 0;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0px;
+}
+
+body > ul > li.paginator a:link,
+body > ul > li.paginator a:active,
+body > ul > li.paginator a:visited {
+    text-decoration: none;
+    color: #5B80B2;
+    background: none;
+    margin: -6px 8px 0px -10px;
+}
+
+body > ul > li.paginator a.inactive,
+body > ul > li.paginator a.active {
+    background: none;
+}
+
+body > ul > li.paginator span a.inactive,
+body > ul > li.paginator span a.active {
+    padding: 9px 12px;
+    margin: -9px -1px 0px 0px;
+}
+
+body > ul > li.paginator span a.active {
+    color: #666;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 13px;
+}
+
+body > ul > li.paginator a.inactive {
+    border: 1px solid #ccc;
+    border-top: none;
+    color: #5B80B2;
+    background: #fff url(../img/nav-bg.gif) repeat-x bottom;
+}
+
+body > ul > li.paginator span.float-right a.inactive {
+    border-right: none;
+}
+
+body > ul > li.paginator span.active {
+    padding-right: 12px;
+}
+
+body > ul > li.paginator span a.showall {
+    margin: 0px;
+}
+
+body > .breadcrumbs {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    position: absolute;
+    background: url(../img/nav-bg-reverse.gif) repeat-x;
+    color: #666;
+    top: 60px;
+    min-height: 40px;
+    max-height: 40px;
+    padding: 9px 0px 9px 8px;
+    font-size: 18px;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #cbcbcb;
+    font-weight: bold;
+}
+
+.breadcrumbs a:link,
+.breadcrumbs a:active,
+.breadcrumbs a:visited {
+    text-decoration: none;
+    color: #5B80B2;
+    background: none;
+    padding: 9px 16px 9px 10px;
+    margin: -9px 4px 0px -6px;
+}
+
+.breadcrumbs a:active {
+    color: #036;
+}
+
+.breadcrumbs a.active,
+.breadcrumbs a.inactive {
+    background: none;
+}
+
+.breadcrumbs span {
+    padding-right: 12px;
+}
+
+.breadcrumbs a.active,
+.breadcrumbs span.active {
+    color: #666;
+}
+
+.breadcrumbs a.inactive,
+.breadcrumbs span.inactive {
+    padding-right: 12px;
+    padding-left: 12px;
+    padding-bottom: 8px;
+    margin-right: 0px;
+    margin-left: -1px;
+    border: 1px solid #ccc;
+    border-top: none;
+    color: #5B80B2;
+    background: #fff url(../img/nav-bg.gif) repeat-x bottom;
+}
+
+.breadcrumbs a.float-left {
+    margin-left: -11px;
+}
+
+.breadcrumbs a.float-right {
+    text-align: right;
+}
+
+.breadcrumbs a.active {
+    margin-left: -8px;
+    padding-right: 21px;
+}
+
+.breadcrumbs a#_recent.inactive {
+    padding-left: 12px;
+}
+
+.breadcrumbs a#_recent.active,
+.breadcrumbs a#_filter.active {
+    padding-left: 22px;
+    margin-left: 0;
+    padding-right: 9px;
+}
+
+.breadcrumbs a#_filter span.searchimg {
+    background: url(../img/search.png) no-repeat center center;
+}
+
+.submit-row {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    background: #fff url(../img/nav-bg-reverse.gif) repeat-x;
+    color: #666;
+    top: 48px;
+    min-height: 40px;
+    max-height: 40px;
+    padding: 9px 0px 9px 8px;
+    font-size: 18px;
+    border: 1px solid #d9d9d9;
+    border-width: 1px 0;
+    font-weight: bold;
+}
+
+.submit-row a:link,
+.submit-row a:active,
+.submit-row a:visited {
+    text-decoration: none;
+    color: #5B80B2;
+    padding: 6px;
+    margin: -6px 6px 0px 6px;
+    padding: 9px 16px 9px 10px;
+    margin: -9px 4px 0px -6px;
+}
+
+.submit-row a:active {
+    color: #036;
+}
+
+.submit-row a.inactive, .submit-row a.active {
+    background: none;
+}
+
+.submit-row span {
+    padding-right: 12px;
+}
+
+.submit-row a.active, .submit-row span.active {
+    color: #666;
+}
+
+.submit-row a.inactive, .submit-row span.inactive {
+    color: #5B80B2;
+    padding-right: 12px;
+    padding-left: 12px;
+    padding-bottom: 8px;
+    margin-right: 0px;
+    margin-left: -1px;
+    border: 1px solid #ccc;
+    border-top: none;
+    background: #fff url(../img/nav-bg.gif) repeat-x bottom;
+}
+
+.submit-row a.float-left {
+    margin-left: -11px;
+}
+
+.submit-row a.submit {
+    color: #fff;
+    background: #BCD1E8 url(../img/default-bg.gif) repeat-x bottom;
+
+
+/*    text-shadow: #BCD1E8 1px 1px 0;
+*/
+}
+
+.submit-row a.delete {
+    color: #CC3434;
+}
+
+/***/
+
+body > ul > li.searchbar {
+    color: #666;
+    background: #fff url(../img/nav-bg-reverse.gif) repeat-x top;
+    min-height: 21px;
+    padding: 9px 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+body > ul > li.searchbar a:link,
+body > ul > li.searchbar a:active,
+body > ul > li.searchbar a:visited {
+    text-decoration: none;
+    color: #5B80B2;
+    background: none;
+    margin: -6px 8px 0px -10px;
+}
+
+body > ul > li.searchbar span a.inactive,
+body > ul > li.searchbar span a.active {
+    padding: 9px 12px;
+    margin: -9px 0px 0px;
+}
+
+body > ul > li.searchbar span.float-left a.inactive {
+    margin-right: 4px;
+}
+
+body > ul > li.searchbar a.inactive {
+    border: 1px solid #ccc;
+    border-top: none;
+    color: #5B80B2;
+    background: #fff url(../img/nav-bg.gif) repeat-x bottom;
+}
+
+body > ul > li.searchbar span.float-right a.inactive {
+    border-right: none;
+}
+
+body > ul > li.searchbar span.active {
+    padding-right: 12px;
+}
+
+/***/
+
+input, textarea, select {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    width: 100%;
+    margin: 8px 0 0 0;
+    font-size: 16px;
+    font-weight: normal;
+    background: none;
+}
+
+body > .panel {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    background: #fff;
+}
+
+.panel > fieldset {
+    position: relative;
+    margin: 0 0 20px 0;
+    padding: 0;
+    background: #FFFFFF;
+    border: none;
+    text-align: right;
+    font-size: 16px;
+}
+
+.form-row {
+    position: relative;
+    min-height: 42px;
+    text-align: left;
+    padding: 0 8px;
+}
+
+fieldset > .form-row:last-child {
+    border-bottom: none !important;
+}
+
+fieldset > .form-row:first-child {
+    border-top: none;
+}
+
+.form-row input,
+#search > input[type="text"] {
+    display: block;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    margin: 0;
+    padding: 12px 10px 0 12px;
+    height: 40px;
+    background: none;
+    -webkit-border-radius: 5px;
+    border: 1px solid #D9D9D9;
+}
+
+#search > input[type="text"] {
+    margin-right: 20px;
+}
+
+#search {
+    margin: 5px 10px 5px 0px;
+    background: none;
+}
+
+.form-row > input.vDateField,
+.form-row > input.vTimeField {
+    width: 100%;
+}
+
+.form-row > input.vTimeField {
+    margin-top: 10px;
+}
+
+.form-row > input[type="checkbox"] {
+    width: 30px;
+    height: 30px;
+    margin: 8px 0px 0px;
+    border: 0;
+    -webkit-border-radius: 8px;
+    background: #fff url(../img/default-bg.gif) repeat-x bottom;
+    float: left;
+    clear: left;
+}
+
+.radiolist input {
+    position:relative;
+    width: 30px;
+    height: 30px;
+    margin: -6px 0;
+    padding: 0;
+    border: 0;
+    -webkit-border-radius: 8px;
+    background: #fff url(../img/default-bg.gif) repeat-x bottom;
+    float: left;
+    clear: left;
+}
+
+.form-row span {
+    float: right;
+    margin-top: -20px;
+}
+
+.form-row > select {
+    -webkit-border-radius: 5px;
+    border: 1px solid #D9D9D9;
+    margin: 10px 0 0 0;
+    padding: 12px 10px 10 12px;
+    height: 40px;
+    clear: left;
+}
+
+.form-row > textarea {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    display: block;
+    margin: 0;
+    border: none;
+    padding: 12px 10px 0 12px;
+    height: 126px;
+    background: none;
+    -webkit-border-radius: 5px;
+    border: 1px solid #D9D9D9;
+}
+
+.form-row label,
+.form-row p,
+#search > label {
+    position: relative;
+    top: 9px;
+    padding: 0 3px;
+    margin-left: 10px;
+    font-weight: normal;
+    font-size: 16px;
+    color: #666;
+    text-align: left;
+    background-color: #fff;
+}
+
+.form-row p.datetime {
+    margin: 5px -13px 0 0px;
+    background-color: #fff !important;
+    padding: 5px 0 0 13px;
+}
+
+.form-row p.datetime input {
+    margin: 5px 0px 10px -13px;
+}
+
+.form-row p.datetime br {
+    display: none;
+}
+
+.form-row p.datetime span {
+    display: none;
+}
+
+.form-row label.vCheckboxLabel {
+    float: left;
+    padding: 0.4em 0;
+}
+
+.form-row label.required {
+    font-weight: bold;
+}
+
+.form-row > ul.radiolist li {
+    list-style: none;
+    margin: 10px 10px 20px;
+    padding: 0;
+}
+.form-row > ul.radiolist label {
+    top: 13px;
+}
+
+.form-row > ul.inline {
+    margin-left: 13px;
+    padding: 0;
+}
+
+.form-row > ul.inline li {
+    padding: 2px;
+}
+
+.form-row > ul {
+    color: #333;
+    list-style: none;
+    margin: 0px 2px;
+    padding: 0px;
+    font-weight: normal;
+}
+
+.form-row > ul > li > ul {
+    padding: 10px 20px;
+}
+
+.form-row a.add-another {
+    display: none;
+}
+
+.panel > h2 {
+    margin: 0;
+    padding: 2px 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    background: url(../img/default-bg.gif) repeat-x;
+    border-top: 1px solid #bdcddf;
+    border-bottom: 1px solid #86a4c2;
+}
+
+.panel > h3 {
+    margin: 0;
+    padding: 2px 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    background: url(../img/nav-bg.gif) -10px repeat-x;
+    border-bottom: 1px solid #d9d9d9;
+    border-top: 1px solid #d9d9d9;
+    color: #666;
+}
+
+.panel > h1 {
+    margin: 0;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #666;
+    background: none;
+}
+
+.panel > h1.error {
+    color: #CC2830;
+}
+
+.panel a.help-link {
+    float: right;
+    color: #ccc;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 2px 4px;
+    font-size: 14px;
+}
+
+ul.errorlist, ul.errorlist li {
+    list-style: none;
+    color: #cc2830;
+    font-size: 12px;
+    padding: 2px 4px;
+    float: right;
+    font-weight: bold;
+}
+
+ul.errorlist > li {
+    list-style: none;
+}
+
+#preloader {
+    display: none;
+    background-image: url(../img/default-bg.gif), url(../img/default-bg-reverse.gif),
+        url(../img/icon_searchbox.png), url(../img/arrow.png),
+        url(../img/nav-bg.gif), url(../img/nav-bg-reverse.gif);
+}

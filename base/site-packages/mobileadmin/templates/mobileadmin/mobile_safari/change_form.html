@@ -1,0 +1,63 @@
+{% extends "mobileadmin/mobile_safari/base.html" %}
+{% load i18n mobile_admin_modify mobile_admin_media %}
+
+{% block extrahead %}{{ block.super }}
+<script type="text/javascript" src="../../../jsi18n/"></script>
+<script type="text/javascript" src="{% mobileadmin_media_prefix %}js/urlify.js"></script>
+{% endblock %}
+
+
+{% block breadcrumbs %}<a href="../" class="inactive float-left">{{ opts.verbose_name_plural|capfirst|escape }}</a>
+
+{% if change %}
+{% if has_absolute_url %}<a href="../../../r/{{ content_type_id }}/{{ object_id }}/" class="inactive float-right" target="_blank">{% trans "Go" %}</a>{% endif%}
+<a href="history/" class="inactive float-right">{% trans "History" %}</a>
+{% endif%}
+
+{% if add %}
+<span class="float-right active">{% trans "Add" %}</span>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<form target="_self" class="panel" selected="true" title="{{ opts.object_name|capfirst }}" {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post" id="{{ opts.module_name }}_form">{% block form_top %}{% endblock %}
+{% if not add %}
+    <h1><span id="object_name">{{ opts.object_name|escape }}</span>: <span id="original">{{ original|escape }}</span></h1>
+    <script type="text/javascript">
+    truncate({
+        'object_name': 35,
+        'original', 35
+    });</script>
+{% endif %}
+
+{% if errors %}
+<h1 class="error">
+{% blocktrans count errors.items|length as counter %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}
+</h1>
+{% endif %}
+
+{% for fieldset in adminform %} 
+  {% include "mobileadmin/mobile_safari/includes/fieldset.html" %}
+{% endfor %}
+ 
+{% block after_field_sets %}{% endblock %} 
+ 
+{% for inline_admin_formset in inline_admin_formsets %} 
+    {% mobile_inline_admin_formset inline_admin_formset user_agent %}
+{% endfor %}
+ 
+{% block after_related_objects %}{% endblock %} 
+ 
+<div class="submit-row" selected="true">
+    <a href="javascript:;" onclick="document.forms[0].submit()" class="inactive float-right submit">{% trans 'Save' %}</a>
+    {% if has_delete_permission %}{% if change or show_delete %}<a href="delete/" class="inactive float-left delete">{% trans "Delete" %}</a>{% endif %}{% endif %}
+</div>
+
+{% if add %} 
+   <script type="text/javascript">document.getElementById("{{ adminform.first_field.auto_id }}").focus();</script> 
+{% endif %} 
+
+{# JavaScript for prepopulated fields #}
+{% prepopulated_fields_js %}
+</form>
+{% endblock %}

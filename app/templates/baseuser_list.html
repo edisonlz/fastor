@@ -1,0 +1,126 @@
+{% extends 'application/app_base.html' %}
+{% load staticfiles %}
+{% load util_template_tags %}
+
+{% block reset_css %}
+    <style>
+        .row {
+            margin: 20px;
+        }
+    </style>
+{% endblock %}
+
+
+{% block nav_right %}
+    <span class="page_nav">
+        客户
+    </span>
+{% endblock %}
+
+
+{% block col_main %}
+
+    <div class="title-bar">
+        <div class="info">
+
+            <div class="pull-left">
+                 <div id="form-holder" >
+                    <form class="form-inline" id="search_app_form" method="get" action="{% url 'baseuser_list' %}">
+                        <div class="form-group">
+                            <label for="search_keyword" class="sr-only">搜索关键字:</label>
+                            <input type="search" class="form-control" name="search_key" id="search_keyword" placeholder="请输入搜索关键字" value="{{ search_key }}"/>
+                            <button type="submit" class="btn btn-default">搜索</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="pull-right">
+                <input type="hidden" name="item_ids" id="item_ids"/>
+                <a id="save_position_btn" class="btn btn-warning"><i class="icon-sort"></i>保存顺序</a>
+                <a href="{% url 'baseuser_new' %}" class="btn btn-primary"><i class="icon-plus"></i>客户</a>
+                <a href="{% url 'baseuser_list' %}" class="btn btn-default"><i class="icon-circle-arrow-left"></i>返回</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>用户ID</th>
+                        <th>用户名</th>
+                        <th>昵称</th>
+                        <th>密码</th>
+                        <th>用户头像</th>
+                        <th>性别</th>
+                        <th>邮箱</th>
+                        <th>状态</th>
+                        <th>注册设备</th>
+                        <th>最后登录时间</th>
+                        <th>创建时间</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="sortable">
+                    {% for data in datas %}
+                    <tr class="sort-item" id="module{{ data.id }}" value="{{ data.id }}">
+                        <input type="hidden" name="status_item_id" value="{{ data.id }}">
+                        <td>{{ data.user_id }}</td>
+                        <td>{{ data.user_name }}</td>
+                        <td>{{ data.nickname }}</td>
+                        <td>{{ data.password }}</td>
+                        <td>{{ data.image_url }}</td>
+                        <td>{{ data.sex }}</td>
+                        <td>{{ data.email }}</td>
+                        <td>{{ data.status }}</td>
+                        <td>{{ data.register_from }}</td>
+                        <td>{{ data.last_login_time }}</td>
+                        <td>{{ data.create_time }}</td>
+                        
+
+                        <td>
+                            <button class="btn btn-warning item_status">
+                                {% if data.status %}
+                                    开启
+                                {% else %}
+                                    关闭
+                                {% endif %}
+                            </button>
+                            <a href="{% url 'baseuser_new' %}?itemid={{ data.id }}"
+                               class="btn btn-primary" role="button">编辑</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        {% if not datas %}
+        <div class="col-md-12">
+            <div class="alert alert-info" role="alert"><strong>Warning!</strong> 数据为空,请创建数据。</div>
+        </div>
+        {% endif %}
+
+        {% if datas %}
+        <div>
+        {% include "common/pagination.html" with items=datas %}
+        </div>
+        {% endif %}
+    </div>
+
+
+    <input type="hidden" id="menu-sel" value="100">
+{% endblock %}
+
+
+{% block endlink %}
+    <script src="{{ STATIC_URL }}toast_message/jquery.toastmessage.js"></script>
+
+    <script>
+        {% include "common/tr_sorted.js" %}
+        {% include "common/common_update_status.js" with item_class='baseuser' %}
+    </script>
+{% endblock %}
+

@@ -1,0 +1,59 @@
+
+
+<ul class="metismenu side-nav">
+    <li class="side-nav-title side-nav-item">Navigation</li>
+
+    <li class="side-nav-item">
+        <a href="{% url 'dashboard_index' %}" class="side-nav-link">
+            <i class="dripicons-meter"></i>
+            <span> 数据概览 </span>
+        </a>
+    </li>
+
+    <!-- 系统 -->
+    <li class="side-nav-item">
+        <a href="#" class="side-nav-link">
+            <i class="dripicons-list"></i>
+            <span> 系统 </span>
+            <span class="menu-arrow"></span>
+        </a>
+        <ul class="side-nav-second-level" aria-expanded="false" >
+            <li class="menu_item" data-content-id="app" data-menu-id="3">
+                <a href="{% url 'system_user_list' %}">系统用户</a>
+            </li>
+        </ul>
+    </li>
+
+    <li class="side-nav-item">
+        <a href="#" class="side-nav-link">
+            <i class="dripicons-list"></i>
+            <span> 客户管理 </span>
+            <span class="menu-arrow"></span>
+        </a>
+        <ul class="side-nav-second-level" aria-expanded="false" >
+            <li class="menu_item" data-content-id="app" data-menu-id="4">
+                <a href="{% url 'baseuser_list' %}">客户</a>
+            </li>
+        </ul>
+    </li>
+
+
+    
+
+    <!-- 课程管理 -->
+    <li class="side-nav-item">
+        <a href="#" class="side-nav-link">
+            <i class="dripicons-briefcase"></i>
+            <span> 工具 </span>
+            <span class="menu-arrow"></span>
+        </a>
+        <ul class="side-nav-second-level" aria-expanded="false" >
+            <li class="menu_item" data-content-id="infomation" data-menu-id="5">
+                <a href="{% url 'editor_list' %}">编辑工具</a>
+            </li>
+        </ul>
+    </li>
+
+
+
+</ul>

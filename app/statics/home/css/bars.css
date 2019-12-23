@@ -1,0 +1,99 @@
+.floatbar {
+    display: none;
+    overflow: hidden;
+    position: fixed;
+    z-index: 9000;
+    right: 10px;
+    bottom: 40px;
+}
+
+.floatbar ul li i {
+    font-size: 24px;
+    margin-top: 7px;
+    line-height: 18px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.floatbar ul li span {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.floatbar ul li {
+    margin-bottom: 3px;
+    width: 36px;
+    height: 36px;
+    text-align: center;
+    background-color: rgba(102, 102, 102, 0.63);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+div#mheader_userphoto img {
+    margin-top: 3px;
+}
+
+.yk-navbars {
+    z-index: 1050;
+    position: relative;
+    float: right;
+    height: 100%;
+    overflow: hidden;
+}
+
+.yk-navbar {
+    float: left;
+    text-align: center;
+    width: 40px;
+    overflow: hidden;
+}
+
+.yk-navbar img {
+    width: 16px;
+    height: 16px;
+    margin-left: 3px;
+}
+
+.yk-navbar span {
+    white-space: nowrap;
+}
+
+#yk-navbar-button {
+    width: 40px;
+    height: 100%;
+}
+
+#yk-navbar-button div {
+    width: 4px;
+    height: 4px;
+    margin: 1px 18px;
+    background-color: #555;
+    float: left;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+}
+
+#bs-navbar {
+    background-color: #fff;
+}
+
+#bs-navbar ul li {
+    overflow: hidden;
+    border-right: 1px solid #555;
+}
+
+#bs-navbar ul li:last-child {
+    border-right: 0;
+}
+
+#bs-navbar ul li a img {
+    margin-left: 14px;
+    width: 16px;
+    height: 16px;
+}
+
+#bs-navbar ul li a {
+    padding: 0px;
+    white-space: nowrap;
+}

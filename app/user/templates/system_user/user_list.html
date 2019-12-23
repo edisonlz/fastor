@@ -1,0 +1,104 @@
+{% extends 'cms_basemain.html' %}
+{% load staticfiles %}
+{% load util_template_tags %}
+
+
+{% block col_main %}
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <h4 class="page-title">系统用户</h4>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card bg-default">
+        <div class="card-body profile-user-box">
+            <div class="row">
+                <div class="col-6">
+                    <div id="form-holder">
+                        <form class="form-inline" id="search_app_form" method="get"
+                              action="{% url 'system_user_list' %}">
+                            <div class="form-group">
+                                <label for="search_keyword" class="sr-only">搜索关键字:</label>
+                                <input type="input" class="form-control" name="search_key" id="search_keyword"
+                                       placeholder="请输入搜索关键字" value="{{ search_key }}"/>
+                                <button type="submit" class="btn btn-primary mr10">搜索</button>
+                                <button type="button" class="btn btn-primary reset_customer_button">重置检索</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-6 text-right">
+                    <a href="{% url 'system_user_new' %}" class="btn btn-primary">新增用户</a>
+                </div>
+            </div>
+
+
+            <div class="row mt20">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>角色</th>
+                            <th>用户名</th>
+                            <th>邮件</th>
+                            <th>姓</th>
+                            <th>名</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody id="sortable">
+                        {% for data in datas %}
+                            <tr class="sort-item" id="module{{ data.id }}" value="{{ data.id }}">
+                                <input type="hidden" name="status_item_id" value="{{ data.id }}">
+                                <td>{{ data.id }}</td>
+                                <td>{{ data.role_name }}</td>
+                                <td>{{ data.username }}</td>
+                                <td>{{ data.email }}</td>
+                                <td>{{ data.last_name }}</td>
+                                <td>{{ data.first_name }}</td>
+
+
+                                <td>
+                                    {% if current_user.is_manager or current_user.id == data.id %}
+                                        <a href="{% url 'change_password' %}?user_id={{ data.id }}"
+                                           class="btn btn-danger">修改密码</a>
+                                        <a href="{% url 'system_user_new' %}?itemid={{ data.id }}"
+                                           class="btn btn-primary" role="button">编辑</a>
+                                    {% endif %}
+
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                {% if not datas %}
+                    <div class="col-md-12">
+                        <div class="alert alert-info" role="alert"><strong>Warning!</strong> 数据为空,请创建数据。</div>
+                    </div>
+                {% endif %}
+
+                {% if not search_key %}
+                    <div>
+                        {% include "common/pagination.html" with items=datas %}
+                    </div>
+                {% endif %}
+            </div>
+
+
+            <input type="hidden" id="menu-sel" value="3">
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block endlink %}
+    <script src="{{ STATIC_URL }}toast_message/jquery.toastmessage.js"></script>
+
+{% endblock %}
+

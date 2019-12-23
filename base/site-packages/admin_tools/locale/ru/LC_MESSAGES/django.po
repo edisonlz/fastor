@@ -1,0 +1,132 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: django-admin-tools\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-01-27 08:34+0100\n"
+"PO-Revision-Date:  2010-04-20 11:21+0300\n"
+"Last-Translator: Pavel Kiper <iwtbarh@gmail.com>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+
+#: dashboard/dashboards.py:81 menu/menus.py:100
+msgid "Dashboard"
+msgstr "Панель управления"
+
+#: dashboard/dashboards.py:217
+msgid "Quick links"
+msgstr "Быстрые ссылки"
+
+#: dashboard/dashboards.py:223
+msgid "Return to site"
+msgstr "Вернуться на сайт"
+
+#: dashboard/dashboards.py:224 theming/templates/admin/base.html:43
+msgid "Change password"
+msgstr "Изменить пароль"
+
+#: dashboard/dashboards.py:226 theming/templates/admin/base.html:50
+msgid "Log out"
+msgstr "Выйти"
+
+#: dashboard/dashboards.py:232 dashboard/modules.py:385 menu/menus.py:103
+msgid "Applications"
+msgstr "Приложения"
+
+#: dashboard/dashboards.py:238 menu/menus.py:107
+msgid "Administration"
+msgstr "Администрирование"
+
+#: dashboard/dashboards.py:243 dashboard/dashboards.py:297
+#: dashboard/modules.py:538
+msgid "Recent Actions"
+msgstr "Недавние действия"
+
+#: dashboard/dashboards.py:247
+msgid "Latest Django News"
+msgstr "Новости от Django"
+
+#: dashboard/dashboards.py:254
+msgid "Support"
+msgstr "Поддержка"
+
+#: dashboard/dashboards.py:257
+msgid "Django documentation"
+msgstr "Документация по Django"
+
+#: dashboard/dashboards.py:262
+msgid "Django \"django-users\" mailing list"
+msgstr "Гугл-группа \"django-users\""
+
+#: dashboard/dashboards.py:267
+msgid "Django irc channel"
+msgstr "IRC канал Django"
+
+#: dashboard/modules.py:314
+msgid "Links"
+msgstr "Ссылки"
+
+#: dashboard/modules.py:591
+msgid "No recent actions."
+msgstr "Нет действия"
+
+#: dashboard/modules.py:637
+msgid "RSS Feed"
+msgstr "Канл RSS"
+
+#: dashboard/templates/admin/app_index.html:9
+#: theming/templates/admin/base.html:57
+msgid "Home"
+msgstr "Главная"
+
+#: dashboard/templates/admin/app_index.html:11
+#, python-format
+msgid "%(name)s"
+msgstr "%(name)s"
+
+#: dashboard/templates/admin_tools/dashboard/dashboard.html:55
+msgid "Modules"
+msgstr "Модули"
+
+#: dashboard/templates/admin_tools/dashboard/modules/app_list.html:13
+#: dashboard/templates/admin_tools/dashboard/modules/model_list.html:11
+msgid "Add"
+msgstr "Добавить"
+
+#: dashboard/templates/admin_tools/dashboard/modules/app_list.html:14
+#: dashboard/templates/admin_tools/dashboard/modules/model_list.html:12
+msgid "Change"
+msgstr "Изменить"
+
+#: menu/items.py:328
+msgid "Bookmarks"
+msgstr "Закладки"
+
+#: menu/templates/admin/base_site.html:4
+msgid "Django site admin"
+msgstr "Панель управления"
+
+#: menu/templates/admin/base_site.html:16
+msgid "Django administration"
+msgstr "Панель управления Django"
+
+#: menu/templates/admin_tools/menu/menu.html:32
+msgid "Please enter a name for the bookmark"
+msgstr "Введите название закладки"
+
+#: theming/templates/admin/base.html:30
+msgid "Welcome,"
+msgstr "Добро пожаловать,"
+
+#: theming/templates/admin/base.html:35
+msgid "Documentation"
+msgstr "Документация"

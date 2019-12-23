@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+{% load bootstrap_toolkit %}
+
+{% block link %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}jquery-validate/jquery.validate.css">
+{% endblock %}
+
+{% block content %}
+
+    <script type="text/javascript">
+
+        if ("{{ save_success }}" == '1') {
+            alert("新建用户成功！");
+            window.location.href = "{% url 'user_list' %}";
+        }
+        if ("{{ save_success }}" == '2') {
+            alert("编辑用户成功！");
+            window.location.href = "{% url 'user_list' %}";
+        }
+    </script>
+    <div class="page-header" style="padding-top: 8px; width: 250px; padding-bottom: 1px;">
+        <h3>编辑用户</h3>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span3"></div>
+        <div class="span9">
+            <form class="form-horizontal" method="POST" role="form">
+                <input type='hidden' id='uid' name='uid' value="{{ id }}"/>
+
+                <div class="control-group">
+                    <label for="inputEmail3" class="control-label">用户ID<span
+                            style="color: red;font-weight: bold;">*</span></label>
+
+                    <div class="controls">
+                        <input id="email" name='email' type="email" id="inputEmail3"
+                               value="{{ user_l.email }}{{ form.email.value }}" placeholder="Email">
+                        <input id="old" name="old" type="hidden" value="{{ user_l.email }}">
+                        <span id="tip" style="color: red;font-weight: bold;">{{ form.email.errors }}{{ error1 }}</span>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label for="inputname" class="control-label">姓名<span style="color: red;font-weight: bold;">*</span></label>
+
+                    <div class="controls">
+                        <input name="name" type="text" id="inputname"
+                               value="{{ user_l.first_name }}{{ form.name.value }}" placeholder="姓名">
+                        <span style="color: red;font-weight: bold;">{{ form.name.errors }}</span>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">角色</label>
+
+                    <div class="controls">
+                        <select name="role">
+
+                            {% for choice in user_l.ROLE_CHOICES %}
+                                {% if choice.0 == user_l.role %}
+                                    <option value="{{ choice.0 }}" selected='selected'>{{ choice.1 }}</option>
+                                {% else %}
+                                    <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                                {% endif %}
+
+                            {% endfor %}
+                        </select>
+                        {#                      <span style="color: red;font-weight: bold;">D大调*</span>#}
+                    </div>
+
+                </div>
+                <div class="control-group">
+                    <label class="control-label">状态</label>
+
+                    <div class="controls">
+                        <select name="state">
+                            {% if user_l.is_active %}
+                                <option value="0">冻结</option>
+                                <option value="1" selected="selected">可用</option>
+                            {% else %}
+                                <option value="0" selected="selected">冻结</option>
+                                <option value="1">可用</option>
+                            {% endif %}
+                        </select>
+                    </div>
+                </div>
+
+                <div style="margin-top: 50px;">
+                    <button type="submit" class="btn btn-danger"
+                            style="margin-left: 160px; margin-right: 50px; width: 90px;" id="sub">提交
+                    </button>
+                    <a class="btn btn-primary" href="{% url 'user_list' %}" style="width: 70px;">返回</a>
+                    {#                     <a class="btn btn-primary" href="{{ request.META.HTTP_REFERER }}" style="width: 70px;">返回</a>#}
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+
+    {#        <div class="row-fluid" style="margin-top: 40px;">#}
+    {#                <form class="form-horizontal" id="form" method="post">#}
+    {#                        <input type="hidden" id="perm" name="perm"/>#}
+    {#                        <div class="form-actions">#}
+    {#                            <button type="submit" class="btn btn-danger" id="sub"> 提交 </button>#}
+    {#                            <a class="btn btn-primary" href="#">返回</a>#}
+    {#                        </div>#}
+    {#                   </form>#}
+    {#        </div>#}
+
+{% endblock %}
+
+
+{% block js %}
+ <script src="{{ STATIC_URL }}jquery-validate/jquery.validate.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var obj_set = $('input[name=email]');
+            obj_set.prop('disabled', true);
+
+            var validate = function (form_selector, options) {
+                var default_options = {
+                    errorPlacement: function (error, element) {
+                        element.addClass('error');
+                        error.css({"padding-left": "0px", "color": "#933", "display": "block"});
+                        return error.appendTo(element.parent());
+                    }
+                };
+                options = $.extend(default_options, options);
+                return $(form_selector).validate(options);
+            };
+            var validate_rules = {
+                'name': 'required'
+            };
+            validate('form', {
+                        ignore: ':hidden',
+                        rules: validate_rules
+                    }
+            );
+
+            old = $('#old').val().trim();
+            $('#email').blur(function () {
+                email = $('#email').val().trim();
+                if (email && email != old) {
+                    $.post('find/user', {email: email}, function (data) {
+                        if (data.status == 1) {
+                            $('#tip').text('该用户已经存在');
+                            $('#sub').attr({"disabled": "disabled"});
+                        }
+                        else {
+                            $('#tip').text('');
+                            $('#sub').removeAttr("disabled");
+                        }
+                    });
+                } else {
+                    $('#tip').text('');
+                    $('#sub').removeAttr("disabled");
+                }
+
+            })
+        });
+    </script>
+{% endblock %}

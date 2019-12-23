@@ -1,0 +1,160 @@
+body.dragging, body.dragging * {
+            cursor: move !important;
+        }
+
+        .dragged {
+            position: absolute;
+            opacity: 0.5;
+            z-index: 2000;
+            background-color: green;
+        }
+
+        tbody#sortable tr.placeholder {
+            height: 100px;
+            color: slategrey;
+            position: relative;
+        }
+
+        tbody#sortable tr.placeholder:before {
+            position: absolute;
+
+        }
+
+        /*css below can copy to other page to realize the same table display effect*/
+        div.nav-group {
+            height: auto;
+            padding-left: 10px;
+            padding-bottom: 10px;
+            width: 100%;
+            position: relative;
+            top: 10px;
+            bottom: 5px;
+            float: left;
+            vertical-align: middle;
+        }
+
+        .img-polaroid {
+            height: 60px;
+            max-width: none;
+        }
+
+        .btn-table {
+            padding: 2px 5px;
+        }
+
+        .active-item-shadow {
+            box-shadow: rgba(133, 133, 133, 0.1) 0 0 5px 2px, rgba(133, 133, 133, 0.3) 0 0 2px;
+        }
+
+        .btn-block {
+            float: left;
+            display: inline-block;
+            width: 100%;
+            vertical-align: middle;
+            margin-bottom: 0px;
+        }
+
+        #save_position_form {
+            margin: 0px 0px 10px;
+            display: inline-block;
+            float: left;
+            width: 100%;
+        }
+
+        #batch-form {
+            display: inline-block;
+            text-align: right;
+            margin: 0 0 10px;
+        }
+
+        table {
+            font-size: 13px;
+        }
+
+        td.canBeEdit {
+            max-width: 195px;
+            min-width: 130px;
+        }
+
+        .text-block {
+            display: none;
+        }
+
+        .text-block > textarea {
+            font-size: 13px;
+            padding: 0;
+            margin: 0;
+            display: block;
+            max-height: 100px;
+            resize: vertical;
+            width: 100%;
+        }
+
+        .text-block > button {
+            float: right;
+            margin-left: 3px;
+            margin-top: 2px;
+        }
+
+        .td-vid {
+            min-width: 75px;
+        }
+
+        .td-type {
+            min-width: 84px;
+        }
+
+        .td-manage {
+/*{#            min-width: 56px;#}*/
+              min-width: 105px;
+        }
+
+        .td-state {
+            min-width: 26px;
+        }
+        .main-content{
+            float: left;
+            width: 100%;
+            align-items: center;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            height: 100%;
+        }
+        .word-status{
+            vertical-align: bottom;
+            margin-left: 10px;
+            margin-right: 5px;
+            position: relative;
+            float: left;
+            top: 5px;
+        }
+        #filter_btn{
+            margin-left: 20px;
+            position: relative;
+            vertical-align: middle;
+            float: left;
+
+        }
+        .new-content{
+            float: right;
+            position: absolute;
+            vertical-align: middle;
+            right: 20px;
+        }
+        .select-style{
+            position: relative;
+            bottom: 0px;
+            float: left;
+            min-width: 180px;
+            width: auto;
+            max-width: 200px;
+        }
+        .table-div{
+             position:relative;
+             top: 15px;
+        }
+        .hr-style{
+            border:1px dashed #F00;
+            width:100%;
+            height:1px;
+        }

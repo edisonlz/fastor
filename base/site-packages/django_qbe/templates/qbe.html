@@ -1,0 +1,115 @@
+{% extends "admin/change_list.html" %}
+{% load i18n %}
+
+{% block extrahead %}
+<!--[if IE]>
+<script type="text/javascript" src="{% firstof STATIC_URL MEDIA_URL %}django_qbe/js/excanvas.js"></script>
+<![endif]-->
+<script type="text/javascript" src="{% firstof STATIC_URL MEDIA_URL %}django_qbe/js/jquery.js"></script>
+<script type="text/javascript" src="{% firstof STATIC_URL MEDIA_URL %}django_qbe/js/jquery.ui.js"></script> 
+<script type="text/javascript" src="{% firstof STATIC_URL MEDIA_URL %}django_qbe/js/jquery.formset.js"></script>
+<script type="text/javascript" src="{% firstof STATIC_URL MEDIA_URL %}django_qbe/js/jquery.jsplumb.js"></script>
+<script type="text/javascript" src="{% firstof STATIC_URL MEDIA_URL %}django_qbe/js/qbe.core.js"></script>
+<script type="text/javascript" src="{% firstof STATIC_URL MEDIA_URL %}django_qbe/js/qbe.diagram.js"></script>
+<link rel="stylesheet" type="text/css" href="{{ ADMIN_MEDIA_PREFIX }}css/forms.css" />
+<link rel="stylesheet" type="text/css" href="{% firstof STATIC_URL MEDIA_URL %}django_qbe/css/qbe.css"/>
+{% endblock %}
+
+{% block breadcrumbs %}<div class="breadcrumbs"><a href="{% url admin:index %}">{% trans 'Home' %}</a>{% if title %} &rsaquo; {{ title }}{% endif %}</div>
+{% endblock %}
+
+{% block pretitle %}{% endblock %}
+{% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
+{% block content %}
+{% block object-tools %}
+<ul class="object-tools">
+  <li>
+    <a href="javascript:void(0);" id="qbeDiagramTab">{% trans "Diagram" %}</a>
+  </li>
+  <li>
+    <a href="javascript:void(0);" id="qbeTabularTab">{% trans "Tabular" %}</a>
+  </li>
+  <li>
+    <a class="addlink" href="javascript:void(0);" id="qbeModelsTab">{% trans "Models" %}</a>
+  </li>
+</ul>
+{% endblock %}
+
+<form id="qbeForm" method="post" action="{% url qbe_proxy %}">
+{% csrf_token %}
+<div class="qbeContainer qbeDiagram" id="qbeDiagram" style="display: none;">
+    <div id="qbeDiagramContainer"></div>
+</div>
+<div class="qbeContainer qbeTabular" id="qbeTabular">
+    <div class="inline-group">
+    <table cellspacing="0" class="tabular" width="100%" id="qbeConditionsTable">
+        <thead>
+            <tr>
+                <th>{% trans "Show" %}</th>
+                <th>{% trans "Model" %}</th>
+                <th>{% trans "Field" %}</th>
+                <th>{% trans "Sort" %}</th>
+                <th>{% trans "Criteria" %}</th>
+                <th>{% trans "Delete" %}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for form in formset.forms %}
+            <tr class="{% cycle 'row1' 'row2' %}">
+                <td>{{ form.show.errors }}{{ form.show }}</td>
+                <td>{{ form.model.errors }}{{ form.model }}</td>
+                <td>{{ form.field.errors }}{{ form.field }}</td>
+                <td>{{ form.sort.errors }}{{ form.sort }}</td>
+                <td>{{ form.criteria.errors }}{{ form.criteria }}</td>
+                <td class="delete"></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+
+    <div class="submit-row">
+        {% trans "Show" %} <input type="text" name="limit" id="id_form_limit" value="100"> {% trans "rows" %}
+        <input type="hidden" name="positions" id="id_form_positions">
+<!--        <input type="button" name="autocomplete" id="autocomplete" value="{% trans "Auto complete" %}">-->
+<!--        <select name="autocompletionOptions" id="autocompletionOptions" style="display: none;"></select>-->
+        <input type="submit" name="_save" class="default" value="{% trans "Run" %}">
+    </div>
+
+    <div >
+        {% trans "Database" %}
+        <select name="database_alias" id="id_database_alias">
+        {% for db_alias, database_properties in databases.items %}
+            {% ifequal database_alias db_alias %}
+            <option value="{{ db_alias }}" selected="selected">{{ db_alias }}: {{ database_properties.NAME }} ({{ database_properties.ENGINE }})</option>
+            {% else %}
+            <option value="{{ db_alias }}">{{ db_alias }}: {{ database_properties.NAME }} ({{ database_properties.ENGINE }})</option>
+            {% endifequal %}
+        {% endfor %}
+        </select>
+    </div>
+
+
+</div>
+
+<div id="changelist-filter" class="qbeModelList module">
+    <h2>{% trans "Models" %}</h2>
+    {% for app_name, app_models in models.items %}
+        <h3>{{ app_name }}</h3>
+        <ul>
+        {% for model_name, model in app_models.items %}
+        <li id="qbeModelItem_{{ model_name }}"><a id="qbeModelAnchor_{{ app_name }}.{{ model_name }}" href="javascript:void(0);" class="qbeModelAnchor">{{ model_name }}</a></li>
+        {% endfor %}
+        </ul>
+    {% endfor %}
+</div>
+
+{{ formset.management_form }}
+</form>
+
+<script>
+{% include "qbe.js" %}
+</script>
+
+{% endblock %}
+{% block sidebar %}{% endblock %}

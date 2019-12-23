@@ -1,0 +1,36 @@
+{% load i18n mobile_admin_media %}{% spaceless %}<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="{{ LANGUAGE_CODE }}" xml:lang="{{ LANGUAGE_CODE }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+<head>
+<title>{% block title %}{% trans 'Django administration' %}{% endblock %}</title>
+<link rel="stylesheet" type="text/css" href="{% mobileadmin_media_prefix %}css/{{ user_agent }}.css" />
+<script type="text/javascript" src="{% mobileadmin_media_prefix %}js/{{ user_agent }}.js"></script>
+{% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
+<meta name="viewport" content="width=320; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+<meta name="format-detection" content="telephone=no">
+{% block extrahead %}{% endblock %}
+{% block extrastyle %}{% endblock %}
+</head>
+
+<body onorientationchange="updateLayout();">
+    <div class="toolbar">
+        {% block header_logo %}
+        <h1><a href="{{ root_path }}">Django</a></h1>
+        {% endblock %}
+        {% block tools %}
+        {% if user.is_authenticated and user.is_staff %}
+        <div class="user-tools">
+            <a href="{{ root_path }}logout/" id="logout_link">{% trans "Logout" %}</a>
+            <a href="{{ root_path }}password_change/" id="password_change">{% trans 'Change password' %}</a>
+            <script type="text/javascript">truncate({'password_change': 12, 'logout_link': 12});</script>
+        </div>
+        <div class="greeting float-right">
+            {% trans 'Welcome,' %} {% if user.first_name %}{{ user.first_name|escape }}{% else %}{{ user.username }}{% endif %}
+        </div>
+        {% endif %}
+        {% endblock tools %}
+    </div>
+    <div class="breadcrumbs" selected="true">{% block breadcrumbs %}{% endblock %}</div>
+    {% block content %}{{ content }}{% endblock %}
+</body>
+</html>
+{% endspaceless %}

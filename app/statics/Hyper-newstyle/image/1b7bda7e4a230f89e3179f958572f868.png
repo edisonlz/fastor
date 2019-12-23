@@ -1,0 +1,6 @@
+@font-face {
+  font-family: 'Karla';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Karla'), local('Karla-Regular'), url(https://fonts.gstatic.com/s/karla/v6/qkBbXvYC6trAT7RVLto.woff) format('woff');
+}

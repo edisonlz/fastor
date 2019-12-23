@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="{{ADMIN_MEDIA_PREFIX}}css/base.css" type="text/css"/>
+    <link rel="stylesheet" href="{{ADMIN_MEDIA_PREFIX}}css/forms.css" type="text/css"/>
+    <link rel="stylesheet" href="{{ADMIN_MEDIA_PREFIX}}css/changelists.css" type="text/css"/>	
+    <style type="text/css" media="screen">
+        {% include 'rosetta/css/rosetta.css' %}
+    </style>
+    <script src="http://www.google.com/jsapi" type="text/javascript"></script>    
+    <script type="text/javascript">
+    //<!--
+        google.load("jquery", "1");
+        {% if ENABLE_TRANSLATION_SUGGESTIONS %}google.load("language", "1");{% endif %}
+        {% include 'rosetta/js/rosetta.js' %}
+    //-->
+    </script>
+    <title>Rosetta - {% block pagetitle %}{% endblock %}</title>
+</head>
+<body>
+    <div id="container">
+        <div id="header">
+            {% block header %}
+            <div id="branding">
+                <h1 id="site-name"><a href="{% url rosetta-pick-file %}">Rosetta</a> </h1>
+            </div>
+            {% endblock %}
+        </div>
+        <div class="breadcrumbs">{% block breadcumbs %}{% endblock %}</div>
+        <div id="content" class="flex">
+            {% block main %}{% endblock %}
+        </div>
+        <div id="footer" class="breadcumbs">
+            <a href="http://code.google.com/p/django-rosetta">Rosetta</a> <span class="version">{{version}}</span>
+        </div>
+    </div>
+</body>
+</html>

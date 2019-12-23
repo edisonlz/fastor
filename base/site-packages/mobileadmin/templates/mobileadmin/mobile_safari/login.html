@@ -1,0 +1,30 @@
+{% extends "mobileadmin/mobile_safari/base.html" %}
+{% load i18n %}
+
+{% block breadcrumbs %}{% trans 'Log in' %}</a>{% endblock %}
+
+{% block content %}
+<form action="{{ app_path }}" class="panel" method="post" selected="true">
+{% if error_message %}<h1 class="error">{{ error_message }}</h1>{% endif %}
+<fieldset>
+<div class="form-row">
+    <label for="id_username" class="required">{% trans 'Username:' %}</label>
+    <input type="text" name="username" id="id_username" value="" />
+</div>
+<div class="form-row">
+    <label for="id_password" class="required">{% trans 'Password:' %}</label>
+    <input type="password" name="password" id="id_password" value="" />
+    <input type="hidden" name="this_is_the_login_form" value="1" />
+    <input type="hidden" name="post_data" value="{{ post_data }}" />
+</div>
+</fieldset>
+    <div class="submit-row" selected="true">
+        <a href="javascript:;" onclick="document.forms[0].submit()" class="inactive float-right">{% trans 'Log in' %}</a>
+    </div>
+</form>
+
+<script type="text/javascript">
+document.getElementById('id_username').focus()
+</script>
+</div>
+{% endblock %}

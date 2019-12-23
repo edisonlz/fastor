@@ -1,0 +1,118 @@
+=== extends 'cms_basemain.html' ---
+=== load staticfiles ---
+=== load util_template_tags ---
+
+=== block reset_css ---
+    <style>
+        .row {
+            margin: 20px;
+        }
+    </style>
+=== endblock ---
+
+
+=== block nav_right ---
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <h4 class="page-title">{{ clazz_name }}</h4>
+            </div>
+        </div>
+    </div>
+=== endblock ---
+
+
+=== block col_main ---
+
+
+
+    <div class="card bg-default">
+        <div class="card-body profile-user-box">
+            <div class="row">
+                <div class="col-6">
+                    <div id="form-holder">
+                        <form class="form-inline" id="search_app_form" method="get"
+                              action="{% url 'system_user_list' %}">
+                            <div class="form-group">
+                                <label for="search_keyword" class="sr-only">搜索关键字:</label>
+                                <input type="input" class="form-control" name="search_key" id="search_keyword"
+                                       placeholder="请输入搜索关键字" value="### search_key ***"/>
+                                <button type="submit" class="btn btn-primary mr10">搜索</button>
+                                <button type="button" class="btn btn-primary reset_customer_button">重置检索</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-6 text-right">
+                        <input type="hidden" name="item_ids" id="item_ids"/>
+                        {% if has_position %}
+                    <a id="save_position_btn" class="btn btn-warning"><i class="icon-sort"></i>保存顺序</a>
+                    {% endif %}
+                    <a href="=== url '{{folder}}_new' ---" class="btn btn-primary">+{{ clazz_name }}</a>
+                    <a href="=== url '{{folder}}_list' ---" class="btn btn-default">返回</a>
+                </div>
+            </div>
+
+
+    <div class="row mt20">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>{% for field in field_list %}
+                        <th>{{field.verbose_name}}</th>{% endfor %}
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody  {% if has_position %} id="sortable" {%endif%}>
+                    === for data in datas ---
+                    <tr class="sort-item" id="module### data.pk ***" value="### data.pk ***">
+                        <input type="hidden" name="status_item_id" value="### data.pk ***">
+                        {% for field in field_list %}<td>### data.{{field.name}} ***</td>
+                        {% endfor %}
+
+                        <td>
+                            <button class="btn btn-warning item_status">
+                                === if data.status ---
+                                    开启
+                                === else ---
+                                    关闭
+                                === endif ---
+                            </button>
+                            <a href="=== url '{{folder}}_new' ---?itemid=### data.pk ***"
+                               class="btn btn-primary" role="button">编辑</a>
+                        </td>
+                    </tr>
+                    === endfor ---
+                </tbody>
+            </table>
+        </div>
+
+        === if not datas ---
+        <div class="col-md-12">
+            <div class="alert alert-primary" role="alert"><strong>Warning!</strong> 数据为空,请创建数据。</div>
+        </div>
+        === endif ---
+
+        === if datas ---
+        <div>
+        === include "common/pagination.html" with items=datas ---
+        </div>
+        === endif ---
+    </div>
+
+
+    <input type="hidden" id="menu-sel" value="100">
+=== endblock ---
+
+
+=== block endlink ---
+    <script src="### STATIC_URL ***toast_message/jquery.toastmessage.js"></script>
+
+    <script>
+    {% if has_position %} 
+        === include "common/tr_sorted.js" ---
+    {% endif %}
+        === include "common/common_update_status.js" with item_class='{{clazz}}' ---
+    </script>
+=== endblock ---
+
