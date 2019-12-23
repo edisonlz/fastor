@@ -10,6 +10,7 @@ sys.path.insert(1, os.path.abspath( os.path.join(os.path.abspath(os.path.dirname
 
 
 
+
 from base.settings import execute
 
 if __name__ == "__main__":
