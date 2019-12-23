@@ -1,6 +1,7 @@
 #coding=utf-8
 from datetime import timedelta, datetime
 from django.db import models
+from wi_cache import function_cache
 
 class BaseUser(models.Model):
     """
@@ -60,6 +61,15 @@ class BaseUser(models.Model):
     @property
     def register_from_str(self):
         return self.RegisterFromDic.get(self.register_from, "无")
+
+
+    @classmethod
+    @function_cache(cache_keys="user_id", prefix="func#get_user", expire_time=60*5)
+    def get_user(cls, user_id):
+        user = cls.objects.filter(user_id=user_id).first()
+        return user 
+
+
 
     def to_json(self,need_level=False):
         dic = { 

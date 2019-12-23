@@ -25,16 +25,7 @@ class GetUserInfo(CachedPlusHandler):
                     Param('user_id', True, str, "", "201702071511512892383865", u'用户id'),
                 ],
                 description="""读取用户基本信息""",
-                return_desc="""
-                (0, '普通用户'),
-                    (1, '老师'),
-                    (2, '助教'),
-                    (3, '教务'),
-                    (4, '销售'),
-                    (5, '系统用户'),
-                    (6, '应用用户'),
-                    (9, '测试帐号'),
-                """
+                return_desc=""""""
                 )
     def get(self):
         user_id = self.arg('user_id')

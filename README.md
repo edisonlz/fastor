@@ -116,8 +116,124 @@ class BaseUser(models.Model):
 
 
 
+## 二 API管理系统
+
+##### 1）运行api管理系统
+
+``` python
+cd api/
+python main.py --doc --debug --logging=debug
+
+API系统默认用户名:admin， 密码:123456
+密码可以在api/settings.py 中配置 ["api"]["password"] = "123456"
+```
+
+##### 2）创建api文件，在api/handler/user_api.py
+
+
+``` python
+示例代码user_api.py
+@handler_define
+class GetUserInfo(CachedPlusHandler):
+
+    def get_cache_expire(self):
+        return 60 * 1
+
+    def get_cache_key(self):
+        return {
+            'user_id': self.arg('user_id', ''),
+        }
+
+    @api_define("GetUserInfo", r'/user/info/detail',
+                [
+                    Param('user_id', True, str, "", "201702071511512892383865", u'用户id'),
+                ],
+                description="""读取用户基本信息""",
+                return_desc=""""""
+                )
+    def get(self):
+        user_id = self.arg('user_id')
+
+        user = BaseUser.objects.filter(user_id=user_id).first()
+        if not user:
+            response = {
+                "code": 0,
+                "status": "fail",
+                "msg": "用户不存在",
+            }
+            return self.write(result)
+
+
+        response = {
+            "status": "success",
+            "code": 200,
+            "user":user.to_json()
+        }
+        return self.write(response)
+
+```
+
+##### 2）注册api，在api/document/doc_insall_handlers.py 注册新增api
+
+``` python
+示例代码
+
+INSTALL_HANDLERS = [
+    "api.handler.common",
+    "api.handler.user_api",
+]
+
+INSTALL_HANDLERS_NAME = {
+    "api.handler.common": "通用接口",
+    "api.handler.user_api":"用户接口",
+}
+
+```
+
+##### 3）重新运行API
+``` python
+python main.py --doc --debug --logging=debug
+
+```
+
+##### 4）API 缓存配置
+
+``` python
+from api.view.base import BaseHandler , CachedPlusHandler
+
+
+#1.接口缓存
+@handler_define
+class GetUserInfo(CachedPlusHandler):
+
+    #这个方法返回接口缓存时间带娃秒
+    def get_cache_expire(self):
+        return 60 * 1
+
+    #这个方法返回缓存key值，一般返回请求参数即可
+    def get_cache_key(self):
+        return {
+            'user_id': self.arg('user_id', ''),
+        }
+
+#2.方法缓存
+
+from wi_cache import function_cache
+
+#cache_keys.方法参数，如多个参数用逗号分隔。例如："user_id,course_id"
+#prefix:缓存key前缀#expire_time：缓存时间单位秒
+
+@classmethod
+@function_cache(cache_keys="user_id", prefix="func#get_user", expire_time=60*5)
+def get_user(cls, user_id):
+    user = cls.objects.filter(user_id=user_id).first()
+    return user 
+
+```
+
 
 
 
 ##### 作者： 向Ed老师曾经的战友们致敬！
+
 
