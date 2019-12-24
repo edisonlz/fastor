@@ -502,6 +502,8 @@ user_ip = self.user_ip
 ``` 
 
 
+
+
 #####  9)  API系统服务部署
 
     -  部署nginx ，nginx配置文件路径， api/conf/nginx/nginx.conf 
@@ -515,6 +517,67 @@ user_ip = self.user_ip
 5 0 * * * /data/python/fastor/api/bin/logrotate.sh > /dev/null 2>&1
 22 2 * * * find /data/logs/ -mtime +7 -type f -name "*log*" -exec rm -rf {} \;
 ``` 
+
+
+#####  10)  API安全数字签名
+
+``` python
+
+1）API接口安全规则
+Method ： GET | POST
+增加参数:
+_s_: signature 签名
+_t_: 当前时间戳，校队系统时间在初始化接口返回,接口参数有效期30分钟
+_t_ = timestamp = timestamp + (客户端当前时间 - 客户端从初始化获得timestamp的时间)
+这样做到原因是需要客户端校对服务器时间，因为客户端时间有可能不准确。
+
+签名方式:
+token_string = req_method + ":" + path + ":" + sorted(query) + ":" + timestamp + ":" + secret
+其中：sorted(query) 是按照key的自然顺序排列,然后以key=value的形式累加
+例如: GET /test?b=2&a=1
+token_string = GET + ":" + /test + ":" + a=1b=2 + ":" + 1457665234 + ":" + secret_xxxxxx
+signature = ngx.md5(token_string)
+
+接口返回状态码为 410 请重新更新服务器时间。
+接口返回 403 为签名错误，访问被禁止。
+
+``` 
+
+``` python
+
+2）Nginx 部署，详见 deploy.secure.api.sh
+- 这里建议使用 nginx-1.0.4 版本，稳定/性能高。
+- deploy.secure.api.sh部署起来过于繁琐，需要花费一定的时间和经历。
+- 部署完毕后建议制作镜像。
+``` 
+
+
+``` python
+3）nginx配置示例
+  #lua配置地址：api/conf/nginx/lua
+
+    location / {
+
+        add_header Access-Control-Allow-Origin *;
+        add_header Access-Control-Allow-Headers X-Requested-With;
+        add_header Access-Control-Allow-Methsods GET,POST,OPTIONS;
+
+        #引入效验文件，如上传图片，初始化接口可不加载该配置
+        access_by_lua_file conf/lua/check_pid_signature.lua;
+
+        proxy_pass          http://make_app_api;
+        proxy_connect_timeout 3;
+        proxy_send_timeout 3;
+        proxy_read_timeout 3;
+        proxy_redirect      default;
+        proxy_set_header    X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header    X-Real-IP $remote_addr;
+        proxy_set_header    Host $http_host;
+        proxy_set_header    Range $http_range;
+    }
+
+``` 
+
 
 
 ##### 作者： 向Ed老师曾经的战友们致敬！
