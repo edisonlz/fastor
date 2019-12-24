@@ -222,7 +222,7 @@
 
         //imageScaleEnabled
         // 是否允许点击文件拖拽改变大小,默认true
-        ,imageScaleEnabled:false
+        ,imageScaleEnabled:true
 
         //dropFileEnabled
         // 是否允许拖放图片到编辑区域，上传并插入,默认true
