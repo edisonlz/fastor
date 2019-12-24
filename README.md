@@ -14,7 +14,7 @@ Fastor  = faster + 人 ， 意为（人效更高）
 -------------------
 
 ## 开始使用
-## Fastor 分为2个系统
+## Fastor 后端管理系统和API系统
 
 ### 1）后端管理系统
 ![后台系统](https://picture-1253291048.cos.ap-shanghai.myqcloud.com/s.jpeg)
@@ -23,7 +23,8 @@ Fastor  = faster + 人 ， 意为（人效更高）
 ![Api系统](https://picture-1253291048.cos.ap-shanghai.myqcloud.com/api.png)
 
 ### 3）系统架构图
-<img src="https://picture-1253291048.cos.ap-shanghai.myqcloud.com/d.png" width="300px" alt="note"/>
+![系统架构图](https://picture-1253291048.cos.ap-shanghai.myqcloud.com/d.png)
+
 -------------------
 
 ## 环境配置
@@ -427,6 +428,7 @@ autostart=true
 5 0 * * * /data/python/fastor/api/bin/logrotate.sh > /dev/null 2>&1
 22 2 * * * find /data/logs/ -mtime +7 -type f -name "*log*" -exec rm -rf {} \;
 ``` 
+
 
 ##### 作者： 向Ed老师曾经的战友们致敬！
 
