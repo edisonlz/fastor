@@ -137,7 +137,7 @@
 
         //图片上传配置区
 //        ,imageUrl:URL+"php/imageUp.php"             //图片上传提交地址
-        ,imageUrl:"/content/upload_subject_wx_img/upload"
+        ,imageUrl:"/editor/upload_img"
         ,imagePath:URL + "php/"                     //图片修正地址，引用了fixedImagePath,如有特殊需求，可自行配置
         ,imageFieldName: "files[]"                   //图片数据的key,若此处修改，需要在后台对应文件修改对应参数
 

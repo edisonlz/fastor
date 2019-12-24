@@ -56,7 +56,49 @@ def img_upload(request):
         return HttpResponse('OK')
 
 
-        
+
+
+
+def upload_editor_img(request):
+    if request.method == 'POST':
+        file_obj = request.FILES[u'files[]']
+
+        a = random.randint(1000,1000000)
+        b = random.randint(1000,1000000)
+        c = random.randint(1000,1000000)
+
+        file_name = "%s_%s_%s.%s" % (a, b, c, file_obj.name.split(".")[-1])
+
+        remote_url = upload_django_local_file(file_obj, file_name)
+
+        if not remote_url:
+            data = {
+                "e":{
+                    "desc":"error",
+                    "code": -1
+                }
+            }
+
+        else:
+            data = {
+                "state": "SUCCESS",
+                "originalName": file_obj.name,
+                "size": str(file_obj.size),
+                "name": file_obj.name,
+                "type": file_obj.content_type,
+                "url": remote_url
+            }
+
+
+        response = JSONResponse(data, mimetype=response_mimetype(request))
+        response['Content-Disposition'] = 'inline; filename=files.json'
+        return response
+    else:
+        return HttpResponse('OK')
+
+
+
+
 
 
 @login_required()

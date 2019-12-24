@@ -14,6 +14,8 @@ urlpatterns = [
     url(r'^common/common_update_status_str', 'iclass.views.common_status', name="common_update_status_str"),
     url(r'^common/status$', 'iclass.views.common_status', name="common_status"),
     url(r'^default/img/upload', 'iclass.views.img_upload', name='img_upload'),
+    url(r'^editor/upload_img', 'iclass.views.upload_editor_img', name='upload_editor_img'),
+    
 
     
     # 客户管理
