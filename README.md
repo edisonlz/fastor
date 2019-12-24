@@ -564,6 +564,7 @@ signature = ngx.md5(token_string)
 - 这里建议使用 nginx-1.0.4 版本，稳定/性能高。
 - deploy.secure.api.sh部署起来过于繁琐，需要花费一定的时间和经历。
 - 部署完毕后建议制作镜像。
+- 如果下载不到历史版本，可以从百度云盘下载，链接: https://pan.baidu.com/s/19-5fSBn5wM-xwGLZL-K34Q 提取码: jhbt 
 ``` 
 
 
