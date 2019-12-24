@@ -176,6 +176,31 @@ def load_settings(settings):
 
 ```
 
+##### 7) 关于上传图片地址的配置
+``` python
+base/settings.py
+
+ #上传到本地地址
+'SAVE_IMAGE_PATH':"/tmp",
+ #这个本地地址无权限，如果存储在本地，可以启动nginx作为代理服务器访问本地图片
+ #参考配置
+ server {
+    listen 80;
+    server_name image.fastor.com;
+    charset utf-8;
+
+    location / {
+        alias /data/images/;
+        expires 15m;
+    }
+}
+
+"IMAGE_URL_HOST":"file:///private/tmp",
+
+建议上传到腾讯云或者阿里云的对象存储中，"IMAGE_URL_HOST"
+
+```
+
 ## 二 API管理系统
 
 ##### 1）运行api管理系统
