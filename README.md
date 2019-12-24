@@ -225,7 +225,7 @@ base/settings.py
 
 #默认配置
 'DATABASE_ROUTERS': ['app.db_router.MainRouter'],
-#语法： app_lable: 数据库连接
+#语法： { 'app_label': '数据库连接' }
 'DATABASE_MAPPING': {},
 'DATABASE_READ_MAPPING': {},
 
