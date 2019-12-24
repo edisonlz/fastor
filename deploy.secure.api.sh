@@ -1,7 +1,6 @@
 
 #!/bin/bash
 
-#alias app_update='cd /data/python/one_platform/api/;git pull;/bin/bash tornado.sh restart;'
 
 
 if [ ! -d "/data/downloads" ];then
@@ -79,9 +78,6 @@ if [ $num = 0 ];then
 fi 
 
 
-#ssl http://manual.seafile.com/deploy/https_with_nginx.html
-#openssl genrsa -out privkey.pem 2048
-#openssl req -new -x509 -key privkey.pem -out cacert.pem -days 1095openssl req -new -x509 -key privkey.pem -out cacert.pem -days 1095
 echo '[start install nginx-1.0.4!]'
 cd /data/downloads/
 wget http://nginx.org/download/nginx-1.0.4.tar.gz
@@ -91,8 +87,6 @@ cd nginx-1.0.4
 make
 make install
 
-
-#ln -s  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/Tk.framework/Versions/8.5/Headers/X11 /usr/local/include/X11  
 
 echo '[start install python!]'
 cd /data/downloads/
@@ -132,20 +126,6 @@ tar zxvf 3.0a10.tar.gz
 cd supervisor-3.0a10
 /data/python2.7/bin/python setup.py install
 
-#echo "[install ldap]"
-#yum install openldap24-libs  openldap
-
-# if [ ! -d "/data/downloads" ];then
-# mkdir /data/downloads
-# fi
-# echo "[setup git]"
-# cd /data/downloads/
-# wget http://git-core.googlecode.com/files/git-1.8.1.1.tar.gz
-# tar zxvf git-1.8.1.1.tar.gz
-# cd git-1.8.1.1
-# ./configure --prefix=/usr/local
-# make
-# make install
 
 echo "make libevent"
 cd /data/downloads/
@@ -189,9 +169,9 @@ mkdir -p /data/logs/nginx/statis
 mkdir -p /data/logs/tornado
 mkdir -p /data/run
 
-ln -s /data/python/one_platform/api/conf/nginx/lua /data/nginx/conf/lua
-ln -s /data/python/one_platform/api/conf/nginx/nginx.conf /data/nginx/conf/nginx.conf
-ln -s /data/python/one_platform/api/conf/nginx/api.cms.x-transforms.com /data/nginx/conf/api.cms.x-transforms.com
+ln -s /data/python/fastor/api/conf/nginx/lua /data/nginx/conf/lua
+ln -s /data/python/fastor/api/conf/nginx/nginx.conf /data/nginx/conf/nginx.conf
+ln -s /data/python/fastor/api/conf/nginx/api.cms.x-transforms.com /data/nginx/conf/api.cms.x-transforms.com
 
 
 echo "start nginx"
@@ -207,8 +187,8 @@ num=$( cat /var/spool/cron/root|grep -c logrotate-nginx )
 if [ $num = 0 ];then 
    echo "OK-O-O-O write hosts"
    read i
-   echo '0 0 * * * /data/python/one_platform/api/bin/logrotate-nginx.sh > /dev/null 2>&1'>>/var/spool/cron/root
-   echo '5 0 * * * /data/python/one_platform/api/bin/logrotate.sh > /dev/null 2>&1'>>/var/spool/cron/root
+   echo '0 0 * * * /data/python/fastor/api/bin/logrotate-nginx.sh > /dev/null 2>&1'>>/var/spool/cron/root
+   echo '5 0 * * * /data/python/fastor/api/bin/logrotate.sh > /dev/null 2>&1'>>/var/spool/cron/root
    echo '#Delete old more than 7 days log files'>>/var/spool/cron/root
    echo '22 2 * * * find /data/logs/ -mtime +7 -type f -name "*log*" -exec rm -rf {} \;'>>/var/spool/cron/root
 fi
@@ -219,11 +199,11 @@ cd rsa-3.4
 python setup.py install
 
 #register service
-chmod +x /data/python/one_platform/api/main.py
-chmod +x /data/python/one_platform/api/bin/*
+chmod +x /data/python/fastor/api/main.py
+chmod +x /data/python/fastor/api/bin/*
 
-cp /data/python/one_platform/api/bin/init.d/tornado /etc/init.d/
-cp /data/python/one_platform/api/bin/init.d/nginx /etc/init.d/
+cp /data/python/fastor/api/bin/init.d/tornado /etc/init.d/
+cp /data/python/fastor/api/bin/init.d/nginx /etc/init.d/
 
 chkconfig --add nginx
 chkconfig nginx on
@@ -239,25 +219,3 @@ pip install numpy
 pip install --upgrade imutils
 pip install opencv-python
 
-
-#git config --global credential.helper store
-
-# fdisk -l
-# fdisk /dev/vdb
-# #依次输入 n 、p、 1、 回车、回车、wq
-# mkfs.ext3 /dev/vdb1
-# mkdir /data
-# mount /dev/vdb1 /data
-# echo '/dev/vdb1 /data ext3 defaults 0 0' >> /etc/fstab
-# df -h
-
-# yum install  build-essential tcl8.4 tk8.4 gettext
-# yum install   perl-ExtUtils-CBuilder perl-ExtUtils-MakeMaker
-# yum install  zlib-devel zlib gcc perl
-# yum install libcurl-devel
-
-
- #/usr/local/bin/python /usr/local/bin/supervisord -c /etc/supervisord.conf
- # /usr/bin/memcached -d -U 11211 -p 11211 -u nobody -m 200 -c 10000 -P /var/run/memcached/memcached.11211.pid
- # create database livevideo_platform  CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci; 
- # vim /usr/share/mysql/charsets/Index.xml utf8-> utf8mb4
