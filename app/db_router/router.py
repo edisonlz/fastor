@@ -6,7 +6,7 @@ import random
 class MainRouter(object):
 
     def db_for_read(self, model, **hints):
-        db_setting = settings.DATABASE_MAPPING.get(model._meta.app_label)
+        db_setting = settings.DATABASE_READ_MAPPING.get(model._meta.app_label)
 
         if db_setting:
             return db_setting

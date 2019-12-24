@@ -218,6 +218,23 @@ server {
 
 ```
 
+##### 8) DBrouter配置
+``` python
+
+base/settings.py
+
+#默认配置
+'DATABASE_ROUTERS': ['app.db_router.MainRouter'],
+#语法： app_lable: 数据库连接
+'DATABASE_MAPPING': {},
+'DATABASE_READ_MAPPING': {},
+
+#读写分离配置
+'DATABASE_MAPPING': {"iclass":"default"},
+DATABASE_READ_MAPPING': {"iclass":"slave"},
+```
+
+
 ## 二 API管理系统
 
 ##### 1）运行api管理系统
