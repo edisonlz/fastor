@@ -4,7 +4,6 @@ import hashlib
 import urllib2
 import logging
 import os,sys
-import rsa
 import base64
 from datetime import datetime
 import json
