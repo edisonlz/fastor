@@ -14,7 +14,7 @@ Fastor  = faster + 人 ， 意为（人效更高）
 -------------------
 
 ## 开始使用
-## Fastor 后端管理系统和API系统
+## Fastor 分为后端管理系统和API系统
 
 ### 1）后端管理系统
 ![后台系统](https://picture-1253291048.cos.ap-shanghai.myqcloud.com/s.jpeg)
