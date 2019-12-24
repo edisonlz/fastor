@@ -237,7 +237,7 @@ DATABASE_READ_MAPPING': {"iclass":"slave"},
 ```
 
 
-##### 8) UMeditor配置
+##### 9) UMeditor配置
 ``` python
 
 配置地址：app/statics/umeditor/umeditor.conf
