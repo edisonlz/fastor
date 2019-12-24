@@ -433,21 +433,8 @@ autostart=true
 ``` 
 
 
-#####  6)  API系统服务部署
 
-    -  部署nginx ，nginx配置文件路径， api/conf/nginx/nginx.conf 
-    -  执行 bash api/tornado.sh 执行进程的数量，端口号均在这里配置。
-
-
-``` crontab
-日志切割
-#Delete old more than 7 days log files
-0 0 * * * /data/python/fastor/api/bin/logrotate-nginx.sh > /dev/null 2>&1
-5 0 * * * /data/python/fastor/api/bin/logrotate.sh > /dev/null 2>&1
-22 2 * * * find /data/logs/ -mtime +7 -type f -name "*log*" -exec rm -rf {} \;
-``` 
-
-#####  7）API 增加了微信支付宝支付接口
+#####  6）API 增加了微信支付宝支付接口
 - 文档详见doc/pay文档
 - 需要根据当前业务，实现业务逻辑
 - 代码依赖第三发库，PIL,OpenSSL,qrcode 需要部署安装
@@ -495,6 +482,36 @@ class WeixinAppPayHandler(BaseHandler):
         return self.write(results)
 
 ```
+
+#####  8)  API系统高级方法
+
+``` python
+#获取参数，必传
+order_id = self.arg('order_id')
+#获取参数，带默认值，非必传
+order_id = self.arg('order_id','')
+#获取int型参数
+user_type = self.arg_int('user_type')
+#获取bool型参数
+is_admin = self.arg_bool('is_admin')
+#(用户)客户端ip地址
+user_ip = self.user_ip
+``` 
+
+
+#####  8)  API系统服务部署
+
+    -  部署nginx ，nginx配置文件路径， api/conf/nginx/nginx.conf 
+    -  执行 bash api/tornado.sh 执行进程的数量，端口号均在这里配置。
+
+
+``` crontab
+日志切割
+#Delete old more than 7 days log files
+0 0 * * * /data/python/fastor/api/bin/logrotate-nginx.sh > /dev/null 2>&1
+5 0 * * * /data/python/fastor/api/bin/logrotate.sh > /dev/null 2>&1
+22 2 * * * find /data/logs/ -mtime +7 -type f -name "*log*" -exec rm -rf {} \;
+``` 
 
 
 ##### 作者： 向Ed老师曾经的战友们致敬！
