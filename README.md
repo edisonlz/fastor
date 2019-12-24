@@ -418,6 +418,14 @@ autostart=true
     -  执行 bash api/tornado.sh 执行进程的数量，端口号均在这里配置。
 
 
+``` crontab
+日志切割
+#Delete old more than 7 days log files
+0 0 * * * /data/python/fastor/api/bin/logrotate-nginx.sh > /dev/null 2>&1
+5 0 * * * /data/python/fastor/api/bin/logrotate.sh > /dev/null 2>&1
+22 2 * * * find /data/logs/ -mtime +7 -type f -name "*log*" -exec rm -rf {} \;
+``` 
+
 ##### 作者： 向Ed老师曾经的战友们致敬！
 
 
