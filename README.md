@@ -538,6 +538,8 @@ token_string = req_method + ":" + path + ":" + sorted(query) + ":" + timestamp +
 token_string = GET + ":" + /test + ":" + a=1b=2 + ":" + 1457665234 + ":" + secret_xxxxxx
 signature = ngx.md5(token_string)
 
+*method为post的情况下，需要将请求发到body中，不支持url参数post*
+
 接口返回状态码为 410 请重新更新服务器时间。
 接口返回 403 为签名错误，访问被禁止。
 
