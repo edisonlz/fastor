@@ -556,7 +556,7 @@ signature = ngx.md5(token_string)
 3）nginx配置示例
   #lua配置地址：api/conf/nginx/lua
   #签名密钥配置：api/conf/nginx/lua/check_pid_signature.lua
-              local secret = "82406d2ff6c40894a26a3ad34eafff2f"
+              local secret = "82406d2ff6c40894a26a3ad34eafff2f" #32位字符串
 
 
     location / {
