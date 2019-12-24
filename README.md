@@ -446,6 +446,55 @@ autostart=true
 22 2 * * * find /data/logs/ -mtime +7 -type f -name "*log*" -exec rm -rf {} \;
 ``` 
 
+#####  7）API 增加了微信支付宝支付接口
+- 文档详见doc/pay文档
+- 需要根据当前业务，实现业务逻辑
+- 代码依赖第三发库，PIL,OpenSSL,qrcode 需要部署安装
+
+``` python
+#代码示例
+
+@handler_define
+class WeixinAppPayHandler(BaseHandler):
+   
+
+    @api_define("WeixinAppPayHandler", r'/api/wx/app/pay',
+                [ 
+                    Param('order_id', True, str, "", "201907261548295499512023", u'订单id'),
+                    Param('good_name', True, str, "", "xxx", u'good_name'),
+                ],
+                description="微信APP支付")
+    def get(self):
+        application_id = self.arg_int('application_id', 1)
+        order_id = self.arg('order_id')
+        good_name = self.arg('good_name','')
+
+        order = OrderInfo.objects.filter(order_id=order_id).first() #订单逻辑需要根据当前业务实现
+        
+        pay = WePayDoPay(
+            out_trade_no=order.order_id,
+            subject=good_name,
+            total_fee= int(order.amount * 100),
+            body=good_name,
+            ip = self.user_ip,
+            payment_type = "NATIVE",
+            application_id=application_id
+        )
+
+        params = pay.get_pay_params()
+        
+
+        results = {
+                   "params": params, 
+                   "code":200,
+                   'status': "success",
+                   "msg":"成功",
+        }
+
+        return self.write(results)
+
+```
+
 
 ##### 作者： 向Ed老师曾经的战友们致敬！
 
