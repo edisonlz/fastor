@@ -237,6 +237,19 @@ DATABASE_READ_MAPPING': {"iclass":"slave"},
 ```
 
 
+##### 8) UMeditor配置
+``` python
+
+配置地址：app/statics/umeditor/umeditor.conf
+
+#默认配置，如有需要可自行配置
+        ,imageUrl:"/editor/upload_img"   //图片上传地址
+        ,imageFieldName: "files[]"       //图片数据的key,若此处修改，需要在后台对应文件修改对应参数
+
+```
+
+
+
 ## 二 API管理系统
 
 ##### 1）运行api管理系统
