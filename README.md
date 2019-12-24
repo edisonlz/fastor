@@ -109,7 +109,17 @@ class BaseUser(models.Model):
      - 在iclass/urls.py 编写url规则
      - view 导入views/__init__.py
      - 设置入口导航 iclass/templates/cms_index/left_side_menu.html
-     
+
+``` python
+ """
+    自动生成view.templates 说明：
+
+    图像上传: field_name 中包括 image 字符串的会自动检测为图像控件
+    时间: field_type 等于 DatetimeField 会自动生成时间控件
+    poistion 字段：如果包含position 字段，1，数据不分页 2.可以生成拖动保存位置
+    choices: 如果 module 里面包括choices，自动生成select控件
+    """
+``` 
 
 #####  5)  后台系统服务部署
 
