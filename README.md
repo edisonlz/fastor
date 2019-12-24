@@ -22,6 +22,8 @@ Fastor  = faster + 人 ， 意为（人效更高）
 ### 2）API系统
 ![Api系统](https://picture-1253291048.cos.ap-shanghai.myqcloud.com/api.png)
 
+### 3）系统架构图
+![系统架构图](https://picture-1253291048.cos.ap-shanghai.myqcloud.com/d.png)
 -------------------
 
 ## 环境配置
