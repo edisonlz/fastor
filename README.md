@@ -420,6 +420,8 @@ if __name__ == "__main__":
 #示例服务端代码启动配置 background/supervisord.conf
 #启动：supervisord -c  background/supervisord.conf
 #重启：supervisorctl -c  background/supervisord.conf restart all
+#重启demo服务：supervisorctl -c  background/supervisord.conf restart demo:*
+
 
 [program:demo]
 process_name = demo-%(process_num)s
