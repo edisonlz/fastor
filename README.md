@@ -376,6 +376,27 @@ def get_user(cls, user_id):
 
 ```
 
+
+``` python
+#https://pypi.org/project/hash_ring/
+
+#默认memcached分布式算法使用求余数，
+#如果是大型应用，可以将memcached 修改为一致性hash算法
+#备注：不建议使用memcached代理服务，对性能有损耗，出问题不好查找
+#修改算法路径 /fastor/base/site-packages/wi_cache/__init__.py #148行
+# 将 func_cache =  memcache.Client(memcache_settings["func_cache"])
+# 替换为 func_cache = MemcacheRing(memcache_settings["func_cache"])
+
+#示例代码
+from hash_ring import MemcacheRing
+mc = MemcacheRing(['127.0.0.1:11222','127.0.0.1:11111'])
+mc.set('hello', 'world')
+print mc.get('hello')
+
+
+```
+
+
 #####  5）API 异步处理
 
 ``` python
