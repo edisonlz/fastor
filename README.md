@@ -248,6 +248,17 @@ DATABASE_READ_MAPPING': {"iclass":"slave"},
 
 ```
 
+##### 10) 右侧菜单选中规则
+``` python
+
+右侧菜单：app/iclass/templates/cms_index/left_side_menu.html
+data-menu-id="100"
+
+#view 对应的增删改查 template 中的 menu-sel 须和 data-menu-id值相等
+<input type="hidden" id="menu-sel" value="100">
+
+
+```
 
 
 ## 二 API管理系统
