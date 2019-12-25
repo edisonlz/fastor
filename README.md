@@ -382,7 +382,8 @@ def get_user(cls, user_id):
 
 #默认memcached分布式算法使用求余数，
 #如果是大型应用，可以将memcached 修改为一致性hash算法
-#备注：不建议使用memcached代理服务，对性能有损耗，出问题不好查找
+#一致性hash算法，主要解决key分布不均匀问题。
+#备注：不建议使用memcached代理服务，对性能有损耗，出问题不好查找，max_open_files连接符开到2万没问题的，内存要够。
 #修改算法路径 /fastor/base/site-packages/wi_cache/__init__.py #148行
 # 将 func_cache =  memcache.Client(memcache_settings["func_cache"])
 # 替换为 func_cache = MemcacheRing(memcache_settings["func_cache"])
