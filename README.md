@@ -40,7 +40,7 @@ Fastor  = faster + 人 ， 意为（人效更高）
 - app: ORM Model与后端Views代码
 - background: 分布式异步处理Async代码 & 定时任务
 - base: 基类和一些帮助函数
-- base/site-packages: 这里优先使用的是代码中的 site-packages 的python第三方类库
+- base/site-packages: 这里优先使用的是代码中的 site-packages 的python第三方库
 
 ## 一 后端管理系统
 
