@@ -27,6 +27,7 @@ class BaseUser(models.Model):
         "xcx":12,
         "gzh":10,
     }
+    
 
 
     user_id = models.CharField(max_length=32, verbose_name=u'用户ID', default='',primary_key=True)
